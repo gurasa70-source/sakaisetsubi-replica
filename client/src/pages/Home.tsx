@@ -412,65 +412,40 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             <div className="text-center">
-              <div
-                className="text-4xl font-bold mb-4"
-                style={{ color: "#0052CC" }}
-              >
-                1
-              </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">新築給排水配管工事</h4>
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-1-new-construction-MYBHfXjdy9WtBhmrCuMEwQ.webp" alt="新築給排水配管工事" className="w-24 h-24 mx-auto mb-4 object-contain" />
+              <h4 className="text-lg font-bold text-gray-800 mb-2">1 新築給排水配管工事</h4>
               <p className="text-gray-600 text-sm">
                 新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応
               </p>
             </div>
 
             <div className="text-center">
-              <div
-                className="text-4xl font-bold mb-4"
-                style={{ color: "#00A8E8" }}
-              >
-                2
-              </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">水廻りの<br />リフォーム工事</h4>
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-2-bathroom-remodel-j8sSe9qkpvofbzAp6NnPAd.webp" alt="水廻りのリフォーム工事" className="w-24 h-24 mx-auto mb-4 object-contain" />
+              <h4 className="text-lg font-bold text-gray-800 mb-2">2 水廻りの<br />リフォーム工事</h4>
               <p className="text-gray-600 text-sm">
                 リフォームに伴う水廻り工事、配管の点検・調査に対応
               </p>
             </div>
 
             <div className="text-center">
-              <div
-                className="text-4xl font-bold mb-4"
-                style={{ color: "#FF4444" }}
-              >
-                3
-              </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">漏水修理・交換</h4>
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-3-leak-repair-NA6duXhuj8a7Vo8x68CCaW.webp" alt="漏水修理・交換" className="w-24 h-24 mx-auto mb-4 object-contain" />
+              <h4 className="text-lg font-bold text-gray-800 mb-2">3 漏水修理・交換</h4>
               <p className="text-gray-600 text-sm">
                 緊急のトラブル対応、漏水修理・配管交換を迅速かつ丁寧に対応
               </p>
             </div>
 
             <div className="text-center">
-              <div
-                className="text-4xl font-bold mb-4"
-                style={{ color: "#0052CC" }}
-              >
-                4
-              </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">給水引込工事</h4>
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-4-water-supply-9eNpjWW3xdRs8dsYkR8DNM.webp" alt="給水引込工事" className="w-24 h-24 mx-auto mb-4 object-contain" />
+              <h4 className="text-lg font-bold text-gray-800 mb-2">4 給水引込工事</h4>
               <p className="text-gray-600 text-sm">
                 新規給水引込工事、水道引き込み工事、分水止めに対応
               </p>
             </div>
 
             <div className="text-center">
-              <div
-                className="text-4xl font-bold mb-4"
-                style={{ color: "#00A8E8" }}
-              >
-                5
-              </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">その他<br />ピット配管等</h4>
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-5-pit-piping-XKmFSsXM5fT4Bt6a5GM2tS.webp" alt="その他ピット配管等" className="w-24 h-24 mx-auto mb-4 object-contain" />
+              <h4 className="text-lg font-bold text-gray-800 mb-2">5 その他<br />ピット配管等</h4>
               <p className="text-gray-600 text-sm">
                 水廻りの配管等、その他のご相談もお気軽にお問い合わせください
               </p>
