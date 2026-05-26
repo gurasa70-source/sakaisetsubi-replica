@@ -127,19 +127,16 @@ export default function Home() {
       </div>
 
       {/* Hero Section with Diagonal Cut */}
-      <section className="pt-24 pb-32 relative overflow-hidden">
+      <section className="pt-24 pb-32 relative overflow-hidden bg-gradient-to-r from-blue-50 to-white">
         <div className="absolute inset-0 z-0">
-          {/* Video Background */}
-          <video
-            autoPlay
-            muted
-            loop
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/manus-storage/hero-video_e8043571.mp4" type="video/mp4" />
-          </video>
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-40" />
+          {/* Light Background Image */}
+          <img
+            src="/manus-storage/company_building_real_d2e0ace2.jpg"
+            alt="Background"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+          {/* Light Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-blue-50 opacity-85" />
           {/* Bottom Wave */}
           <svg
             className="absolute bottom-0 left-0 w-full"
@@ -153,19 +150,19 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <div className="text-gray-800">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ color: "#0052CC" }}>
                 地域の暮らしを
                 <br />
                 支える。
               </h1>
-              <p className="text-lg md:text-xl mb-8 opacity-95 leading-relaxed">
+              <p className="text-lg md:text-xl mb-8 leading-relaxed text-gray-700">
                 1970年の創業以来、静岡市清水区を拠点に、給排水工事から配管工事まで、地域のライフラインを守るプロフェッショナルとして、お客様の信頼を積み重ねてきました。
               </p>
 
               {/* Urgent Call Section */}
               <div className="hidden md:block mb-8">
-                <p className="text-sm font-semibold mb-3 text-white">お急ぎの方はお電話ください</p>
+                <p className="text-sm font-semibold mb-3" style={{ color: "#0052CC" }}>お急ぎの方はお電話ください</p>
                 <div className="flex items-center gap-4 mb-3">
                   <a
                     href="tel:054-348-2286"
@@ -176,7 +173,7 @@ export default function Home() {
                     054-348-2286
                   </a>
                 </div>
-                <p className="text-xs text-white opacity-90">
+                <p className="text-xs text-gray-700">
                   平日 8:00～17:30 対応
                   <br />
                   （日祝・第2・4土曜 休み）
@@ -413,43 +410,69 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             <div className="text-center">
               <div
-                className="text-5xl font-bold mb-4"
+                className="text-4xl font-bold mb-4"
                 style={{ color: "#0052CC" }}
               >
-                01
+                1
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-2">給水工事</h4>
-              <p className="text-gray-600">
-                安全で清潔な水をお届けする給水管工事
+              <h4 className="text-lg font-bold text-gray-800 mb-2">給排水配管工事</h4>
+              <p className="text-gray-600 text-sm">
+                給水管・排水管工事、新設工事から老朽化した設備の更新まで対応
               </p>
             </div>
 
             <div className="text-center">
               <div
-                className="text-5xl font-bold mb-4"
-                style={{ color: "#5B5FDE" }}
+                className="text-4xl font-bold mb-4"
+                style={{ color: "#00A8E8" }}
               >
-                02
+                2
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-2">排水工事</h4>
-              <p className="text-gray-600">
-                快適な生活環境を実現する排水管工事
+              <h4 className="text-lg font-bold text-gray-800 mb-2">水廻りのリフォーム工事</h4>
+              <p className="text-gray-600 text-sm">
+                リフォームに伴う水廻り工事、配管の点検・調査に対応
               </p>
             </div>
 
             <div className="text-center">
               <div
-                className="text-5xl font-bold mb-4"
+                className="text-4xl font-bold mb-4"
                 style={{ color: "#FF4444" }}
               >
-                03
+                3
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-2">修繕工事</h4>
-              <p className="text-gray-600">
-                老朽化した配管の修繕・更新工事
+              <h4 className="text-lg font-bold text-gray-800 mb-2">漏水修理・交換</h4>
+              <p className="text-gray-600 text-sm">
+                緊急のトラブル対応、漏水修理・配管交換を迅速かつ丁寧に対応
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div
+                className="text-4xl font-bold mb-4"
+                style={{ color: "#0052CC" }}
+              >
+                4
+              </div>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">給水引込工事</h4>
+              <p className="text-gray-600 text-sm">
+                新規給水引込工事、水道引き込み工事、分水止めに対応
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div
+                className="text-4xl font-bold mb-4"
+                style={{ color: "#00A8E8" }}
+              >
+                5
+              </div>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">その他 ピット配管等</h4>
+              <p className="text-gray-600 text-sm">
+                水廻りの配管等、その他のご相談もお気軽にお問い合わせください
               </p>
             </div>
           </div>
