@@ -46,12 +46,12 @@
 }
 
 :root {
-  /* Sakai Setsubi Brand Colors */
-  --color-primary-blue: #4DB8E8;
-  --color-secondary-purple: #5B5FDE;
-  --color-gradient: linear-gradient(135deg, #4DB8E8 0%, #5B5FDE 100%);
+  /* Sakai Setsubi Brand Colors - Homepage Version */
+  --color-primary-blue: #0052CC;
+  --color-secondary-red: #FF4444;
+  --color-background: #FFFFFF;
   
-  --primary: #4DB8E8;
+  --primary: #0052CC;
   --primary-foreground: #FFFFFF;
   --sidebar-primary: #4DB8E8;
   --sidebar-primary-foreground: #FFFFFF;
