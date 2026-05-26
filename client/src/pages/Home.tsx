@@ -114,6 +114,18 @@ export default function Home() {
         )}
       </header>
 
+      {/* Urgent Call Button - Fixed */}
+      <div className="fixed bottom-6 right-6 z-40 md:hidden">
+        <a
+          href="tel:054-348-2286"
+          className="flex items-center gap-2 px-4 py-3 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
+          style={{ backgroundColor: "#FF4444" }}
+        >
+          <Phone size={20} />
+          <span>電話する</span>
+        </a>
+      </div>
+
       {/* Hero Section with Diagonal Cut */}
       <section className="pt-24 pb-32 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -144,6 +156,27 @@ export default function Home() {
               <p className="text-lg md:text-xl mb-8 opacity-95 leading-relaxed">
                 1970年の創業以来、静岡市清水区を拠点に、給排水工事から配管工事まで、地域のライフラインを守るプロフェッショナルとして、お客様の信頼を積み重ねてきました。
               </p>
+
+              {/* Urgent Call Section */}
+              <div className="hidden md:block bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-lg mb-8 border border-white border-opacity-30">
+                <p className="text-sm font-semibold mb-3 opacity-90">お急ぎの方はお電話ください</p>
+                <div className="flex items-center gap-4 mb-3">
+                  <a
+                    href="tel:054-348-2286"
+                    className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-white text-lg"
+                    style={{ backgroundColor: "#FF4444" }}
+                  >
+                    <Phone size={24} />
+                    054-348-2286
+                  </a>
+                </div>
+                <p className="text-xs opacity-80">
+                  平日 8:00～17:30 対応
+                  <br />
+                  （日祝・第2・4土曜 休み）
+                </p>
+              </div>
+
               <div className="flex gap-4">
                 <a
                   href="#contact"
@@ -445,6 +478,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Urgent Call Banner - Desktop */}
+      <section className="hidden md:block py-6 bg-gradient-to-r from-red-500 to-red-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div>
+            <h3 className="text-2xl font-bold mb-2">お急ぎの方はお電話ください</h3>
+            <p className="text-sm opacity-90">
+              平日 8:00～17:30 対応（日祝・第2・4土曜 休み）
+            </p>
+          </div>
+          <a
+            href="tel:054-348-2286"
+            className="flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-red-600 bg-white hover:bg-gray-100 transition-colors text-lg"
+          >
+            <Phone size={28} />
+            <span>054-348-2286</span>
+          </a>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -468,8 +520,14 @@ export default function Home() {
                     <p className="text-sm text-gray-600 font-semibold">
                       電話番号
                     </p>
-                    <p className="text-lg font-bold text-gray-800">
+                    <a
+                      href="tel:054-348-2286"
+                      className="text-lg font-bold text-blue-600 hover:underline"
+                    >
                       054-348-2286
+                    </a>
+                    <p className="text-xs text-gray-500 mt-1">
+                      平日 8:00～17:30（日祝・第2・4土曜 休み）
                     </p>
                   </div>
                 </div>
