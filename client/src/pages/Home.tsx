@@ -129,12 +129,18 @@ export default function Home() {
       {/* Hero Section with Diagonal Cut */}
       <section className="pt-24 pb-32 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(135deg, #4DB8E8 0%, #5B5FDE 100%)",
-            }}
-          />
+          {/* Video Background */}
+          <video
+            autoPlay
+            muted
+            loop
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/manus-storage/hero-video_e8043571.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-40" />
+          {/* Bottom Wave */}
           <svg
             className="absolute bottom-0 left-0 w-full"
             viewBox="0 0 1200 200"
@@ -194,11 +200,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative h-96 hidden md:block">
+            <div className="relative h-96 hidden md:block rounded-lg overflow-hidden shadow-2xl">
               <img
-                src="/manus-storage/logo_c1bdfbde.png"
-                alt="Company Logo"
-                className="w-full h-full object-contain"
+                src="/manus-storage/company_building_01f1aff4.webp"
+                alt="Company Building"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
