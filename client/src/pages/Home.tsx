@@ -484,6 +484,79 @@ export default function Home() {
         </div>
       </section>
 
+      {/* News Section */}
+      <section id="news" className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-4">
+              ニュース
+            </h2>
+            <p className="text-gray-600 text-lg">
+              最新の情報をお知らせします
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {/* Article 1 */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                <span className="text-white text-sm font-semibold">2026.05.25</span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
+                  静岡市清水区の配管工求人｜"長く続けられる現場"を大切にしています
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  静岡市清水区で配管工・設備工事経験者を募集。株式会社堺設備では、新築配管工事を中心に大手ハウスメーカー案件にも対応しています。
+                </p>
+                <a
+                  href="https://sakaisetsubi-rct.com/blog/202605251253/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  詳しく見る
+                </a>
+              </div>
+            </div>
+
+            {/* Article 2 */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                <span className="text-white text-sm font-semibold">2026.05.22</span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
+                  創業の想いを受け継ぎ、地域と歩み続けてきた二代目社長
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  株式会社堺設備の二代目社長について。創業者の長男として想いと技術を受け継ぎ、現場を大切にしながら地域の暮らしを支え続けてきました。
+                </p>
+                <a
+                  href="https://sakaisetsubi-rct.com/blog/202605222027/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  詳しく見る
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href="https://sakaisetsubi-rct.com/blog/p/1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors"
+            >
+              すべての記事を見る
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Urgent Call Banner - Desktop */}
       <section className="hidden md:block py-6 bg-gradient-to-r from-red-500 to-red-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
