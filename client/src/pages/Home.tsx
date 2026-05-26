@@ -202,7 +202,7 @@ export default function Home() {
 
             <div className="relative h-96 hidden md:block rounded-lg overflow-hidden shadow-2xl">
               <img
-                src="/manus-storage/company_building_01f1aff4.webp"
+                src="/manus-storage/company_building_real_d2e0ace2.jpg"
                 alt="Company Building"
                 className="w-full h-full object-cover"
               />
@@ -618,7 +618,7 @@ export default function Home() {
                       メールアドレス
                     </p>
                     <p className="text-lg font-bold text-gray-800">
-                      sakai@example.com
+                      sakai-setubi@eagle.ocn.ne.jp
                     </p>
                   </div>
                 </div>
