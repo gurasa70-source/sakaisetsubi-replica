@@ -418,9 +418,9 @@ export default function Home() {
               >
                 1
               </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">給排水配管工事</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">新築給排水配管工事</h4>
               <p className="text-gray-600 text-sm">
-                給水管・排水管工事、新設工事から老朽化した設備の更新まで対応
+                新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応
               </p>
             </div>
 
