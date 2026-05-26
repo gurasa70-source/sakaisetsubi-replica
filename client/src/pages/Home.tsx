@@ -164,19 +164,19 @@ export default function Home() {
               </p>
 
               {/* Urgent Call Section */}
-              <div className="hidden md:block bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-lg mb-8 border border-white border-opacity-30">
-                <p className="text-sm font-semibold mb-3 opacity-90">お急ぎの方はお電話ください</p>
+              <div className="hidden md:block mb-8">
+                <p className="text-sm font-semibold mb-3 text-white">お急ぎの方はお電話ください</p>
                 <div className="flex items-center gap-4 mb-3">
                   <a
                     href="tel:054-348-2286"
                     className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-white text-lg"
-                    style={{ backgroundColor: "#FF4444" }}
+                    style={{ backgroundColor: "#00A8E8" }}
                   >
                     <Phone size={24} />
                     054-348-2286
                   </a>
                 </div>
-                <p className="text-xs opacity-80">
+                <p className="text-xs text-white opacity-90">
                   平日 8:00～17:30 対応
                   <br />
                   （日祝・第2・4土曜 休み）
@@ -406,29 +406,11 @@ export default function Home() {
             事業内容
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">給排水工事</h3>
-              <p className="text-gray-700 leading-relaxed">
-                一般住宅の給排水工事を中心に、新設工事から老朽化した設備の更新まで、幅広く対応しています。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                リフォーム工事
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                リフォームに伴う水廻り工事、配管の点検・調査、修繕工事まで、お客様のご要望に応じて対応いたします。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">緊急対応</h3>
-              <p className="text-gray-700 leading-relaxed">
-                緊急のトラブル対応にも迅速かつ丁寧にお応えします。地域のライフラインを守るプロフェッショナルとして、お客様の「困った」に対応いたします。
-              </p>
-            </div>
+          <div className="mb-16 bg-white p-12 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">事業内容</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              一般住宅の給排水工事を中心に、リフォームに伴う水廻り工事、配管の点検・調査、修繕工事まで幅広く対応しています。新設工事から老朽化した設備の更新、緊急のトラブル対応まで、地域のライフラインを守るプロフェッショナルとして、お客様の「困った」に迅速かつ丁寧にお応えしています。長年培った技術と経験で、安心・安全な施工をお約束します。
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
