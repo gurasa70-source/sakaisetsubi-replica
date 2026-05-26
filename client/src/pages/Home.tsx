@@ -431,7 +431,7 @@ export default function Home() {
               >
                 2
               </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">水廻りのリフォーム工事</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">水廻りの<br />リフォーム工事</h4>
               <p className="text-gray-600 text-sm">
                 リフォームに伴う水廻り工事、配管の点検・調査に対応
               </p>
@@ -470,7 +470,7 @@ export default function Home() {
               >
                 5
               </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">その他 ピット配管等</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">その他<br />ピット配管等</h4>
               <p className="text-gray-600 text-sm">
                 水廻りの配管等、その他のご相談もお気軽にお問い合わせください
               </p>
