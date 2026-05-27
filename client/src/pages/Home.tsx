@@ -426,10 +426,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-1-new-construction-MYBHfXjdy9WtBhmrCuMEwQ.webp" alt="新築給排水配管工事" className="w-24 h-24 mx-auto mb-4 object-contain" />
-              <h4 className="text-lg font-bold text-gray-800 mb-2">1 新築給排水配管工事</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">新築給排水配管工事</h4>
               <p className="text-gray-600 text-sm">
                 新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応
               </p>
@@ -437,7 +437,7 @@ export default function Home() {
 
             <div className="text-center">
               <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-2-bathroom-remodel-j8sSe9qkpvofbzAp6NnPAd.webp" alt="水廻りのリフォーム工事" className="w-24 h-24 mx-auto mb-4 object-contain" />
-              <h4 className="text-lg font-bold text-gray-800 mb-2">2 水廻りの<br />リフォーム工事</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">水廻りの<br />リフォーム工事</h4>
               <p className="text-gray-600 text-sm">
                 リフォームに伴う水廻り工事、配管の点検・調査に対応
               </p>
@@ -445,7 +445,7 @@ export default function Home() {
 
             <div className="text-center">
               <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-3-leak-repair-NA6duXhuj8a7Vo8x68CCaW.webp" alt="漏水修理・交換" className="w-24 h-24 mx-auto mb-4 object-contain" />
-              <h4 className="text-lg font-bold text-gray-800 mb-2">3 漏水修理・交換</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">漏水修理・交換</h4>
               <p className="text-gray-600 text-sm">
                 緊急のトラブル対応、漏水修理・配管交換を迅速かつ丁寧に対応
               </p>
@@ -453,7 +453,7 @@ export default function Home() {
 
             <div className="text-center">
               <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-4-water-supply-9eNpjWW3xdRs8dsYkR8DNM.webp" alt="給水引込工事" className="w-24 h-24 mx-auto mb-4 object-contain" />
-              <h4 className="text-lg font-bold text-gray-800 mb-2">4 給水引込工事</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">給水引込工事</h4>
               <p className="text-gray-600 text-sm">
                 新規給水引込工事、水道引き込み工事、分水止めに対応
               </p>
@@ -461,7 +461,7 @@ export default function Home() {
 
             <div className="text-center">
               <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-5-pit-piping-XKmFSsXM5fT4Bt6a5GM2tS.webp" alt="その他ピット配管等" className="w-24 h-24 mx-auto mb-4 object-contain" />
-              <h4 className="text-lg font-bold text-gray-800 mb-2">5 その他<br />ピット配管等</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">その他<br />ピット配管等</h4>
               <p className="text-gray-600 text-sm">
                 水廻りの配管等、その他のご相談もお気軽にお問い合わせください
               </p>
@@ -469,9 +469,9 @@ export default function Home() {
 
             <div className="text-center">
               <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">申</span>
+                <span className="text-white text-2xl font-bold">📋</span>
               </div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">6 申請・設計業務</h4>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">申請・設計業務</h4>
               <p className="text-gray-600 text-sm">
                 給排水工事に関する各種申請手続きや設計業務に対応
               </p>
@@ -490,37 +490,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-4">
-              対応業務
-            </h2>
-            <p className="text-gray-600 text-lg">
-              様々な給排水設備工事に対応しています
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "給排水設備工事", icon: "🔧" },
-              { title: "新築配管工事", icon: "🏗️" },
-              { title: "リフォーム配管", icon: "🔨" },
-              { title: "器具取付", icon: "⚙️" },
-              { title: "給排水設備設計", icon: "📐" },
-              { title: "各種申請業務", icon: "📋" },
-              { title: "水道局申請", icon: "🏛️" },
-              { title: "竣工図作成", icon: "📄" },
-            ].map((service, index) => (
-              <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
-                <div className="text-4xl mb-3">{service.icon}</div>
-                <h3 className="text-lg font-bold text-gray-800">{service.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* News Section */}
       <section id="news" className="py-20 bg-gradient-to-b from-blue-50 to-white">
