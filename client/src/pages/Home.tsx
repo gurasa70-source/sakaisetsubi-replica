@@ -20,7 +20,6 @@ export default function Home() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeTab, setActiveTab] = useState("news");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -87,7 +86,7 @@ export default function Home() {
               <h1 className="text-lg font-bold" style={{ color: "#0052CC" }}>
                 株式会社 堺設備
               </h1>
-              <p className="text-xs text-gray-600">給排水工事・配管工事</p>
+              <p className="text-xs text-gray-600">静岡市の水廻りのトラブルスピード対応</p>
             </div>
           </div>
 
@@ -472,138 +471,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Results & News Section with Tabs */}
+      {/* News Section */}
       <section className="py-20 bg-gradient-to-b from-white to-blue-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             className="text-4xl md:text-5xl font-bold mb-12 text-center"
             style={{ color: "#0052CC" }}
           >
-            施工実績
+            ニュース
           </h2>
 
-          {/* Tab Navigation */}
-          <div className="flex gap-4 mb-12 border-b border-gray-200 overflow-x-auto">
-            {[
-              { id: "news", label: "ニュース" },
-              { id: "results", label: "施工実績" },
-              { id: "blog", label: "スタッフブログ" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 font-semibold whitespace-nowrap transition-colors border-b-2 ${
-                  activeTab === tab.id
-                    ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-gray-600 hover:text-gray-800"
-                }`}
-                style={
-                  activeTab === tab.id
-                    ? { borderBottomColor: "#0052CC", color: "#0052CC" }
-                    : {}
-                }
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Tab Content */}
-          <div>
-            {activeTab === "news" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {newsLoading ? (
-                  <p className="text-gray-600 col-span-full text-center py-8">
-                    外部ブログから最新記事を取得中です...
-                  </p>
-                ) : newsData.length > 0 ? (
-                  newsData.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow block"
-                    >
-                      {item.image && (
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-48 object-cover rounded-lg mb-4"
-                        />
-                      )}
-                      <p
-                        className="text-sm font-semibold mb-2"
-                        style={{ color: "#0052CC" }}
-                      >
-                        {item.date}
-                      </p>
-                      <h3 className="text-xl font-bold mb-3 text-gray-800">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 mb-4">{item.description}</p>
-                      <span
-                        className="inline-block px-6 py-2 rounded font-semibold text-white"
-                        style={{ backgroundColor: "#0052CC" }}
-                      >
-                        詳しく見る
-                      </span>
-                    </a>
-                  ))
-                ) : (
-                  <p className="text-gray-600 col-span-full text-center py-8">
-                    記事を取得できませんでした
-                  </p>
-                )}
-              </div>
-            )}
-
-            {activeTab === "results" && (
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h3 className="text-2xl font-bold mb-6 text-gray-800">
-                  静岡市｜新築戸建給排水設備工事
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                  <div>
-                    <p className="text-gray-700 mb-4">
-                      <strong>建物：</strong>新築戸建
-                    </p>
-                    <p className="text-gray-700 mb-4">
-                      <strong>工事内容：</strong>給排水設備工事
-                    </p>
-                    <p className="text-gray-600 leading-relaxed">
-                      静岡市内の新築戸建住宅にて給排水設備工事を行いました。他業者様との工程調整を行いながら、丁寧な施工を心掛けました。
-                    </p>
-                  </div>
-                  <div className="rounded-lg overflow-hidden">
-                    <img
-                      src="/manus-storage/construction_example_01_edfdea19.jpg"
-                      alt="施工例"
-                      className="w-full h-64 object-cover"
-                    />
-                  </div>
-                </div>
-                <p className="text-gray-600 text-sm">
-                  ※施工実績は随時更新予定です
-                </p>
-              </div>
-            )}
-
-            {activeTab === "blog" && (
-              <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-                <p className="text-gray-600 mb-4">
-                  スタッフブログは採用情報サイトでご覧いただけます。
-                </p>
+          {/* News Content */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {newsLoading ? (
+              <p className="text-gray-600 col-span-full text-center py-8">
+                外部ブログから最新記事を取得中です...
+              </p>
+            ) : newsData.length > 0 ? (
+              newsData.map((item, index) => (
                 <a
-                  href="https://sakaisetsubi-rct.com/"
+                  key={index}
+                  href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 rounded font-semibold text-white"
-                  style={{ backgroundColor: "#0052CC" }}
+                  className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow block"
                 >
-                  採用情報サイトへ
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-48 object-cover rounded-lg mb-4"
+                    />
+                  )}
+                  <p
+                    className="text-sm font-semibold mb-2"
+                    style={{ color: "#0052CC" }}
+                  >
+                    {item.date}
+                  </p>
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  <span
+                    className="inline-block px-6 py-2 rounded font-semibold text-white"
+                    style={{ backgroundColor: "#0052CC" }}
+                  >
+                    詳しく見る
+                  </span>
                 </a>
-              </div>
+              ))
+            ) : (
+              <p className="text-gray-600 col-span-full text-center py-8">
+                記事を取得できませんでした
+              </p>
             )}
           </div>
         </div>
