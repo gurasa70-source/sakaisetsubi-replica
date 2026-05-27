@@ -1,5 +1,5 @@
-import { Mail, Phone, MapPin, Menu, X, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { Mail, Phone, MapPin, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 /**
  * Design Philosophy: Modern Professional with Gradient & Photos
@@ -13,12 +13,42 @@ import { useState } from "react";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeTab, setActiveTab] = useState("news");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+
+  // Hero Slideshow Images
+  const heroSlides = [
+    {
+      image: "/manus-storage/sakaisetsubi_main03_ea74aaa0.jpg",
+      title: "静岡市の新築・リフォーム給排水設備工事",
+    },
+    {
+      image: "/manus-storage/sakaisetsubi_hero2_50ed2cb7.jpg",
+      title: "戸建・アパート・小規模店舗対応",
+    },
+    {
+      image: "/manus-storage/company_building_real_d2e0ace2.jpg",
+      title: "設計・各種申請業務も一括対応",
+    },
+    {
+      image: "/manus-storage/construction_example_01_edfdea19.jpg",
+      title: "応援・請負・協力業者相談可能",
+    },
+  ];
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -114,391 +144,246 @@ export default function Home() {
         )}
       </header>
 
-      {/* Urgent Call Button - Fixed */}
-      <div className="fixed bottom-6 right-6 z-40 md:hidden">
+      {/* Mobile Fixed Call Button */}
+      <div className="fixed bottom-20 right-4 z-40 md:hidden">
         <a
           href="tel:054-348-2286"
-          className="flex items-center gap-2 px-4 py-3 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
-          style={{ backgroundColor: "#FF4444" }}
+          className="flex items-center justify-center w-14 h-14 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
+          style={{ backgroundColor: "#00A8E8" }}
         >
-          <Phone size={20} />
-          <span>電話する</span>
+          <Phone size={24} />
         </a>
       </div>
 
-      {/* Hero Section with Diagonal Cut */}
-      <section className="pt-24 pb-32 relative overflow-hidden bg-gradient-to-r from-blue-50 to-white">
-        <div className="absolute inset-0 z-0">
-          {/* Light Background Image */}
-          <img
-            src="/manus-storage/company_building_real_d2e0ace2.jpg"
-            alt="Background"
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
-          />
-          {/* Light Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-blue-50 opacity-85" />
-          {/* Bottom Wave */}
-          <svg
-            className="absolute bottom-0 left-0 w-full"
-            viewBox="0 0 1200 200"
-            preserveAspectRatio="none"
-            style={{ transform: "scaleY(-1)" }}
-          >
-            <polygon points="0,0 1200,0 1200,100 0,50" fill="white" />
-          </svg>
-        </div>
+      {/* Mobile Fixed Contact Button */}
+      <div className="fixed bottom-4 right-4 z-40 md:hidden">
+        <a
+          href="#contact"
+          className="flex items-center justify-center w-14 h-14 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
+          style={{ backgroundColor: "#FF4444" }}
+        >
+          <Mail size={24} />
+        </a>
+      </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="text-gray-800">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: "#0052CC" }}>
-                静岡市を中心に新築・リフォーム給排水設備工事に対応
-              </h1>
-              <p className="text-base md:text-lg mb-4 leading-relaxed text-gray-700 font-semibold">
-                戸建・アパート・小規模店舗の施工から
-                <br />
-                設計・申請業務まで一括対応可能
-              </p>
-              <p className="text-base md:text-lg mb-8 leading-relaxed text-gray-700">
-                応援・請負・協力業者様もご相談ください
-              </p>
-
-              {/* Urgent Call Section */}
-              <div className="hidden md:block mb-8">
-                <p className="text-sm font-semibold mb-3" style={{ color: "#0052CC" }}>お急ぎの方はお電話ください</p>
-                <div className="flex items-center gap-4 mb-3">
-                  <a
-                    href="tel:054-348-2286"
-                    className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-white text-lg"
-                    style={{ backgroundColor: "#00A8E8" }}
-                  >
-                    <Phone size={24} />
-                    054-348-2286
-                  </a>
-                </div>
-                <p className="text-xs text-gray-700">
-                  平日 8:00～17:30 対応
-                  <br />
-                  （日祝・第2・4土曜 休み）
-                </p>
-              </div>
-
-              <div className="flex gap-4">
-                <a
-                  href="#contact"
-                  className="px-8 py-3 rounded-lg font-bold text-white"
-                  style={{ backgroundColor: "#FF4444" }}
-                >
-                  お問い合わせ
-                </a>
-                <a
-                  href="#business"
-                  className="px-8 py-3 rounded-lg font-bold text-blue-600 bg-white hover:bg-gray-100"
-                >
-                  事業内容を見る
-                </a>
-              </div>
-            </div>
-
-            <div className="relative h-96 hidden md:block rounded-lg overflow-hidden shadow-2xl">
+      {/* Hero Section - Slideshow */}
+      <section className="pt-24 pb-0 relative overflow-hidden bg-gray-900">
+        <div className="relative w-full h-96 md:h-screen max-h-screen">
+          {/* Slideshow Container */}
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <img
-                src="/manus-storage/company_building_real_d2e0ace2.jpg"
-                alt="Company Building"
+                src={slide.image}
+                alt={slide.title}
                 className="w-full h-full object-cover"
               />
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/40" />
             </div>
-          </div>
-        </div>
-      </section>
+          ))}
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-16 text-center"
-            style={{ color: "#0052CC" }}
-          >
-            会社紹介
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">私たちについて</h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                1970年の創業以来、静岡市清水区を拠点に地域の暮らしを支え続けてきました。2014年に株式会社堺設備として法人化し、現在11名のスタッフが一丸となって、お客様の快適な生活環境づくりに貢献しています。
-              </p>
-
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">私たちの特徴</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span
-                    className="text-2xl font-bold"
-                    style={{ color: "#0052CC" }}
-                  >
-                    ✓
-                  </span>
-                  <span className="text-gray-700">
-                    社員同士の風通しが良く、チームワークを大切にしています
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span
-                    className="text-2xl font-bold"
-                    style={{ color: "#0052CC" }}
-                  >
-                    ✓
-                  </span>
-                  <span className="text-gray-700">
-                    確かな技術と丁寧な対応でお客様からの信頼を得ています
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span
-                    className="text-2xl font-bold"
-                    style={{ color: "#0052CC" }}
-                  >
-                    ✓
-                  </span>
-                  <span className="text-gray-700">
-                    長年培った技術と経験で、安心・安全な施工をお約束します
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">会社概要</h3>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">会社名</p>
-                  <p className="text-lg text-gray-800">株式会社 堺設備</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">代表者名</p>
-                  <p className="text-lg text-gray-800">堺 貴央</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">設立年月日</p>
-                  <p className="text-lg text-gray-800">2014年11月1日</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">従業員数</p>
-                  <p className="text-lg text-gray-800">11人</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">住所</p>
-                  <p className="text-lg text-gray-800">
-                    〒424-0063
-                    <br />
-                    静岡市清水区能島285-1
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">電話番号</p>
-                  <p className="text-lg text-gray-800">
-                    054-348-2286（TEL）
-                    <br />
-                    054-348-2287（FAX）
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 font-semibold">認定</p>
-                  <p className="text-lg text-gray-800">
-                    <a
-                      href="https://www.city.shizuoka.lg.jp/s9872/s001191.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      静岡市上下水道局指定工事店
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Leadership Section */}
-          <div className="mt-20 pt-16 border-t-2 border-gray-200">
-            <h3
-              className="text-3xl font-bold mb-12 text-center"
-              style={{ color: "#0052CC" }}
-            >
-              経営陣
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Founder */}
-              <div className="text-center">
-                <div className="mb-6 overflow-hidden rounded-lg shadow-lg">
-                  <img
-                    src="/manus-storage/president_founder_a7e618f0.png"
-                    alt="創業者"
-                    className="w-full h-80 object-cover"
-                  />
-                </div>
-                <h4 className="text-2xl font-bold text-gray-800 mb-2">創業者</h4>
-                <p
-                  className="text-sm font-semibold mb-4"
-                  style={{ color: "#0052CC" }}
-                >
-                  現 会長
-                </p>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  1970年に千葉県から静岡へ移住し、一人で事業を開始。「地域の方々の役に立ちたい」という想いを大切に、一つひとつの現場と向き合ってきました。
-                </p>
-              </div>
-
-              {/* Second Generation President */}
-              <div className="text-center">
-                <div className="mb-6 overflow-hidden rounded-lg shadow-lg">
-                  <img
-                    src="/manus-storage/president_second_f6239422.jpg"
-                    alt="二代目社長"
-                    className="w-full h-80 object-cover"
-                  />
-                </div>
-                <h4 className="text-2xl font-bold text-gray-800 mb-2">
-                  二代目社長
-                </h4>
-                <p className="text-sm font-semibold mb-4" style={{ color: "#FF4444" }}>
-                  創業者の長男
-                </p>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  創業者の想いと技術を受け継ぎ、現場を何より大切にしていました。「丁寧な仕事をすること」を何より大切にし、職人たちと一緒に動き、お客様から厚い信頼を得ていました。
-                </p>
-              </div>
-
-              {/* Current Representative */}
-              <div className="text-center">
-                <div className="mb-6 overflow-hidden rounded-lg shadow-lg bg-gray-200 h-80 flex items-center justify-center">
-                  <span className="text-gray-500 text-lg">代表者写真</span>
-                </div>
-                <h4 className="text-2xl font-bold text-gray-800 mb-2">
-                  現代表者
-                </h4>
-                <p className="text-sm font-semibold mb-4" style={{ color: "#0052CC" }}>
-                  堺 貴央
-                </p>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  先代の想いと技術を引き継ぎ、現在会社を率いています。地域密着で迅速かつ丁寧な対応を心がけ、お客様の信頼を守り続けています。
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Business Section */}
-      <section
-        id="business"
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50"
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: "#0052CC" }}
-            >
-              事業内容
-            </h2>
-            <p className="text-gray-600 text-lg">
-              新築配管工事から改修工事まで、幅広く対応しています。
+          {/* Content Overlay */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-6 leading-tight">
+              {heroSlides[currentSlide].title}
+            </h1>
+            <p className="text-lg md:text-xl text-white/90 text-center mb-8 max-w-2xl">
+              {currentSlide === 0 && "戸建・アパート・小規模店舗対応"}
+              {currentSlide === 1 && "設計・各種申請業務も一括対応"}
+              {currentSlide === 2 && "応援・請負・協力業者相談可能"}
+              {currentSlide === 3 && "丁寧な施工で信頼を築く"}
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="tel:054-348-2286"
+                className="px-8 py-3 rounded-lg font-bold text-white flex items-center justify-center gap-2"
+                style={{ backgroundColor: "#00A8E8" }}
+              >
+                <Phone size={20} />
+                電話する
+              </a>
+              <a
+                href="#contact"
+                className="px-8 py-3 rounded-lg font-bold text-white"
+                style={{ backgroundColor: "#FF4444" }}
+              >
+                お問い合わせ
+              </a>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "新築配管工事",
-                description: "新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応",
-                icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-new-pipe-work-H5eZ4ckQ4dmsPx5AMaPjfe.webp",
-              },
-              {
-                title: "リフォーム配管",
-                description: "キッチン・浴室・トイレなどの水廻り工事に対応",
-                icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-remodel-pipe-6h2NHqV4uftiukYNdRC2e6.webp",
-              },
-              {
-                title: "その他配管等",
-                description: "配管の漏水修理から交換工事まで迅速に対応",
-                icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-other-piping-aoxytiYtfoC7oHfyKtb69p.webp",
-              },
-              {
-                title: "器具取付",
-                description: "水栓や各種給排水器具の取付工事に対応",
-                icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-fixture-installation-VaGWvDnHpFJYZfBdnXTTS8.webp",
-              },
-              {
-                title: "給排水設備設計",
-                description: "給排水設備の設計から施工まで一貫対応",
-                icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-design-fYtNvfAJGUNTPTf5AkAgMZ.webp",
-              },
-              {
-                title: "各種水道局申請・竣工図作成",
-                description: "水道局への各種申請業務と竣工図作成に対応",
-                icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-application-8svMFpkkhtPd32gLVM3Yhu.webp",
-              },
-            ].map((item, index) => (
-              <div
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full transition-all"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full transition-all"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            {heroSlides.map((_, index) => (
+              <button
                 key={index}
-                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow text-center"
-              >
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="w-20 h-20 mx-auto mb-4"
-                />
-                <h3 className="text-lg font-bold mb-3 text-gray-800">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
-              </div>
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentSlide ? "bg-white w-8" : "bg-white/50"
+                }`}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section (01-05) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="space-y-12">
+      {/* About Section - 50 Years Trust */}
+      <section id="about" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ color: "#0052CC" }}
+            >
+              地域密着で50年以上
+            </h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              1970年の創業以来、静岡市を拠点に地域の暮らしを支え続けてきました。2014年に株式会社堺設備として法人化し、現在11名のスタッフが一丸となって、お客様の快適な生活環境づくりに貢献しています。
+            </p>
+          </div>
+
+          {/* Stats Blocks */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+              <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
+                100+
+              </p>
+              <p className="text-gray-700 font-semibold mt-2">年間新築施工</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+              <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
+                戸建・アパート・店舗
+              </p>
+              <p className="text-gray-700 font-semibold mt-2">対応</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+              <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
+                設計・申請
+              </p>
+              <p className="text-gray-700 font-semibold mt-2">業務対応</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+              <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
+                応援・請負
+              </p>
+              <p className="text-gray-700 font-semibold mt-2">相談可能</p>
+            </div>
+          </div>
+
+          {/* Qualifications */}
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-12 rounded-lg">
+            <h3
+              className="text-3xl font-bold mb-4 text-center"
+              style={{ color: "#0052CC" }}
+            >
+              保有資格・許可
+            </h3>
+            <p className="text-gray-700 text-center mb-8">
+              確かな技術と国家資格をもとに、設計・申請から施工まで責任を持って対応いたします。
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                <span className="text-gray-700">給水装置工事主任技術者</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                <span className="text-gray-700">排水設備工事責任技術者</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                <span className="text-gray-700">2級管工事施工管理技士</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                <span className="text-gray-700">2級配管技能士</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                <span className="text-gray-700">産業廃棄物収集運搬業許可</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                <span className="text-gray-700">その他各種国家資格保有</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-16 text-center"
+            style={{ color: "#0052CC" }}
+          >
+            選ばれる理由
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
             {[
               {
                 number: "01",
                 title: "設計・申請から施工まで一括対応",
-                description: "設計・申請業務から施工まで一貫対応。工事ごとに業者を分ける必要がなく、スムーズな現場進行をサポートします。",
+                description:
+                  "給排水設備の設計・各種申請業務から施工まで一貫対応。スムーズな現場進行をサポートします。",
               },
               {
                 number: "02",
                 title: "新築・リフォームどちらも対応可能",
-                description: "戸建・アパート・小規模店舗まで幅広く対応。新築配管から改修工事まで、現場状況に合わせた柔軟な施工を行います。",
+                description:
+                  "戸建・アパート・小規模店舗まで幅広く対応。現場状況に合わせた柔軟な施工を行います。",
               },
               {
                 number: "03",
                 title: "静岡エリア密着の迅速対応",
-                description: "静岡市を中心に地域密着で対応。フットワークを活かし、迅速で丁寧な対応を心がけています。",
+                description:
+                  "静岡市周辺を中心に地域密着で対応。フットワークを活かし迅速に対応します。",
               },
               {
                 number: "04",
-                title: "現場目線の丁寧な施工",
-                description: "見えなくなる配管部分まで丁寧に施工。安全性・使いやすさ・メンテナンス性を考慮した工事を行います。",
+                title: "見えない部分まで丁寧に施工",
+                description:
+                  "見えなくなる配管部分まで丁寧に施工。安全性・使いやすさ・メンテナンス性を考慮しています。",
               },
               {
                 number: "05",
-                title: "応援・請負・協力業者相談可能",
-                description: "現場応援や請負工事、協力業者様との連携にも対応。継続的なお付き合いができる体制づくりを大切にしています。",
+                title: "協力業者・応援相談可能",
+                description:
+                  "応援・請負・協力業者様との連携にも対応。継続的なお付き合いを大切にしています。",
               },
             ].map((item, index) => (
-              <div key={index} className="flex gap-8 items-start">
+              <div key={index} className="flex gap-6 md:gap-8">
                 <div
-                  className="text-4xl font-bold flex-shrink-0 w-24 text-center"
+                  className="text-4xl md:text-5xl font-bold flex-shrink-0"
                   style={{ color: "#0052CC" }}
                 >
                   {item.number}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 text-gray-800">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
                     {item.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
@@ -511,80 +396,223 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: "#0052CC" }}
-            >
-              ニュース
-            </h2>
-            <p className="text-gray-600 text-lg">最新のお知らせ</p>
-          </div>
+      {/* Business Section */}
+      <section id="business" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4 text-center"
+            style={{ color: "#0052CC" }}
+          >
+            事業内容
+          </h2>
+          <p className="text-gray-600 text-center mb-16 text-lg">
+            新築配管工事から改修工事まで、幅広く対応しています。
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                date: "2024年5月",
-                title: "新しい施工事例が増えました",
-                description: "最近の施工事例をブログで紹介しています。",
-                link: "https://sakaisetsubi-rct.com/blog/p/1/",
+                title: "新築配管工事",
+                description: "新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-new-pipe-work-H5eZ4ckQ4dmsPx5AMaPjfe.webp",
               },
               {
-                date: "2024年4月",
-                title: "スタッフブログを更新しました",
-                description: "スタッフの日常や施工風景をお届けしています。",
-                link: "https://sakaisetsubi-rct.com/blog/p/1/",
+                title: "リフォーム配管",
+                description: "キッチン・浴室・トイレなどの水廻り工事に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-remodel-pipe-6h2NHqV4uftiukYNdRC2e6.webp",
+              },
+              {
+                title: "その他配管等",
+                description: "配管の漏水修理から交換工事まで迅速に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-other-piping-aoxytiYtfoC7oHfyKtb69p.webp",
+              },
+              {
+                title: "器具取付",
+                description: "水栓や各種給排水器具の取付工事に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-fixture-installation-VaGWvDnHpFJYZfBdnXTTS8.webp",
+              },
+              {
+                title: "給排水設備設計",
+                description: "給排水設備の設計から施工まで一貫対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-design-fYtNvfAJGUNTPTf5AkAgMZ.webp",
+              },
+              {
+                title: "各種水道局申請・竣工図作成",
+                description: "水道局への各種申請業務と竣工図作成に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-application-8svMFpkkhtPd32gLVM3Yhu.webp",
               },
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+                className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow"
               >
-                <p
-                  className="text-sm font-semibold mb-2"
-                  style={{ color: "#0052CC" }}
-                >
-                  {item.date}
-                </p>
-                <h3 className="text-xl font-bold mb-3 text-gray-800">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-24 h-24 mx-auto mb-6 object-contain"
+                />
+                <h3 className="text-xl font-bold text-gray-800 mb-3">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{item.description}</p>
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-2 rounded font-semibold text-white"
-                  style={{ backgroundColor: "#0052CC" }}
-                >
-                  詳しく見る
-                </a>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Results & News Section with Tabs */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-12 text-center"
+            style={{ color: "#0052CC" }}
+          >
+            施工実績
+          </h2>
+
+          {/* Tab Navigation */}
+          <div className="flex gap-4 mb-12 border-b border-gray-200 overflow-x-auto">
+            {[
+              { id: "news", label: "ニュース" },
+              { id: "results", label: "施工実績" },
+              { id: "blog", label: "スタッフブログ" },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-6 py-3 font-semibold whitespace-nowrap transition-colors border-b-2 ${
+                  activeTab === tab.id
+                    ? "border-blue-600 text-blue-600"
+                    : "border-transparent text-gray-600 hover:text-gray-800"
+                }`}
+                style={
+                  activeTab === tab.id
+                    ? { borderBottomColor: "#0052CC", color: "#0052CC" }
+                    : {}
+                }
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div>
+            {activeTab === "news" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {[
+                  {
+                    date: "2026年5月25日",
+                    title: "新しい施工事例が増えました",
+                    description: "最近の施工事例をブログで紹介しています。",
+                    link: "https://sakaisetsubi-rct.com/blog/p/1/",
+                  },
+                  {
+                    date: "2026年5月22日",
+                    title: "スタッフブログを更新しました",
+                    description: "スタッフの日常や施工風景をお届けしています。",
+                    link: "https://sakaisetsubi-rct.com/blog/p/1/",
+                  },
+                ].map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow block"
+                  >
+                    <p
+                      className="text-sm font-semibold mb-2"
+                      style={{ color: "#0052CC" }}
+                    >
+                      {item.date}
+                    </p>
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <span
+                      className="inline-block px-6 py-2 rounded font-semibold text-white"
+                      style={{ backgroundColor: "#0052CC" }}
+                    >
+                      詳しく見る
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {activeTab === "results" && (
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-800">
+                  静岡市｜新築戸建給排水設備工事
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <p className="text-gray-700 mb-4">
+                      <strong>建物：</strong>新築戸建
+                    </p>
+                    <p className="text-gray-700 mb-4">
+                      <strong>工事内容：</strong>給排水設備工事
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      静岡市内の新築戸建住宅にて給排水設備工事を行いました。他業者様との工程調整を行いながら、丁寧な施工を心掛けました。
+                    </p>
+                  </div>
+                  <div className="rounded-lg overflow-hidden">
+                    <img
+                      src="/manus-storage/construction_example_01_edfdea19.jpg"
+                      alt="施工例"
+                      className="w-full h-64 object-cover"
+                    />
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm">
+                  ※施工実績は随時更新予定です
+                </p>
+              </div>
+            )}
+
+            {activeTab === "blog" && (
+              <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+                <p className="text-gray-600 mb-4">
+                  スタッフブログは採用情報サイトでご覧いただけます。
+                </p>
+                <a
+                  href="https://sakaisetsubi-rct.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3 rounded font-semibold text-white"
+                  style={{ backgroundColor: "#0052CC" }}
+                >
+                  採用情報サイトへ
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2
               className="text-4xl md:text-5xl font-bold mb-4"
               style={{ color: "#0052CC" }}
             >
-              お問い合わせ
+              給排水設備工事のご相談
             </h2>
             <p className="text-gray-600 text-lg">
-              ご不明な点やご相談がございましたら、お気軽にお問い合わせください。
+              新築・リフォーム・設計申請・応援依頼など、お気軽にご相談ください。
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
               <h3 className="text-2xl font-bold mb-6 text-gray-800">
                 お電話でのお問い合わせ
               </h3>
@@ -595,7 +623,7 @@ export default function Home() {
                   </p>
                   <a
                     href="tel:054-348-2286"
-                    className="text-2xl font-bold"
+                    className="text-3xl font-bold"
                     style={{ color: "#0052CC" }}
                   >
                     054-348-2286
@@ -611,7 +639,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
               <h3 className="text-2xl font-bold mb-6 text-gray-800">
                 メールでのお問い合わせ
               </h3>
@@ -622,7 +650,7 @@ export default function Home() {
                   </p>
                   <a
                     href="mailto:sakai-setubi@eagle.ocn.ne.jp"
-                    className="text-lg font-semibold"
+                    className="text-lg font-semibold break-all"
                     style={{ color: "#0052CC" }}
                   >
                     sakai-setubi@eagle.ocn.ne.jp
@@ -642,7 +670,7 @@ export default function Home() {
           </div>
 
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="bg-white border-2 border-gray-200 p-8 rounded-lg">
+          <form onSubmit={handleSubmit} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
             <h3 className="text-2xl font-bold mb-6 text-gray-800">
               お問い合わせフォーム
             </h3>
