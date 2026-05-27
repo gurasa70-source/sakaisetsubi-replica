@@ -151,13 +151,16 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="text-gray-800">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ color: "#0052CC" }}>
-                地域の暮らしを
-                <br />
-                支える。
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: "#0052CC" }}>
+                静岡市を中心に新築・リフォーム給排水設備工事に対応
               </h1>
-              <p className="text-lg md:text-xl mb-8 leading-relaxed text-gray-700">
-                1970年の創業以来、静岡市清水区を拠点に、給排水工事から配管工事まで、地域のライフラインを守るプロフェッショナルとして、お客様の信頼を積み重ねてきました。
+              <p className="text-base md:text-lg mb-4 leading-relaxed text-gray-700 font-semibold">
+                戸建・アパート・小規模店舗の施工から
+                <br />
+                設計・申請業務まで一括対応可能
+              </p>
+              <p className="text-base md:text-lg mb-8 leading-relaxed text-gray-700">
+                応援・請負・協力業者様もご相談ください
               </p>
 
               {/* Urgent Call Section */}
@@ -408,6 +411,19 @@ export default function Home() {
             <p className="text-gray-700 leading-relaxed mb-4">
               一般住宅の給排水工事を中心に、リフォームに伴う水廻り工事、配管の点検・調査、修繕工事まで幅広く対応しています。新設工事から老朽化した設備の更新、緊急のトラブル対応まで、地域のライフラインを守るプロフェッショナルとして、お客様の「困った」に迅速かつ丁寧にお応えしています。長年培った技術と経験で、安心・安全な施工をお約束します。
             </p>
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <p className="text-gray-700 font-semibold mb-3">✓ 申請・設計業務も対応</p>
+              <p className="text-gray-600 text-sm mb-4">
+                給排水工事に関する各種申請手続きや設計業務にも対応しており、工事から申請まで一貫したサポートを提供しています。
+              </p>
+              <p className="text-gray-700 font-semibold mb-2">✓ 静岡市上下水道局指定工事店</p>
+              <p className="text-gray-600 text-sm">
+                当社は静岡市上下水道局の指定工事店として認定されています。
+                <a href="https://www.city.shizuoka.lg.jp/s9872/s001191.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline ml-1">
+                  詳細はこちら
+                </a>
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
@@ -450,6 +466,16 @@ export default function Home() {
                 水廻りの配管等、その他のご相談もお気軽にお問い合わせください
               </p>
             </div>
+
+            <div className="text-center">
+              <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white text-2xl font-bold">申</span>
+              </div>
+              <h4 className="text-lg font-bold text-gray-800 mb-2">6 申請・設計業務</h4>
+              <p className="text-gray-600 text-sm">
+                給排水工事に関する各種申請手続きや設計業務に対応
+              </p>
+            </div>
           </div>
 
           <div className="text-center mt-12">
@@ -460,6 +486,38 @@ export default function Home() {
             >
               工事のご相談はこちら
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-4">
+              対応業務
+            </h2>
+            <p className="text-gray-600 text-lg">
+              様々な給排水設備工事に対応しています
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "給排水設備工事", icon: "🔧" },
+              { title: "新築配管工事", icon: "🏗️" },
+              { title: "リフォーム配管", icon: "🔨" },
+              { title: "器具取付", icon: "⚙️" },
+              { title: "給排水設備設計", icon: "📐" },
+              { title: "各種申請業務", icon: "📋" },
+              { title: "水道局申請", icon: "🏛️" },
+              { title: "竣工図作成", icon: "📄" },
+            ].map((service, index) => (
+              <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                <div className="text-4xl mb-3">{service.icon}</div>
+                <h3 className="text-lg font-bold text-gray-800">{service.title}</h3>
+              </div>
+            ))}
           </div>
         </div>
       </section>
