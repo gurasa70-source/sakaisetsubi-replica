@@ -764,6 +764,9 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
+                  <p className="text-gray-400">FAX: 054-348-2287</p>
+                </li>
+                <li>
                   <a href="mailto:sakai-setubi@eagle.ocn.ne.jp" className="text-gray-400 hover:text-white">
                     sakai-setubi@eagle.ocn.ne.jp
                   </a>
