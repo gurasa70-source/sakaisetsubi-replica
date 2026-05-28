@@ -620,7 +620,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-600 font-semibold mb-2">
-                    ファックス
+                    FAX
                   </p>
                   <p className="text-3xl font-bold" style={{ color: "#0052CC" }}>
                     054-348-2287
