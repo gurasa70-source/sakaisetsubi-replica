@@ -274,10 +274,10 @@ export default function Home() {
           {/* Stats Blocks */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
-              <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
-                100+
+              <p className="text-2xl font-bold" style={{ color: "#0052CC" }}>
+                100件以上
               </p>
-              <p className="text-gray-700 font-semibold mt-2">年間新築施工</p>
+              <p className="text-gray-700 font-semibold mt-2">年間新築施工実績</p>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
               <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
