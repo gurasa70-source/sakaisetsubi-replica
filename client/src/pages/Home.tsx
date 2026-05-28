@@ -310,11 +310,11 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Founder */}
               <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
+                <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden mb-6">
                   <img
                     src="/manus-storage/sakai_otsurao_founder_correct_ecc6ddc1.webp"
                     alt="会長"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>会長</p>
@@ -326,11 +326,11 @@ export default function Home() {
 
               {/* Second Generation President */}
               <div className="bg-gradient-to-b from-purple-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
+                <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden mb-6">
                   <img
                     src="/manus-storage/sakai_otsurao_founder_a6c41900.webp"
                     alt="前社長"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#5B5FDE" }}>前社長</p>
@@ -342,7 +342,7 @@ export default function Home() {
 
               {/* Current President */}
               <div className="bg-gradient-to-b from-blue-100 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-6">
+                <div className="w-full h-64 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-6">
                   <span className="text-6xl font-bold" style={{ color: "#0052CC" }}>堺</span>
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>代表取締役</p>
