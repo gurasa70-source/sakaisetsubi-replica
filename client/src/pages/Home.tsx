@@ -457,7 +457,7 @@ export default function Home() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-24 h-24 mx-auto mb-6 object-contain"
+                  className="w-24 h-24 mx-auto mb-6 object-contain transition-transform duration-300 hover:scale-110"
                 />
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   {item.title}
