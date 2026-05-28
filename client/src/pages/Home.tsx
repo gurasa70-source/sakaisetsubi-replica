@@ -299,6 +299,61 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Executive Team */}
+          <div className="mb-16">
+            <h3
+              className="text-3xl font-bold mb-12 text-center"
+              style={{ color: "#0052CC" }}
+            >
+              経営者紹介
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Founder */}
+              <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
+                  <img
+                    src="/manus-storage/sakaisetsubi_founder_c1bdfbde.jpg"
+                    alt="会長"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>会長</p>
+                <h4 className="text-xl font-bold mb-3">創業者</h4>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  1970年の創業以来、千葉県から静岡へ移住し、何もないところから一人で仕事を始めました。「地域の方々の役に立ちたい」という想いを大切に、地域の暮らしを支え続けています。
+                </p>
+              </div>
+
+              {/* Second Generation President */}
+              <div className="bg-gradient-to-b from-purple-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
+                  <img
+                    src="/manus-storage/sakaisetsubi_president2_c1bdfbde.jpg"
+                    alt="前社長"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-sm font-semibold mb-2" style={{ color: "#5B5FDE" }}>前社長</p>
+                <h4 className="text-xl font-bold mb-3">二代目社長</h4>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  創業者の長男として、その想いと技術を受け継ぎ、現場を大切にしながら地域の暮らしを支え続けてきました。丁寧な仕事をすることを何より大切にしていました。
+                </p>
+              </div>
+
+              {/* Current President */}
+              <div className="bg-gradient-to-b from-blue-100 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-6xl font-bold" style={{ color: "#0052CC" }}>堺</span>
+                </div>
+                <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>代表取締役</p>
+                <h4 className="text-xl font-bold mb-3">堺貴央（たかひろ）</h4>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  3代目に就任。多くの国家資格を所有し、確かな技術と専門知識をもとに対応いたします。創業からの想いを受け継ぎながら、地域の暮らしを支え続けています。
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Qualifications */}
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-12 rounded-lg">
             <h3
