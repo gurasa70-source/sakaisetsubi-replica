@@ -620,6 +620,14 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-600 font-semibold mb-2">
+                    ファックス
+                  </p>
+                  <p className="text-3xl font-bold" style={{ color: "#0052CC" }}>
+                    054-348-2287
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 font-semibold mb-2">
                     受付時間
                   </p>
                   <p className="text-gray-700">平日 8:00～17:30</p>
