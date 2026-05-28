@@ -312,13 +312,13 @@ export default function Home() {
               <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
                   <img
-                    src="/manus-storage/sakaisetsubi_founder_c1bdfbde.jpg"
+                    src="/manus-storage/sakai_otsurao_founder_a6c41900.webp"
                     alt="会長"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>会長</p>
-                <h4 className="text-xl font-bold mb-3">創業者</h4>
+                <h4 className="text-xl font-bold mb-3">堺　乙雄</h4>
                 <p className="text-gray-700 text-sm leading-relaxed">
                   1970年の創業以来、千葉県から静岡へ移住し、何もないところから一人で仕事を始めました。「地域の方々の役に立ちたい」という想いを大切に、地域の暮らしを支え続けています。
                 </p>
@@ -328,13 +328,13 @@ export default function Home() {
               <div className="bg-gradient-to-b from-purple-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
                   <img
-                    src="/manus-storage/sakaisetsubi_president2_c1bdfbde.jpg"
+                    src="/manus-storage/sakai_shigitake_president2_6b9bf572.webp"
                     alt="前社長"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#5B5FDE" }}>前社長</p>
-                <h4 className="text-xl font-bold mb-3">二代目社長</h4>
+                <h4 className="text-xl font-bold mb-3">堺　滋岳</h4>
                 <p className="text-gray-700 text-sm leading-relaxed">
                   創業者の長男として、その想いと技術を受け継ぎ、現場を大切にしながら地域の暮らしを支え続けてきました。丁寧な仕事をすることを何より大切にしていました。
                 </p>
@@ -346,7 +346,7 @@ export default function Home() {
                   <span className="text-6xl font-bold" style={{ color: "#0052CC" }}>堺</span>
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>代表取締役</p>
-                <h4 className="text-xl font-bold mb-3">堺貴央（たかひろ）</h4>
+                <h4 className="text-xl font-bold mb-3">堺　貴央</h4>
                 <p className="text-gray-700 text-sm leading-relaxed">
                   3代目に就任。多くの国家資格を所有し、確かな技術と専門知識をもとに対応いたします。創業からの想いを受け継ぎながら、地域の暮らしを支え続けています。
                 </p>
