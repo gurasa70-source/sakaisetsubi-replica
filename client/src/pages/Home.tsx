@@ -257,11 +257,11 @@ export default function Home() {
       </section>
 
       {/* About Section - 50 Years Trust */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
               style={{ color: "#0052CC" }}
             >
               地域密着で50年以上
@@ -272,26 +272,26 @@ export default function Home() {
           </div>
 
           {/* Stats Blocks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-lg text-center">
               <p className="text-2xl font-bold" style={{ color: "#0052CC" }}>
                 100件以上
               </p>
               <p className="text-gray-700 font-semibold mt-2">年間新築施工実績</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-lg text-center">
               <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
                 戸建・アパート・店舗
               </p>
               <p className="text-gray-700 font-semibold mt-2">対応</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-lg text-center">
               <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
                 設計・申請
               </p>
               <p className="text-gray-700 font-semibold mt-2">業務対応</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-lg text-center">
               <p className="text-4xl font-bold" style={{ color: "#0052CC" }}>
                 応援・請負
               </p>
@@ -300,17 +300,17 @@ export default function Home() {
           </div>
 
           {/* Executive Team */}
-          <div className="mb-16">
+          <div className="mb-12 md:mb-16">
             <h3
-              className="text-3xl font-bold mb-12 text-center"
+              className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center"
               style={{ color: "#0052CC" }}
             >
               経営者紹介
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {/* Founder */}
-              <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden mb-6">
+              <div className="bg-gradient-to-b from-blue-50 to-white p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-full h-56 md:h-64 bg-gray-200 rounded-lg overflow-hidden mb-4 md:mb-6">
                   <img
                     src="/manus-storage/sakai_otsurao_founder_correct_ecc6ddc1.webp"
                     alt="会長"
@@ -325,8 +325,8 @@ export default function Home() {
               </div>
 
               {/* Second Generation President */}
-              <div className="bg-gradient-to-b from-purple-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden mb-6">
+              <div className="bg-gradient-to-b from-purple-50 to-white p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-full h-56 md:h-64 bg-gray-200 rounded-lg overflow-hidden mb-4 md:mb-6">
                   <img
                     src="/manus-storage/sakai_otsurao_founder_a6c41900.webp"
                     alt="前社長"
@@ -341,8 +341,8 @@ export default function Home() {
               </div>
 
               {/* Current President */}
-              <div className="bg-gradient-to-b from-blue-100 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-64 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-b from-blue-100 to-white p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-full h-56 md:h-64 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-4 md:mb-6">
                   <span className="text-6xl font-bold" style={{ color: "#0052CC" }}>堺</span>
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>代表取締役</p>
@@ -588,9 +588,9 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
               style={{ color: "#0052CC" }}
             >
               給排水設備工事のご相談
