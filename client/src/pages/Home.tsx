@@ -110,17 +110,19 @@ export default function Home() {
             <a href="#business" className="text-gray-700 hover:text-blue-600 font-medium">
               事業内容
             </a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium">
-              お問い合わせ
+            <a href="/works" className="text-gray-700 hover:text-blue-600 font-medium">
+              施工実績
             </a>
             <a
               href="https://sakaisetsubi-rct.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded font-medium text-white"
-              style={{ backgroundColor: "#0052CC" }}
+              className="text-gray-700 hover:text-blue-600 font-medium"
             >
-              採用情報
+              求人・採用
+            </a>
+            <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium">
+              お問い合わせ
             </a>
           </nav>
         </div>
@@ -135,17 +137,19 @@ export default function Home() {
               <a href="#business" className="text-gray-700 font-medium">
                 事業内容
               </a>
-              <a href="#contact" className="text-gray-700 font-medium">
-                お問い合わせ
+              <a href="/works" className="text-gray-700 font-medium">
+                施工実績
               </a>
               <a
                 href="https://sakaisetsubi-rct.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded font-medium text-white text-center"
-                style={{ backgroundColor: "#0052CC" }}
+                className="text-gray-700 font-medium"
               >
-                採用情報
+                求人・採用
+              </a>
+              <a href="#contact" className="text-gray-700 font-medium">
+                お問い合わせ
               </a>
             </nav>
           </div>
