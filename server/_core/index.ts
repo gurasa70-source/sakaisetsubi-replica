@@ -8,6 +8,7 @@ import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { generateSitemap } from "../sitemap";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -36,6 +37,16 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
+  
+  // Sitemap endpoint
+  app.get('/sitemap.xml', (req, res) => {
+    const protocol = req.protocol || 'https';
+    const host = req.get('host') || 'sakaireplica-m2oiogqs.manus.space';
+    const baseUrl = `${protocol}://${host}`;
+    const sitemap = generateSitemap(baseUrl);
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap);
+  });
   // tRPC API
   app.use(
     "/api/trpc",
