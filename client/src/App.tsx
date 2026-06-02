@@ -15,6 +15,7 @@ import NewConstructionService from "./pages/services/NewConstructionService";
 import SewerService from "./pages/services/SewerService";
 import WaterTapService from "./pages/services/WaterTapService";
 import Works from "./pages/Works";
+import WorkDetail from "./pages/works/WorkDetail";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -34,6 +35,7 @@ function Router() {
       <Route path={"/service/sewer"} component={SewerService} />
       <Route path={"/service/water-tap"} component={WaterTapService} />
       {/* Works pages */}
+      <Route path={"/works/:slug"} component={WorkDetail} />
       <Route path={"/works"} component={Works} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
