@@ -475,39 +475,46 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "新築配管工事",
+                title: "漏水修理",
+                description: "漏水調査・給水管修理・埋設管修理に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-other-piping-aoxytiYtfoC7oHfyKtb69p.webp",
+                link: "/service/leak-repair",
+              },
+              {
+                title: "水回りリフォーム",
+                description: "トイレ・洗面・キッチン・浴室などの水廻り工事に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-remodel-pipe-6h2NHqV4uftiukYNdRC2e6.webp",
+                link: "/service/remodel",
+              },
+              {
+                title: "機器交換工事",
+                description: "トイレ・洗面台・水栓・井戸ポンプ交換に対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-fixture-installation-VaGWvDnHpFJYZfBdnXTTS8.webp",
+                link: "/service/equipment",
+              },
+              {
+                title: "新築給排水工事",
                 description: "新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応",
                 image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-new-pipe-work-H5eZ4ckQ4dmsPx5AMaPjfe.webp",
+                link: "/service/new-construction",
               },
               {
-                title: "リフォーム配管",
-                description: "キッチン・浴室・トイレなどの水廻り工事に対応",
-                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-remodel-pipe-6h2NHqV4uftiukYNdRC2e6.webp",
-              },
-              {
-                title: "その他配管等",
-                description: "配管の漏水修理から交換工事まで迅速に対応",
-                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-other-piping-aoxytiYtfoC7oHfyKtb69p.webp",
-              },
-              {
-                title: "器具取付",
-                description: "水栓や各種給排水器具の取付工事に対応",
-                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-fixture-installation-VaGWvDnHpFJYZfBdnXTTS8.webp",
-              },
-              {
-                title: "給排水設備設計",
-                description: "給排水設備の設計から施工まで一貫対応",
+                title: "下水道切替工事",
+                description: "浄化槽から下水道への切替工事、補助金対応",
                 image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-design-fYtNvfAJGUNTPTf5AkAgMZ.webp",
+                link: "/service/sewer",
               },
               {
-                title: "各種水道局申請・竣工図作成",
-                description: "水道局への各種申請業務と竣工図作成に対応",
+                title: "分水工事",
+                description: "給水引込・分水申請・道路掘削工事に対応",
                 image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-application-8svMFpkkhtPd32gLVM3Yhu.webp",
+                link: "/service/water-tap",
               },
             ].map((item, index) => (
-              <div
+              <a
                 key={index}
-                className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow"
+                href={item.link}
+                className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow cursor-pointer"
               >
                 <img
                   src={item.image}
@@ -520,7 +527,8 @@ export default function Home() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {item.description}
                 </p>
-              </div>
+                <span className="text-blue-600 font-semibold mt-4 inline-block text-sm">詳細を見る →</span>
+              </a>
             ))}
           </div>
         </div>
