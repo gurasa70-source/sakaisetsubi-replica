@@ -46,7 +46,7 @@ export default function DesignService() {
     '水道局申請書類作成',
     '各種行政申請業務',
     '竣工図作成',
-    '現場調査・事前確認',
+    '事前確認'
   ];
 
   const reasons = [

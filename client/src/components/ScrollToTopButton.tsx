@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
-import { ChevronUp } from 'lucide-react';
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // スクロール位置を監視
+  // スクロール位置を監視（hysteresis: 320px以上で表示、280px以下で非表示）
   useEffect(() => {
     const toggleVisibility = () => {
-      // ページが300px以上スクロールされたら表示
-      if (window.scrollY > 300) {
+      if (window.scrollY > 320) {
         setIsVisible(true);
-      } else {
+      } else if (window.scrollY < 280) {
         setIsVisible(false);
       }
     };
 
     window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
   }, []);
 
   // トップへスクロール
@@ -29,45 +29,6 @@ export default function ScrollToTopButton() {
 
   return (
     <>
-      <style>{`
-        @keyframes dropPulse {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          50% {
-            transform: translateY(-8px) scale(1.05);
-          }
-        }
-
-        @keyframes dropFloat {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-
-        .scroll-to-top-btn {
-          animation: dropFloat 3s ease-in-out infinite;
-          box-shadow: none !important;
-        }
-
-        .scroll-to-top-btn:hover {
-          animation: dropPulse 0.6s ease-in-out;
-          box-shadow: none !important;
-        }
-
-        .scroll-to-top-btn:focus {
-          box-shadow: none !important;
-        }
-
-        .scroll-to-top-btn:active {
-          transform: scale(0.95);
-          box-shadow: none !important;
-        }
-      `}</style>
-
       {isVisible && (
         <button
           onClick={scrollToTop}

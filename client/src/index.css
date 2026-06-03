@@ -191,3 +191,44 @@
     }
   }
 }
+
+
+/* ScrollToTopButton - グローバルスタイル */
+@keyframes dropPulse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+@keyframes dropFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.scroll-to-top-btn {
+  animation: dropFloat 3s ease-in-out infinite;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.scroll-to-top-btn:hover {
+  animation: dropPulse 0.6s ease-in-out;
+  box-shadow: none !important;
+}
+
+.scroll-to-top-btn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.scroll-to-top-btn:active {
+  transform: scale(0.95);
+  box-shadow: none !important;
+}
