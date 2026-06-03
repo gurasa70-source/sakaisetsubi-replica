@@ -15,6 +15,43 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
+  // ナビゲーション項目の定義
+  const navItems = [
+    { href: '/#about', label: '会社紹介' },
+    { href: '/#business', label: '事業内容' },
+    { href: '/design', label: '設計・申請' },
+    { href: '/works', label: '施工実績' },
+    { href: '/#contact', label: 'お問い合わせ' },
+  ];
+
+  // 外部リンク
+  const externalLink = {
+    href: 'https://sakaisetsubi-rct.com/',
+    label: '求人・採用',
+  };
+
+  // 現在のページを判定する関数
+  const isActive = (href: string) => {
+    if (href.startsWith('/#')) {
+      // アンカーリンクの場合、ページが'/'で、ハッシュが一致するか確認
+      if (location === '/' || location === '') {
+        return location.includes(href.split('#')[1]);
+      }
+      return false;
+    } else {
+      // ページリンクの場合、完全一致または部分一致
+      return location === href || location.startsWith(href + '/');
+    }
+  };
+
+  const getLinkClass = (href: string) => {
+    const baseClass = "font-medium transition-colors duration-200";
+    const activeClass = "text-blue-600 border-b-2 border-blue-600";
+    const inactiveClass = "text-gray-700 hover:text-blue-600";
+    
+    return isActive(href) ? `${baseClass} ${activeClass}` : `${baseClass} ${inactiveClass}`;
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -48,28 +85,23 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-8">
-          <a href="/#about" onClick={() => handleNavigation('/#about')} className="text-gray-700 hover:text-blue-600 font-medium">
-            会社紹介
-          </a>
-          <a href="/#business" onClick={() => handleNavigation('/#business')} className="text-gray-700 hover:text-blue-600 font-medium">
-            事業内容
-          </a>
-          <a href="/design" onClick={() => handleNavigation('/design')} className="text-gray-700 hover:text-blue-600 font-medium">
-            設計・申請
-          </a>
-          <a href="/works" onClick={() => handleNavigation('/works')} className="text-gray-700 hover:text-blue-600 font-medium">
-            施工実績
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => handleNavigation(item.href)}
+              className={getLinkClass(item.href)}
+            >
+              {item.label}
+            </a>
+          ))}
           <a
-            href="https://sakaisetsubi-rct.com/"
+            href={externalLink.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-700 hover:text-blue-600 font-medium"
+            className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
           >
-            求人・採用
-          </a>
-          <a href="/#contact" onClick={() => handleNavigation('/#contact')} className="text-gray-700 hover:text-blue-600 font-medium">
-            お問い合わせ
+            {externalLink.label}
           </a>
         </nav>
       </div>
@@ -78,28 +110,23 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t">
           <nav className="flex flex-col gap-4 p-4">
-            <a href="/#about" onClick={() => handleNavigation('/#about')} className="text-gray-700 font-medium">
-              会社紹介
-            </a>
-            <a href="/#business" onClick={() => handleNavigation('/#business')} className="text-gray-700 font-medium">
-              事業内容
-            </a>
-            <a href="/design" onClick={() => handleNavigation('/design')} className="text-gray-700 font-medium">
-              設計・申請
-            </a>
-            <a href="/works" onClick={() => handleNavigation('/works')} className="text-gray-700 font-medium">
-              施工実績
-            </a>
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => handleNavigation(item.href)}
+                className={`${isActive(item.href) ? 'text-blue-600 font-bold' : 'text-gray-700'} font-medium transition-colors duration-200`}
+              >
+                {item.label}
+              </a>
+            ))}
             <a
-              href="https://sakaisetsubi-rct.com/"
+              href={externalLink.href}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 font-medium"
             >
-              求人・採用
-            </a>
-            <a href="/#contact" onClick={() => handleNavigation('/#contact')} className="text-gray-700 font-medium">
-              お問い合わせ
+              {externalLink.label}
             </a>
           </nav>
         </div>
