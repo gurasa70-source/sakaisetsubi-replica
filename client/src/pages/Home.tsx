@@ -751,7 +751,7 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-bold mb-4">株式会社 堺設備</h4>
               <p className="text-gray-400 text-sm">
-                静岡市清水区の給排水工事・配管工事のプロフェッショナル
+                静岡市の給排水工事・配管工事のプロフェッショナル
               </p>
             </div>
 
