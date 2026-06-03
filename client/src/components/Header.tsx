@@ -54,6 +54,9 @@ export default function Header() {
           <a href="/#business" onClick={() => handleNavigation('/#business')} className="text-gray-700 hover:text-blue-600 font-medium">
             事業内容
           </a>
+          <a href="/design" onClick={() => handleNavigation('/design')} className="text-gray-700 hover:text-blue-600 font-medium">
+            設計・申請
+          </a>
           <a href="/works" onClick={() => handleNavigation('/works')} className="text-gray-700 hover:text-blue-600 font-medium">
             施工実績
           </a>
@@ -80,6 +83,9 @@ export default function Header() {
             </a>
             <a href="/#business" onClick={() => handleNavigation('/#business')} className="text-gray-700 font-medium">
               事業内容
+            </a>
+            <a href="/design" onClick={() => handleNavigation('/design')} className="text-gray-700 font-medium">
+              設計・申請
             </a>
             <a href="/works" onClick={() => handleNavigation('/works')} className="text-gray-700 font-medium">
               施工実績

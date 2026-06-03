@@ -464,9 +464,15 @@ export default function Home() {
               },
               {
                 title: "分水工事",
-                description: "給水引込・分水申請・道路掘削工事に対応",
+                description: "給水引込・分水申請・道路掘剔工事に対応",
                 image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-application-8svMFpkkhtPd32gLVM3Yhu.webp",
                 link: "/service/water-tap",
+              },
+              {
+                title: "設計・申請業務",
+                description: "新築・リフォームの給排水設計から水道申請まで一括対応",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-design-fYtNvfAJGUNTPTf5AkAgMZ.webp",
+                link: "/design",
               },
             ].map((item, index) => (
               <a
