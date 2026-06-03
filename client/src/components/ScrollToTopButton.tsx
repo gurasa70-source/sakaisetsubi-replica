@@ -66,8 +66,9 @@ export default function ScrollToTopButton() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="scroll-to-top-btn fixed bottom-8 right-8 z-40 transition-all duration-300"
+          className="scroll-to-top-btn fixed bottom-8 right-8 z-40 transition-all duration-300 outline-none focus:outline-none"
           aria-label="トップへ戻る"
+          style={{ outline: 'none' }}
         >
           {/* 水滴型ボタン */}
           <svg
