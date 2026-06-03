@@ -219,32 +219,28 @@ export default function LeakRepairService() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {relatedWorks.map((work) => (
-                <Link key={work.id} href={`/works/${work.id}`}>
-                  <a className="group cursor-pointer">
-                    <div className="bg-gray-200 h-64 rounded-lg overflow-hidden mb-4 relative">
-                      <img
-                        src={work.image}
-                        alt={work.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition" />
-                    </div>
-                    <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>
-                      {work.category}
-                    </p>
-                    <h3 className="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition">
-                      {work.title}
-                    </h3>
-                  </a>
+                <Link key={work.id} href={`/works/${work.id}`} className="group cursor-pointer block">
+                  <div className="bg-gray-200 h-64 rounded-lg overflow-hidden mb-4 relative">
+                    <img
+                      src={work.image}
+                      alt={work.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition" />
+                  </div>
+                  <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>
+                    {work.category}
+                  </p>
+                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition">
+                    {work.title}
+                  </h3>
                 </Link>
               ))}
             </div>
 
             <div className="text-center mt-12">
-              <Link href="/works">
-                <a className="inline-block px-8 py-3 rounded-lg font-semibold transition" style={{ backgroundColor: "#0052CC", color: "white" }}>
-                  すべての施工実績を見る →
-                </a>
+              <Link href="/works" className="inline-block px-8 py-3 rounded-lg font-semibold transition" style={{ backgroundColor: "#0052CC", color: "white" }}>
+                すべての施工実績を見る →
               </Link>
             </div>
           </div>
