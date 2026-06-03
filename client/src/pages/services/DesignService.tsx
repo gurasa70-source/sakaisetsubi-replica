@@ -285,7 +285,7 @@ export default function DesignService() {
             設計のみのご依頼も可能です。
           </p>
 
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="flex gap-4 justify-center flex-wrap mb-8">
             <Button
               size="lg"
               className="bg-white text-blue-600 hover:bg-blue-50 font-bold"
@@ -302,6 +302,24 @@ export default function DesignService() {
             >
               設計・見積依頁を送信
             </Button>
+          </div>
+
+          <div className="bg-white bg-opacity-10 rounded-lg p-6 max-w-2xl mx-auto">
+            <p className="text-blue-100 mb-4 font-semibold">設計部直通連絡先</p>
+            <div className="space-y-3 text-white">
+              <div>
+                <p className="text-sm text-blue-200">電話</p>
+                <p className="text-lg font-bold">054-348-2286</p>
+              </div>
+              <div>
+                <p className="text-sm text-blue-200">FAX</p>
+                <p className="text-lg font-bold">054-340-1401</p>
+              </div>
+              <div>
+                <p className="text-sm text-blue-200">メール</p>
+                <p className="text-lg font-bold">sakai-sekkei@ace.ocn.ne.jp</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
