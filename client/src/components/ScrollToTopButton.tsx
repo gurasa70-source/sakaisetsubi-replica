@@ -76,7 +76,6 @@ export default function ScrollToTopButton() {
             height="70"
             viewBox="0 0 60 70"
             xmlns="http://www.w3.org/2000/svg"
-            className="drop-shadow-lg"
           >
             {/* グラデーション定義 */}
             <defs>
@@ -84,16 +83,13 @@ export default function ScrollToTopButton() {
                 <stop offset="0%" style={{ stopColor: '#00A8E8', stopOpacity: 1 }} />
                 <stop offset="100%" style={{ stopColor: '#0052CC', stopOpacity: 1 }} />
               </linearGradient>
-              <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.3" />
-              </filter>
+
             </defs>
 
             {/* 水滴の形状 */}
             <path
               d="M 30 5 C 30 5, 15 25, 15 35 C 15 48, 21 55, 30 55 C 39 55, 45 48, 45 35 C 45 25, 30 5, 30 5 Z"
               fill="url(#dropGradient)"
-              filter="url(#dropShadow)"
               stroke="#0052CC"
               strokeWidth="0.5"
             />

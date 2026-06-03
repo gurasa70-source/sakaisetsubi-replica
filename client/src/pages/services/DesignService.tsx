@@ -308,6 +308,12 @@ export default function DesignService() {
             <p className="text-blue-600 mb-4 font-bold text-lg">設計部直通連絡先</p>
             <div className="space-y-4 text-gray-800">
               <div>
+                <p className="text-sm text-gray-600 font-semibold">電話（会社）</p>
+                <a href="tel:054-348-2286" className="text-2xl font-bold text-blue-600 hover:underline active:scale-95 transition-transform">
+                  054-348-2286
+                </a>
+              </div>
+              <div>
                 <p className="text-sm text-gray-600 font-semibold">FAX</p>
                 <a href="tel:054-340-1401" className="text-2xl font-bold text-blue-600 hover:underline active:scale-95 transition-transform">
                   054-340-1401
