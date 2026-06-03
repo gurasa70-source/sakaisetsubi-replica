@@ -25,6 +25,7 @@ import WorkDetail from "./pages/works/WorkDetail";
 import WorksManagement from "./pages/admin/WorksManagement";
 import DesignProjectsManagement from "./pages/admin/DesignProjectsManagement";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import Breadcrumb from "./components/Breadcrumb";
 
 function RouterContent() {
   const [location] = useLocation();
@@ -98,6 +99,7 @@ function App() {
             <Toaster />
             <GlobalLoading />
             <Header />
+            <Breadcrumb />
             <ScrollToTopButton />
             <RouterContent />
           </TooltipProvider>
