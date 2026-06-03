@@ -39,7 +39,9 @@ function RouterContent() {
   }, [location, showLoading, hideLoading]);
 
   return (
-    <Switch>
+    <>
+      <Breadcrumb />
+      <Switch>
       <Route path={"/"} component={Home} />
       {/* Legacy routes - redirect to new service pages */}
       <Route path={"/leak-repair"} component={() => {
@@ -78,7 +80,8 @@ function RouterContent() {
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </>
   );
 }
 
@@ -99,7 +102,6 @@ function App() {
             <Toaster />
             <GlobalLoading />
             <Header />
-            <Breadcrumb />
             <ScrollToTopButton />
             <RouterContent />
           </TooltipProvider>
