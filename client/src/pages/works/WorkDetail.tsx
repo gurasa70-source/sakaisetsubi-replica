@@ -1,6 +1,7 @@
 import { useRoute } from 'wouter';
 import { trpc } from '@/lib/trpc';
 import { ChevronLeft } from 'lucide-react';
+import ShareButtons from '@/components/ShareButtons';
 
 const categoryIconMap: Record<string, string> = {
   '漏水修理': '💧',
@@ -125,6 +126,15 @@ export default function WorkDetail() {
               <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
                 {work.workContent}
               </p>
+            </section>
+
+            {/* シェアボタン */}
+            <section className="pt-8 border-t border-slate-200">
+              <ShareButtons 
+                title={work.title}
+                url={typeof window !== 'undefined' ? window.location.href : ''}
+                description={work.workContent}
+              />
             </section>
 
             {/* ご依頼内容 */}

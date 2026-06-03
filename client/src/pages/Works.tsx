@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { trpc } from '@/lib/trpc';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import WaterTapLoader from '@/components/WaterTapLoader';
+import ShareButtons from '@/components/ShareButtons';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -283,9 +284,16 @@ export default function Works() {
                       <p className="text-slate-600 text-sm line-clamp-3 mb-4">
                         {work.workContent}
                       </p>
-                      <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all" style={{ color: "#0052CC" }}>
-                        詳細を見る
-                        <ChevronRight size={18} />
+                      <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all" style={{ color: "#0052CC" }}>
+                          詳細を見る
+                          <ChevronRight size={18} />
+                        </div>
+                        <ShareButtons 
+                          title={work.title}
+                          url={`${typeof window !== 'undefined' ? window.location.origin : ''}/works/${work.id}`}
+                          description={work.workContent}
+                        />
                       </div>
                     </div>
                   </a>
