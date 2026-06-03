@@ -606,7 +606,7 @@ export default function Home() {
               >
                 {isDesign && (
                   <span className="inline-block px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full mb-4">
-                    一番人気
+                    丸投げ可
                   </span>
                 )}
                 <img
