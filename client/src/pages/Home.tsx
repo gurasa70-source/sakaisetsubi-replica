@@ -474,26 +474,48 @@ export default function Home() {
                 image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663684517894/M2oiogqSNWEY6apf2zbddq/pictogram-water-design-fYtNvfAJGUNTPTf5AkAgMZ.webp",
                 link: "/design",
               },
-            ].map((item, index) => (
+            ].map((item, index) => {
+              const isDesign = item.title === '設計・申請業務';
+              return (
               <a
                 key={index}
                 href={item.link}
-                className="bg-white border border-gray-200 rounded-lg p-8 text-center hover:shadow-lg transition-shadow cursor-pointer"
+                className={`rounded-lg p-8 text-center hover:shadow-lg transition-all cursor-pointer ${
+                  isDesign
+                    ? 'bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-400 shadow-lg md:col-span-2 lg:col-span-1'
+                    : 'bg-white border border-gray-200'
+                }`}
               >
+                {isDesign && (
+                  <span className="inline-block px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full mb-4">
+                    一番人気
+                  </span>
+                )}
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-24 h-24 mx-auto mb-6 object-contain"
+                  className={`mx-auto mb-6 object-contain ${
+                    isDesign ? 'w-32 h-32' : 'w-24 h-24'
+                  }`}
                 />
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className={`font-bold mb-3 ${
+                  isDesign ? 'text-2xl text-blue-700' : 'text-xl text-gray-800'
+                }`}>
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className={`leading-relaxed ${
+                  isDesign ? 'text-gray-700 text-base font-semibold' : 'text-gray-600 text-sm'
+                }`}>
                   {item.description}
                 </p>
-                <span className="text-blue-600 font-semibold mt-4 inline-block text-sm">詳細を見る →</span>
+                <span className={`font-semibold mt-4 inline-block ${
+                  isDesign ? 'text-blue-700 text-base' : 'text-blue-600 text-sm'
+                }`}>
+                  詳細を見る →
+                </span>
               </a>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
