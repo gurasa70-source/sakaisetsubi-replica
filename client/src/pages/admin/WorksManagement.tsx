@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { trpc } from '@/lib/trpc';
 import { Button } from '@/components/ui/button';
@@ -10,6 +12,7 @@ export default function WorksManagement() {
   const { user, loading } = useAuth();
   const [isCreating, setIsCreating] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     category: '',
@@ -32,6 +35,42 @@ export default function WorksManagement() {
   const createMutation = trpc.works.create.useMutation();
   const updateMutation = trpc.works.update.useMutation();
   const deleteMutation = trpc.works.delete.useMutation();
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, fieldName: 'imageUrl' | 'beforeImageUrl' | 'afterImageUrl') => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // ファイルタイプの検証
+    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+      alert('JPG、PNG、PDFファイルのみアップロード可能です');
+      return;
+    }
+
+    setUploading(true);
+    try {
+      // FormDataを使用してファイルをアップロード
+      const formDataToSend = new FormData();
+      formDataToSend.append('file', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      if (!response.ok) {
+        throw new Error('アップロードに失敗しました');
+      }
+
+      const data = await response.json();
+      setFormData({ ...formData, [fieldName]: data.url });
+    } catch (error) {
+      console.error('Upload error:', error);
+      alert('ファイルのアップロードに失敗しました');
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -203,30 +242,54 @@ export default function WorksManagement() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">メイン画像URL</label>
-                  <Input
-                    value={formData.imageUrl}
-                    onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                    placeholder="/manus-storage/..."
-                  />
+                  <label className="block text-sm font-medium mb-1">メイン画像 (JPG, PNG, PDF)</label>
+                  <div className="flex gap-2">
+                    <Input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      onChange={(e) => handleFileUpload(e, 'imageUrl')}
+                      disabled={uploading}
+                    />
+                  </div>
+                  {formData.imageUrl && (
+                    <div className="mt-2 text-sm text-green-600">
+                      ✓ ファイルアップロード済み
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">ビフォー画像URL</label>
-                  <Input
-                    value={formData.beforeImageUrl}
-                    onChange={(e) => setFormData({ ...formData, beforeImageUrl: e.target.value })}
-                    placeholder="/manus-storage/..."
-                  />
+                  <label className="block text-sm font-medium mb-1">ビフォー画像 (JPG, PNG, PDF)</label>
+                  <div className="flex gap-2">
+                    <Input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      onChange={(e) => handleFileUpload(e, 'beforeImageUrl')}
+                      disabled={uploading}
+                    />
+                  </div>
+                  {formData.beforeImageUrl && (
+                    <div className="mt-2 text-sm text-green-600">
+                      ✓ ファイルアップロード済み
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">アフター画像URL</label>
-                  <Input
-                    value={formData.afterImageUrl}
-                    onChange={(e) => setFormData({ ...formData, afterImageUrl: e.target.value })}
-                    placeholder="/manus-storage/..."
-                  />
+                  <label className="block text-sm font-medium mb-1">アフター画像 (JPG, PNG, PDF)</label>
+                  <div className="flex gap-2">
+                    <Input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      onChange={(e) => handleFileUpload(e, 'afterImageUrl')}
+                      disabled={uploading}
+                    />
+                  </div>
+                  {formData.afterImageUrl && (
+                    <div className="mt-2 text-sm text-green-600">
+                      ✓ ファイルアップロード済み
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -242,7 +305,7 @@ export default function WorksManagement() {
                 </div>
 
                 <div className="flex gap-4">
-                  <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
+                  <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending || uploading}>
                     {editingId ? '更新' : '追加'}
                   </Button>
                   <Button
@@ -275,39 +338,32 @@ export default function WorksManagement() {
           </Card>
         )}
 
-        <div className="space-y-4">
+        <div className="grid gap-4">
           <h2 className="text-2xl font-bold">施工実績一覧</h2>
           {works.map((work: any) => (
             <Card key={work.id}>
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold">{work.title}</h3>
-                    <p className="text-sm text-gray-600">{work.category} - {work.date}</p>
-                    <p className="text-sm mt-2">
-                      ステータス:{' '}
-                      <span className={work.status === 'published' ? 'text-green-600' : 'text-yellow-600'}>
-                        {work.status === 'published' ? '公開' : '下書き'}
-                      </span>
-                    </p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleEdit(work)}
-                    >
-                      編集
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      onClick={() => handleDelete(work.id)}
-                      disabled={deleteMutation.isPending}
-                    >
-                      削除
-                    </Button>
-                  </div>
+              <CardHeader>
+                <CardTitle>{work.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 mb-4">
+                  <p><strong>カテゴリー:</strong> {work.category}</p>
+                  <p><strong>工事日:</strong> {work.date}</p>
+                  <p><strong>ステータス:</strong> {work.status === 'published' ? '公開' : '下書き'}</p>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => handleEdit(work)}
+                  >
+                    編集
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDelete(work.id)}
+                  >
+                    削除
+                  </Button>
                 </div>
               </CardContent>
             </Card>
