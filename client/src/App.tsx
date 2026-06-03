@@ -4,7 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import FloatingHeader from "./components/FloatingHeader";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import LeakRepair from "./pages/LeakRepair";
 import BathroomReform from "./pages/BathroomReform";
@@ -62,7 +62,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <FloatingHeader />
+          <Header />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

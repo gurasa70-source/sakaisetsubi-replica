@@ -41,9 +41,20 @@ export default function WorksManagement() {
     if (!file) return;
 
     // ファイルタイプの検証
-    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    const allowedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'image/svg+xml',
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    ];
     if (!allowedTypes.includes(file.type)) {
-      alert('JPG、PNG、PDFファイルのみアップロード可能です');
+      alert('対応形式: JPG、PNG、GIF、WebP、SVG、PDF、DOC、DOCX、XLS、XLSX');
       return;
     }
 
@@ -59,14 +70,16 @@ export default function WorksManagement() {
       });
 
       if (!response.ok) {
-        throw new Error('アップロードに失敗しました');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'アップロードに失敗しました');
       }
 
       const data = await response.json();
       setFormData({ ...formData, [fieldName]: data.url });
     } catch (error) {
       console.error('Upload error:', error);
-      alert('ファイルのアップロードに失敗しました');
+      const errorMessage = error instanceof Error ? error.message : 'ファイルのアップロードに失敗しました';
+      alert(`アップロードエラー: ${errorMessage}`);
     } finally {
       setUploading(false);
     }
@@ -242,11 +255,11 @@ export default function WorksManagement() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">メイン画像 (JPG, PNG, PDF)</label>
+                  <label className="block text-sm font-medium mb-1">メイン画像 (JPG, PNG, GIF, WebP, SVG, PDF, DOC, DOCX, XLS, XLSX)</label>
                   <div className="flex gap-2">
                     <Input
                       type="file"
-                      accept=".jpg,.jpeg,.png,.pdf"
+                      accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.doc,.docx,.xls,.xlsx"
                       onChange={(e) => handleFileUpload(e, 'imageUrl')}
                       disabled={uploading}
                     />
@@ -259,11 +272,11 @@ export default function WorksManagement() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">ビフォー画像 (JPG, PNG, PDF)</label>
+                  <label className="block text-sm font-medium mb-1">ビフォー画像 (JPG, PNG, GIF, WebP, SVG, PDF, DOC, DOCX, XLS, XLSX)</label>
                   <div className="flex gap-2">
                     <Input
                       type="file"
-                      accept=".jpg,.jpeg,.png,.pdf"
+                      accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.doc,.docx,.xls,.xlsx"
                       onChange={(e) => handleFileUpload(e, 'beforeImageUrl')}
                       disabled={uploading}
                     />
@@ -276,11 +289,11 @@ export default function WorksManagement() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">アフター画像 (JPG, PNG, PDF)</label>
+                  <label className="block text-sm font-medium mb-1">アフター画像 (JPG, PNG, GIF, WebP, SVG, PDF, DOC, DOCX, XLS, XLSX)</label>
                   <div className="flex gap-2">
                     <Input
                       type="file"
-                      accept=".jpg,.jpeg,.png,.pdf"
+                      accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.doc,.docx,.xls,.xlsx"
                       onChange={(e) => handleFileUpload(e, 'afterImageUrl')}
                       disabled={uploading}
                     />

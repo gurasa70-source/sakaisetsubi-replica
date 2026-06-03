@@ -1,4 +1,3 @@
-import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
 import net from "net";
@@ -48,18 +47,54 @@ async function startServer() {
         return res.status(400).json({ error: 'No file provided' });
       }
 
-      const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-      if (!allowedTypes.includes(req.file.mimetype)) {
-        return res.status(400).json({ error: 'Invalid file type' });
+      const allowedTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/webp',
+        'image/svg+xml',
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      ];
+
+      // File extension validation as fallback for incorrect MIME types
+      const originalName = req.file.originalname.toLowerCase();
+      const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.pdf', '.doc', '.docx', '.xls', '.xlsx'];
+      const hasValidExtension = allowedExtensions.some((ext: string) => originalName.endsWith(ext));
+
+      if (!allowedTypes.includes(req.file.mimetype) && !hasValidExtension) {
+        return res.status(400).json({ error: `Invalid file type: ${req.file.mimetype}. Allowed types: JPEG, PNG, GIF, WebP, SVG, PDF, DOC, DOCX, XLS, XLSX` });
       }
 
-      const fileName = `${Date.now()}-${req.file.originalname}`;
-      const { url } = await storagePut(fileName, req.file.buffer, req.file.mimetype);
+      // Sanitize filename
+      const sanitizedName = req.file.originalname.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const fileName = `${Date.now()}-${sanitizedName}`;
+
+      // Use actual MIME type or infer from extension if MIME type is incorrect
+      let mimeType = req.file.mimetype;
+      if (mimeType === 'application/octet-stream') {
+        const ext = req.file.originalname.toLowerCase().split('.').pop();
+        const mimeTypeMap: { [key: string]: string } = {
+          'webp': 'image/webp',
+          'svg': 'image/svg+xml',
+          'pdf': 'application/pdf',
+          'doc': 'application/msword',
+          'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'xls': 'application/vnd.ms-excel',
+          'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        };
+        mimeType = mimeTypeMap[ext || ''] || 'application/octet-stream';
+      }
+
+      const { url } = await storagePut(fileName, req.file.buffer, mimeType);
 
       res.json({ url });
     } catch (error) {
       console.error('Upload error:', error);
-      res.status(500).json({ error: 'Upload failed' });
+      res.status(500).json({ error: `Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}` });
     }
   });
 
@@ -99,4 +134,7 @@ async function startServer() {
   });
 }
 
-startServer().catch(console.error);
+startServer().catch(err => {
+  console.error("Failed to start server:", err);
+  process.exit(1);
+});
