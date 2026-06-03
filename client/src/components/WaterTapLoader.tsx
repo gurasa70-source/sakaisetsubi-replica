@@ -5,35 +5,35 @@ export default function WaterTapLoader() {
         @keyframes waterFlow {
           0% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
           }
           100% {
             opacity: 0;
-            transform: translateY(60px);
+            transform: translateX(60px);
           }
         }
 
         @keyframes waterFlowDelay {
           0% {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateX(-20px);
           }
           20% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
           }
           100% {
             opacity: 0;
-            transform: translateY(60px);
+            transform: translateX(60px);
           }
         }
 
-        @keyframes tapRotate {
+        @keyframes handleRotate {
           0%, 100% {
-            transform: rotateZ(-5deg);
+            transform: rotateZ(-15deg);
           }
           50% {
-            transform: rotateZ(5deg);
+            transform: rotateZ(15deg);
           }
         }
 
@@ -54,78 +54,99 @@ export default function WaterTapLoader() {
         }
 
         .tap-handle {
-          animation: tapRotate 2s ease-in-out infinite;
-          transform-origin: center;
+          animation: handleRotate 2s ease-in-out infinite;
+          transform-origin: 20px 50px;
         }
       `}</style>
 
-      <div className="relative w-32 h-40 flex items-center justify-center">
+      <div className="relative w-48 h-32 flex items-center justify-center">
         <svg
-          viewBox="0 0 100 120"
+          viewBox="0 0 180 100"
           className="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* 水栓の本体 */}
+          {/* 水栓の本体（横向き） */}
           <rect
-            x="35"
-            y="20"
-            width="30"
-            height="40"
-            rx="4"
-            fill="#C0C0C0"
-            stroke="#808080"
+            x="20"
+            y="35"
+            width="60"
+            height="30"
+            rx="6"
+            fill="#FF6B6B"
+            stroke="#E63946"
+            strokeWidth="2"
+          />
+
+          {/* 水栓の先端（蛇口） */}
+          <path
+            d="M 80 45 Q 95 40 100 50 Q 95 60 80 55 Z"
+            fill="#FF8787"
+            stroke="#E63946"
+            strokeWidth="2"
+          />
+
+          {/* 蛇口の先端 */}
+          <ellipse
+            cx="100"
+            cy="50"
+            rx="5"
+            ry="8"
+            fill="#FFB3B3"
+            stroke="#E63946"
             strokeWidth="1"
           />
 
-          {/* 水栓の先端 */}
-          <ellipse cx="50" cy="55" rx="12" ry="8" fill="#A9A9A9" stroke="#808080" strokeWidth="1" />
-
-          {/* ハンドル */}
+          {/* ハンドル（ポップなデザイン） */}
           <g className="tap-handle">
-            <rect
-              x="48"
-              y="8"
-              width="4"
-              height="12"
-              rx="2"
-              fill="#4A90E2"
-              stroke="#2E5C8A"
-              strokeWidth="0.5"
+            <circle
+              cx="40"
+              cy="30"
+              r="10"
+              fill="#4ECDC4"
+              stroke="#2A9D8F"
+              strokeWidth="2"
             />
-            <circle cx="50" cy="8" r="3" fill="#5BA3F5" stroke="#2E5C8A" strokeWidth="0.5" />
+            <circle
+              cx="40"
+              cy="30"
+              r="6"
+              fill="#95E1D3"
+              stroke="#2A9D8F"
+              strokeWidth="1"
+            />
           </g>
 
-          {/* 水の流れ - 複数の水滴 */}
+          {/* 水の流れ - 複数の水滴（横方向） */}
           <g>
             {/* 水滴1 */}
             <ellipse
-              cx="50"
-              cy="70"
-              rx="3"
-              ry="5"
-              fill="#00A8E8"
+              cx="110"
+              cy="50"
+              rx="5"
+              ry="3"
+              fill="#00D9FF"
               opacity="0.8"
               className="water-drop water-drop-1"
             />
 
             {/* 水滴2 */}
             <ellipse
-              cx="50"
-              cy="70"
-              rx="3"
-              ry="5"
-              fill="#00A8E8"
+              cx="110"
+              cy="50"
+              rx="5"
+              ry="3"
+              fill="#00D9FF"
               opacity="0.6"
               className="water-drop water-drop-2"
             />
 
             {/* 水滴3 */}
             <ellipse
-              cx="50"
-              cy="70"
-              rx="3"
-              ry="5"
-              fill="#00A8E8"
+              cx="110"
+              cy="50"
+              rx="5"
+              ry="3"
+              fill="#00D9FF"
               opacity="0.4"
               className="water-drop water-drop-3"
             />
@@ -133,14 +154,14 @@ export default function WaterTapLoader() {
 
           {/* 水が溜まる部分 */}
           <ellipse
-            cx="50"
-            cy="110"
-            rx="18"
-            ry="6"
-            fill="#E8F4F8"
-            stroke="#00A8E8"
-            strokeWidth="1"
-            opacity="0.6"
+            cx="145"
+            cy="52"
+            rx="12"
+            ry="10"
+            fill="#E0F7FF"
+            stroke="#00D9FF"
+            strokeWidth="1.5"
+            opacity="0.7"
           />
         </svg>
       </div>
@@ -149,9 +170,9 @@ export default function WaterTapLoader() {
       <div className="text-center">
         <p className="text-slate-700 font-semibold">読み込み中</p>
         <div className="flex justify-center gap-1 mt-2">
-          <span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0s' }}></span>
-          <span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0.2s' }}></span>
-          <span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0.4s' }}></span>
+          <span className="w-2 h-2 rounded-full bg-red-400 animate-bounce" style={{ animationDelay: '0s' }}></span>
+          <span className="w-2 h-2 rounded-full bg-red-400 animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+          <span className="w-2 h-2 rounded-full bg-red-400 animate-bounce" style={{ animationDelay: '0.4s' }}></span>
         </div>
       </div>
     </div>

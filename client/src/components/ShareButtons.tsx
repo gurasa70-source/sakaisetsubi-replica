@@ -41,7 +41,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       {/* LINE */}
       <button
         onClick={handleLineShare}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-all duration-300 hover:shadow-lg"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-110"
         title="LINEでシェア"
         aria-label="LINEでシェア"
       >
@@ -53,7 +53,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       {/* X (Twitter) */}
       <button
         onClick={handleTwitterShare}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300 hover:shadow-lg"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-110"
         title="Xでシェア"
         aria-label="Xでシェア"
       >
@@ -65,7 +65,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       {/* Facebook */}
       <button
         onClick={handleFacebookShare}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:shadow-lg"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-110"
         title="Facebookでシェア"
         aria-label="Facebookでシェア"
       >
@@ -77,7 +77,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       {/* URLコピー */}
       <button
         onClick={handleCopyUrl}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-300 text-slate-700 hover:bg-slate-400 transition-all duration-300 hover:shadow-lg"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-300 text-slate-700 hover:bg-slate-400 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-110"
         title="URLをコピー"
         aria-label="URLをコピー"
       >
