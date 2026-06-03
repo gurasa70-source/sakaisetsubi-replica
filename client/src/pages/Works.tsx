@@ -110,20 +110,24 @@ export default function Works() {
                   {/* 画像コンテナ */}
                   <div className="relative h-56 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden">
                     {work.imageUrl ? (
-                      <img
-                        src={work.imageUrl}
-                        alt={work.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
-                      />
+                      <>
+                        <img
+                          src={work.imageUrl}
+                          alt={work.title}
+                          className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
+                          loading="lazy"
+                        />
+                        {/* オーバーレイエフェクト */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </>
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-slate-400">
+                      <div className="w-full h-full flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform duration-500">
                         <span className="text-6xl">📸</span>
                       </div>
                     )}
-                    {/* カテゴリーバッジ */}
-                    <div className="absolute top-4 right-4">
-                  <span className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full" style={{ backgroundColor: "#0052CC" }}>
+                    {/* カテゴリーバッジ - ホバーで浮き上がる */}
+                    <div className="absolute top-4 right-4 transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                  <span className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg group-hover:shadow-xl" style={{ backgroundColor: "#0052CC" }}>
                     {work.category}
                   </span>
                     </div>
