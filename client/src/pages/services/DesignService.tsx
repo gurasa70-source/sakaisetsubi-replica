@@ -304,20 +304,20 @@ export default function DesignService() {
             </Button>
           </div>
 
-          <div className="bg-white bg-opacity-10 rounded-lg p-6 max-w-2xl mx-auto">
-            <p className="text-blue-100 mb-4 font-semibold">設計部直通連絡先</p>
-            <div className="space-y-3 text-white">
+          <div className="bg-white rounded-lg p-6 max-w-2xl mx-auto">
+            <p className="text-blue-600 mb-4 font-bold text-lg">設計部直通連絡先</p>
+            <div className="space-y-4 text-gray-800">
               <div>
-                <p className="text-sm text-blue-200">電話</p>
-                <p className="text-lg font-bold">054-348-2286</p>
+                <p className="text-sm text-gray-600 font-semibold">電話</p>
+                <p className="text-2xl font-bold text-blue-600">054-348-2286</p>
               </div>
               <div>
-                <p className="text-sm text-blue-200">FAX</p>
-                <p className="text-lg font-bold">054-340-1401</p>
+                <p className="text-sm text-gray-600 font-semibold">FAX</p>
+                <p className="text-2xl font-bold text-blue-600">054-340-1401</p>
               </div>
               <div>
-                <p className="text-sm text-blue-200">メール</p>
-                <p className="text-lg font-bold">sakai-sekkei@ace.ocn.ne.jp</p>
+                <p className="text-sm text-gray-600 font-semibold">メール</p>
+                <p className="text-lg font-bold text-blue-600 break-all">sakai-sekkei@ace.ocn.ne.jp</p>
               </div>
             </div>
           </div>
