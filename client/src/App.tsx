@@ -18,6 +18,7 @@ import WaterTapService from "./pages/services/WaterTapService";
 import Works from "./pages/Works";
 import WorkDetail from "./pages/works/WorkDetail";
 import WorksManagement from "./pages/admin/WorksManagement";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -63,6 +64,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Header />
+          <ScrollToTopButton />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
