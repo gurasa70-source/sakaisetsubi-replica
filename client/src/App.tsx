@@ -1,10 +1,11 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { LoadingProvider } from "./contexts/LoadingContext";
+import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import Header from "./components/Header";
 import GlobalLoading from "./components/GlobalLoading";
 import Home from "./pages/Home";
@@ -22,10 +23,17 @@ import WorkDetail from "./pages/works/WorkDetail";
 import WorksManagement from "./pages/admin/WorksManagement";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
-function Router() {
-  // make sure to consider if you need authentication for certain routes
-  // Service pages: /service/leak-repair, /service/remodel, /service/equipment, /service/new-construction, /service/sewer, /service/water-tap
-  // Works pages: /works
+function RouterContent() {
+  const [location] = useLocation();
+  const { showLoading, hideLoading } = useLoading();
+
+  // ページ遷移時にローディングを表示
+  useEffect(() => {
+    showLoading();
+    const timer = setTimeout(() => hideLoading(), 300);
+    return () => clearTimeout(timer);
+  }, [location, showLoading, hideLoading]);
+
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -69,7 +77,7 @@ function App() {
             <GlobalLoading />
             <Header />
             <ScrollToTopButton />
-            <Router />
+            <RouterContent />
           </TooltipProvider>
         </LoadingProvider>
       </ThemeProvider>

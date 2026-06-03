@@ -1,13 +1,16 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { trpc } from '@/lib/trpc';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import ShareButtons from '@/components/ShareButtons';
+import FavoriteButton from '@/components/FavoriteButton';
 import { useLoading } from '@/contexts/LoadingContext';
+import { useFavorites } from '@/hooks/useFavorites';
 
 const ITEMS_PER_PAGE = 6;
 
 export default function Works() {
   const { showLoading, hideLoading } = useLoading();
+  const { toggleFavorite, isFavorite } = useFavorites();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -268,11 +271,19 @@ export default function Works() {
                           詳細を見る
                           <ChevronRight size={18} />
                         </div>
-                        <ShareButtons 
-                          title={work.title}
-                          url={`${typeof window !== 'undefined' ? window.location.origin : ''}/works/${work.id}`}
-                          description={work.workContent}
-                        />
+                        <div className="flex items-center justify-between">
+                          <ShareButtons 
+                            title={work.title}
+                            url={`${typeof window !== 'undefined' ? window.location.origin : ''}/works/${work.id}`}
+                            description={work.workContent}
+                          />
+                          <FavoriteButton
+                            workId={String(work.id)}
+                            isFavorite={isFavorite(String(work.id))}
+                            onToggle={toggleFavorite}
+                            className="ml-2"
+                          />
+                        </div>
                       </div>
                     </div>
                   </a>

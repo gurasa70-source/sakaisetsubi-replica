@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "wouter";
+import { useLoading } from "@/contexts/LoadingContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+  const { showLoading } = useLoading();
+
+  const handleNavigation = (href: string) => {
+    if (href.startsWith('/') && !href.startsWith('/#')) {
+      showLoading();
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
@@ -37,13 +48,13 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-8">
-          <a href="/#about" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a href="/#about" onClick={() => handleNavigation('/#about')} className="text-gray-700 hover:text-blue-600 font-medium">
             会社紹介
           </a>
-          <a href="/#business" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a href="/#business" onClick={() => handleNavigation('/#business')} className="text-gray-700 hover:text-blue-600 font-medium">
             事業内容
           </a>
-          <a href="/works" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a href="/works" onClick={() => handleNavigation('/works')} className="text-gray-700 hover:text-blue-600 font-medium">
             施工実績
           </a>
           <a
@@ -54,7 +65,7 @@ export default function Header() {
           >
             求人・採用
           </a>
-          <a href="/#contact" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a href="/#contact" onClick={() => handleNavigation('/#contact')} className="text-gray-700 hover:text-blue-600 font-medium">
             お問い合わせ
           </a>
         </nav>
@@ -64,13 +75,13 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t">
           <nav className="flex flex-col gap-4 p-4">
-            <a href="/#about" className="text-gray-700 font-medium">
+            <a href="/#about" onClick={() => handleNavigation('/#about')} className="text-gray-700 font-medium">
               会社紹介
             </a>
-            <a href="/#business" className="text-gray-700 font-medium">
+            <a href="/#business" onClick={() => handleNavigation('/#business')} className="text-gray-700 font-medium">
               事業内容
             </a>
-            <a href="/works" className="text-gray-700 font-medium">
+            <a href="/works" onClick={() => handleNavigation('/works')} className="text-gray-700 font-medium">
               施工実績
             </a>
             <a
@@ -81,7 +92,7 @@ export default function Header() {
             >
               求人・採用
             </a>
-            <a href="/#contact" className="text-gray-700 font-medium">
+            <a href="/#contact" onClick={() => handleNavigation('/#contact')} className="text-gray-700 font-medium">
               お問い合わせ
             </a>
           </nav>

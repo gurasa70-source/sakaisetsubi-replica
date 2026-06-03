@@ -2,6 +2,8 @@ import { useRoute } from 'wouter';
 import { trpc } from '@/lib/trpc';
 import { ChevronLeft } from 'lucide-react';
 import ShareButtons from '@/components/ShareButtons';
+import FavoriteButton from '@/components/FavoriteButton';
+import { useFavorites } from '@/hooks/useFavorites';
 
 const categoryIconMap: Record<string, string> = {
   '漏水修理': '💧',
@@ -22,6 +24,7 @@ const categoryServiceMap: Record<string, { name: string; url: string }> = {
 };
 
 export default function WorkDetail() {
+  const { toggleFavorite, isFavorite } = useFavorites();
   const [match, params] = useRoute('/works/:id');
 
   const workId = params?.id ? parseInt(params.id as string) : null;
@@ -130,11 +133,19 @@ export default function WorkDetail() {
 
             {/* シェアボタン */}
             <section className="pt-8 border-t border-slate-200">
-              <ShareButtons 
-                title={work.title}
-                url={typeof window !== 'undefined' ? window.location.href : ''}
-                description={work.workContent}
-              />
+              <div className="flex items-center justify-between">
+                <ShareButtons 
+                  title={work.title}
+                  url={typeof window !== 'undefined' ? window.location.href : ''}
+                  description={work.workContent}
+                />
+                <FavoriteButton
+                  workId={String(workId)}
+                  isFavorite={isFavorite(String(workId))}
+                  onToggle={toggleFavorite}
+                  className="ml-4"
+                />
+              </div>
             </section>
 
             {/* ご依頼内容 */}
