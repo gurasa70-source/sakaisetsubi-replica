@@ -163,7 +163,7 @@ export default function Home() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 flex-wrap justify-center">
               <a
                 href="tel:054-348-2286"
                 className="px-8 py-3 rounded-lg font-bold text-white flex items-center justify-center gap-2"
@@ -178,6 +178,12 @@ export default function Home() {
                 style={{ backgroundColor: "#FF4444" }}
               >
                 お問い合わせ
+              </a>
+              <a
+                href="/design"
+                className="px-8 py-3 rounded-lg font-bold text-white border-2 border-white hover:bg-white/10 transition-all"
+              >
+                設計・申請の詳細へ
               </a>
             </div>
           </div>
