@@ -1,10 +1,13 @@
 import { useState, useMemo } from 'react';
 import { trpc } from '@/lib/trpc';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+
+const ITEMS_PER_PAGE = 6;
 
 export default function Works() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const categories = [
     { id: '漏水修理', name: '漏水修理', icon: '💧' },
@@ -33,6 +36,46 @@ export default function Works() {
       return categoryMatch && yearMatch;
     });
   }, [works, selectedCategory, selectedYear]);
+
+  // ページネーション計算
+  const totalPages = Math.ceil(filteredWorks.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedWorks = filteredWorks.slice(startIndex, endIndex);
+
+  // フィルター変更時にページをリセット
+  const handleCategoryChange = (category: string | null) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleYearChange = (year: string | null) => {
+    setSelectedYear(year);
+    setCurrentPage(1);
+  };
+
+  const handleResetFilters = () => {
+    setSelectedCategory(null);
+    setSelectedYear(null);
+    setCurrentPage(1);
+  };
+
+  // ページ番号配列を生成（最大5ページまで表示）
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxPagesToShow = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+    if (endPage - startPage < maxPagesToShow - 1) {
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -72,7 +115,7 @@ export default function Works() {
             <h2 className="text-3xl font-bold mb-8 text-slate-900">カテゴリーから探す</h2>
             <div className="flex flex-wrap gap-3">
               <button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => handleCategoryChange(null)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   selectedCategory === null
                     ? 'text-white shadow-lg scale-105'
@@ -85,7 +128,7 @@ export default function Works() {
               {categories.map(category => (
                 <button
                   key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
+                  onClick={() => handleCategoryChange(category.id)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
                     selectedCategory === category.id
                       ? 'text-white shadow-lg scale-105'
@@ -106,7 +149,7 @@ export default function Works() {
               <h2 className="text-3xl font-bold mb-8 text-slate-900">施工年から探す</h2>
               <div className="flex flex-wrap gap-3">
                 <button
-                  onClick={() => setSelectedYear(null)}
+                  onClick={() => handleYearChange(null)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                     selectedYear === null
                       ? 'text-white shadow-lg scale-105'
@@ -119,7 +162,7 @@ export default function Works() {
                 {years.map(year => (
                   <button
                     key={year}
-                    onClick={() => setSelectedYear(year)}
+                    onClick={() => handleYearChange(year)}
                     className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                       selectedYear === year
                         ? 'text-white shadow-lg scale-105'
@@ -141,14 +184,11 @@ export default function Works() {
             <h2 className="text-3xl font-bold text-slate-900">
               {selectedCategory || selectedYear
                 ? `検索結果 (${filteredWorks.length}件)`
-                : 'すべての施工実績'}
+                : `すべての施工実績 (${filteredWorks.length}件)`}
             </h2>
             {(selectedCategory || selectedYear) && (
               <button
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setSelectedYear(null);
-                }}
+                onClick={handleResetFilters}
                 className="text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"
               >
                 フィルターをリセット
@@ -157,70 +197,130 @@ export default function Works() {
           </div>
 
           {filteredWorks.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-8">
-              {filteredWorks.map((work, index) => (
-                <a
-                  key={work.id}
-                  href={`/works/${work.id}`}
-                  className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-                  style={{
-                    animationDelay: `${index * 50}ms`,
-                  }}
-                >
-                  {/* 画像コンテナ */}
-                  <div className="relative h-56 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden">
-                    {work.imageUrl ? (
-                      <>
-                        <img
-                          src={work.imageUrl}
-                          alt={work.title}
-                          className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
-                          loading="lazy"
-                        />
-                        {/* オーバーレイエフェクト */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </>
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform duration-500">
-                        <span className="text-6xl">📸</span>
+            <>
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                {paginatedWorks.map((work, index) => (
+                  <a
+                    key={work.id}
+                    href={`/works/${work.id}`}
+                    className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                    }}
+                  >
+                    {/* 画像コンテナ */}
+                    <div className="relative h-56 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden">
+                      {work.imageUrl ? (
+                        <>
+                          <img
+                            src={work.imageUrl}
+                            alt={work.title}
+                            className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
+                            loading="lazy"
+                          />
+                          {/* オーバーレイエフェクト */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform duration-500">
+                          <span className="text-6xl">📸</span>
+                        </div>
+                      )}
+                      {/* カテゴリーバッジ - ホバーで浮き上がる */}
+                      <div className="absolute top-4 right-4 transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                        <span className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg group-hover:shadow-xl" style={{ backgroundColor: "#0052CC" }}>
+                          {work.category}
+                        </span>
                       </div>
-                    )}
-                    {/* カテゴリーバッジ - ホバーで浮き上がる */}
-                    <div className="absolute top-4 right-4 transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
-                      <span className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg group-hover:shadow-xl" style={{ backgroundColor: "#0052CC" }}>
-                        {work.category}
-                      </span>
                     </div>
-                  </div>
 
-                  {/* コンテンツ */}
-                  <div className="p-6">
-                    <p className="text-sm text-slate-500 font-semibold mb-3 flex items-center gap-2">
-                      <span>📅</span>
-                      {work.date}
-                    </p>
-                    <h3 className="text-lg font-bold mb-3 text-slate-900 line-clamp-2 group-hover:text-blue-600 transition">
-                      {work.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm line-clamp-3 mb-4">
-                      {work.workContent}
-                    </p>
-                    <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all" style={{ color: "#0052CC" }}>
-                      詳細を見る
-                      <ChevronRight size={18} />
+                    {/* コンテンツ */}
+                    <div className="p-6">
+                      <p className="text-sm text-slate-500 font-semibold mb-3 flex items-center gap-2">
+                        <span>📅</span>
+                        {work.date}
+                      </p>
+                      <h3 className="text-lg font-bold mb-3 text-slate-900 line-clamp-2 group-hover:text-blue-600 transition">
+                        {work.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm line-clamp-3 mb-4">
+                        {work.workContent}
+                      </p>
+                      <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all" style={{ color: "#0052CC" }}>
+                        詳細を見る
+                        <ChevronRight size={18} />
+                      </div>
                     </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* ページネーション */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mb-8">
+                  {/* 前へボタン */}
+                  <button
+                    onClick={() => {
+                      setCurrentPage(Math.max(1, currentPage - 1));
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    disabled={currentPage === 1}
+                    className={`p-2 rounded-lg transition-all duration-300 ${
+                      currentPage === 1
+                        ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  {/* ページ番号 */}
+                  {getPageNumbers().map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                        currentPage === page
+                          ? 'text-white shadow-lg'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      }`}
+                      style={currentPage === page ? { backgroundColor: "#0052CC" } : {}}
+                    >
+                      {page}
+                    </button>
+                  ))}
+
+                  {/* 次へボタン */}
+                  <button
+                    onClick={() => {
+                      setCurrentPage(Math.min(totalPages, currentPage + 1));
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    disabled={currentPage === totalPages}
+                    className={`p-2 rounded-lg transition-all duration-300 ${
+                      currentPage === totalPages
+                        ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              )}
+
+              {/* ページ情報 */}
+              <div className="text-center text-slate-600 text-sm">
+                {startIndex + 1}～{Math.min(endIndex, filteredWorks.length)}件を表示 / 全{filteredWorks.length}件
+              </div>
+            </>
           ) : (
             <div className="text-center py-16">
               <p className="text-2xl text-slate-500 mb-4">該当する施工実績がありません</p>
               <button
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setSelectedYear(null);
-                }}
+                onClick={handleResetFilters}
                 className="px-6 py-3 rounded-full font-semibold transition-all duration-300 text-white"
                 style={{ backgroundColor: "#0052CC" }}
               >
