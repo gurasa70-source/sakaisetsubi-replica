@@ -231,9 +231,14 @@ export default function DesignService() {
             </Card>
           </div>
 
-          <p className="text-center text-gray-600 mt-8 text-sm">
-            ※その他多数の実績があります。詳細はお問い合わせください。
-          </p>
+          <div className="text-center mt-8">
+            <Button
+              onClick={() => window.location.href = '/design-projects'}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold"
+            >
+              設計・申請実績をもっと見る
+            </Button>
+          </div>
         </div>
       </section>
 

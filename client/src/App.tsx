@@ -19,9 +19,11 @@ import NewConstructionService from "./pages/services/NewConstructionService";
 import SewerService from "./pages/services/SewerService";
 import WaterTapService from "./pages/services/WaterTapService";
 import DesignService from "./pages/services/DesignService";
+import DesignProjects from "./pages/DesignProjects";
 import Works from "./pages/Works";
 import WorkDetail from "./pages/works/WorkDetail";
 import WorksManagement from "./pages/admin/WorksManagement";
+import DesignProjectsManagement from "./pages/admin/DesignProjectsManagement";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
 function RouterContent() {
@@ -65,11 +67,13 @@ function RouterContent() {
       <Route path={"/service/sewer"} component={SewerService} />
       <Route path={"/service/water-tap"} component={WaterTapService} />
       <Route path={"/design"} component={DesignService} />
+      <Route path={"/design-projects"} component={DesignProjects} />
       {/* Works pages */}
       <Route path={"/works/:slug"} component={WorkDetail} />
       <Route path={"/works"} component={Works} />
       {/* Admin pages */}
       <Route path={"/admin/works"} component={WorksManagement} />
+      <Route path={"/admin/design-projects"} component={DesignProjectsManagement} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

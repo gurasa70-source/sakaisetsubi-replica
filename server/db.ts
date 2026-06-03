@@ -1,6 +1,6 @@
 import { eq, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, works, InsertWork, Work } from "../drizzle/schema";
+import { InsertUser, users, works, InsertWork, Work, designProjects, InsertDesignProject, DesignProject } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -181,4 +181,98 @@ export async function getPublishedWorks(): Promise<Work[]> {
 
 export async function getDraftWorks(): Promise<Work[]> {
   return getAllWorks("draft");
+}
+
+// 設計・申請実績クエリヘルパー
+export async function createDesignProject(project: InsertDesignProject): Promise<DesignProject | undefined> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create design project: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(designProjects).values(project);
+    const projectId = (result[0] as any).insertId;
+    const created = await db.select().from(designProjects).where(eq(designProjects.id, projectId as number)).limit(1);
+    return created.length > 0 ? created[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to create design project:", error);
+    throw error;
+  }
+}
+
+export async function getDesignProjectById(id: number): Promise<DesignProject | undefined> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get design project: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.select().from(designProjects).where(eq(designProjects.id, id)).limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get design project:", error);
+    throw error;
+  }
+}
+
+export async function getAllDesignProjects(status?: string): Promise<DesignProject[]> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get design projects: database not available");
+    return [];
+  }
+
+  try {
+    let query: any = db.select().from(designProjects);
+    if (status) {
+      query = query.where(eq(designProjects.status, status as any));
+    }
+    const result = await query.orderBy(desc(designProjects.createdAt));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get design projects:", error);
+    throw error;
+  }
+}
+
+export async function updateDesignProject(id: number, updates: Partial<InsertDesignProject>): Promise<DesignProject | undefined> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot update design project: database not available");
+    return undefined;
+  }
+
+  try {
+    await db.update(designProjects).set(updates).where(eq(designProjects.id, id));
+    return getDesignProjectById(id);
+  } catch (error) {
+    console.error("[Database] Failed to update design project:", error);
+    throw error;
+  }
+}
+
+export async function deleteDesignProject(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot delete design project: database not available");
+    return;
+  }
+
+  try {
+    await db.delete(designProjects).where(eq(designProjects.id, id));
+  } catch (error) {
+    console.error("[Database] Failed to delete design project:", error);
+    throw error;
+  }
+}
+
+export async function getPublishedDesignProjects(): Promise<DesignProject[]> {
+  return getAllDesignProjects("published");
+}
+
+export async function getDraftDesignProjects(): Promise<DesignProject[]> {
+  return getAllDesignProjects("draft");
 }

@@ -22,6 +22,13 @@
       "when": 1780461924259,
       "tag": "0002_brief_leo",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1780474113242,
+      "tag": "0003_glorious_katie_power",
+      "breakpoints": true
     }
   ]
 }

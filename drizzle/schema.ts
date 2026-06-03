@@ -47,3 +47,20 @@ export const works = mysqlTable("works", {
 
 export type Work = typeof works.$inferSelect;
 export type InsertWork = typeof works.$inferInsert;
+
+// 設計・申請実績テーブル
+export const designProjects = mysqlTable("designProjects", {
+  id: int("id").autoincrement().primaryKey(),
+  title: text("title").notNull(),
+  building: varchar("building", { length: 255 }).notNull(), // 建物（例：新築戸建）
+  businessContent: text("businessContent").notNull(), // 業務内容（例：給排水設備設計・水道申請）
+  scope: text("scope").notNull(), // 対応範囲（例：図面作成～申請提出）
+  description: text("description").notNull(), // 説明文
+  imageUrl: text("imageUrl"), // メイン画像
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type DesignProject = typeof designProjects.$inferSelect;
+export type InsertDesignProject = typeof designProjects.$inferInsert;

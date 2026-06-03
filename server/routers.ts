@@ -5,8 +5,8 @@ import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { generateSitemap } from "./sitemap";
-import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks } from "./db";
-import { InsertWork } from "../drizzle/schema";
+import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects } from "./db";
+import { InsertWork, InsertDesignProject } from "../drizzle/schema";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -174,6 +174,65 @@ export const appRouter = router({
         // Return empty array on error
         return [];
       }
+    }),
+  }),
+
+  // Design Projects (設計・申請実績) router
+  designProjects: router({
+    getPublished: publicProcedure.query(async () => {
+      return await getPublishedDesignProjects();
+    }),
+    getById: publicProcedure.input(z.number()).query(async ({ input }) => {
+      return await getDesignProjectById(input);
+    }),
+    create: protectedProcedure
+      .input(z.object({
+        title: z.string(),
+        building: z.string(),
+        businessContent: z.string(),
+        scope: z.string(),
+        description: z.string(),
+        imageUrl: z.string().optional(),
+        status: z.enum(["draft", "published"]).default("draft"),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can create design projects");
+        }
+        return await createDesignProject(input as InsertDesignProject);
+      }),
+    update: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        building: z.string().optional(),
+        businessContent: z.string().optional(),
+        scope: z.string().optional(),
+        description: z.string().optional(),
+        imageUrl: z.string().optional(),
+        status: z.enum(["draft", "published"]).optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can update design projects");
+        }
+        const { id, ...updates } = input;
+        return await updateDesignProject(id, updates as Partial<InsertDesignProject>);
+      }),
+    delete: protectedProcedure
+      .input(z.number())
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can delete design projects");
+        }
+        await deleteDesignProject(input);
+        return { success: true };
+      }),
+    getAll: protectedProcedure.query(async ({ ctx }) => {
+      if (ctx.user?.role !== "admin") {
+        throw new Error("Only admin can view all design projects");
+      }
+      return await getAllDesignProjects();
     }),
   }),
 });

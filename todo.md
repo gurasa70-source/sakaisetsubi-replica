@@ -124,3 +124,12 @@
 - [x] FAX番号をtel:リンクに設定（完了）
 - [x] メールアドレスをmailto:リンクに設定（完了）
 - [x] トップへ戻るボタンのホバー時の四角形の跡を削除
+
+## 設計・申請実績機能の実装
+- [x] designProjectsテーブルの作成（建物、業務内容、対応範囲、説明、画像）
+- [x] server/db.tsにクエリヘルパーを追加
+- [x] server/routers.tsにdesignProjectsルーターを追加
+- [x] 設計・申請実績管理ページ（/admin/design-projects）を作成
+- [x] 設計・申請実績表示ページ（/design-projects）を作成
+- [x] App.tsxにルートを追加
+- [x] DesignService.tsxに「設計・申請実績をもっと見る」ボタンを追加
