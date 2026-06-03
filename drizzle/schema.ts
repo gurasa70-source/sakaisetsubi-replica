@@ -25,4 +25,24 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+// 施工実績テーブル
+export const works = mysqlTable("works", {
+  id: int("id").autoincrement().primaryKey(),
+  title: text("title").notNull(),
+  category: varchar("category", { length: 64 }).notNull(),
+  date: varchar("date", { length: 64 }).notNull(),
+  workContent: text("workContent").notNull(),
+  requestContent: text("requestContent").notNull(),
+  cause: text("cause").notNull(),
+  method: text("method").notNull(),
+  comment: text("comment").notNull(),
+  imageUrl: text("imageUrl"),
+  beforeImageUrl: text("beforeImageUrl"),
+  afterImageUrl: text("afterImageUrl"),
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Work = typeof works.$inferSelect;
+export type InsertWork = typeof works.$inferInsert;

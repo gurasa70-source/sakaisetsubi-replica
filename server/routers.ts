@@ -1,10 +1,13 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { generateSitemap } from "./sitemap";
+import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks } from "./db";
+import { InsertWork } from "../drizzle/schema";
+import { z } from "zod";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -27,6 +30,75 @@ export const appRouter = router({
       const host = ctx.req.get('host') || 'sakaireplica-m2oiogqs.manus.space';
       const baseUrl = `${protocol}://${host}`;
       return generateSitemap(baseUrl);
+    }),
+  }),
+
+  // Works (施工実績) router
+  works: router({
+    getPublished: publicProcedure.query(async () => {
+      return await getPublishedWorks();
+    }),
+    getById: publicProcedure.input(z.number()).query(async ({ input }) => {
+      return await getWorkById(input);
+    }),
+    create: protectedProcedure
+      .input(z.object({
+        title: z.string(),
+        category: z.string(),
+        date: z.string(),
+        workContent: z.string(),
+        requestContent: z.string(),
+        cause: z.string(),
+        method: z.string(),
+        comment: z.string(),
+        imageUrl: z.string().optional(),
+        beforeImageUrl: z.string().optional(),
+        afterImageUrl: z.string().optional(),
+        status: z.enum(["draft", "published"]).default("draft"),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can create works");
+        }
+        return await createWork(input as InsertWork);
+      }),
+    update: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        category: z.string().optional(),
+        date: z.string().optional(),
+        workContent: z.string().optional(),
+        requestContent: z.string().optional(),
+        cause: z.string().optional(),
+        method: z.string().optional(),
+        comment: z.string().optional(),
+        imageUrl: z.string().optional(),
+        beforeImageUrl: z.string().optional(),
+        afterImageUrl: z.string().optional(),
+        status: z.enum(["draft", "published"]).optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can update works");
+        }
+        const { id, ...updates } = input;
+        return await updateWork(id, updates as Partial<InsertWork>);
+      }),
+    delete: protectedProcedure
+      .input(z.number())
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can delete works");
+        }
+        await deleteWork(input);
+        return { success: true };
+      }),
+    getAll: protectedProcedure.query(async ({ ctx }) => {
+      if (ctx.user?.role !== "admin") {
+        throw new Error("Only admin can view all works");
+      }
+      return await getAllWorks();
     }),
   }),
 
