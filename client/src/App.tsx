@@ -37,9 +37,25 @@ function RouterContent() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/leak-repair"} component={LeakRepair} />
-      <Route path={"/bathroom-reform"} component={BathroomReform} />
-      <Route path={"/new-construction"} component={NewConstructionPlumbing} />
+      {/* Legacy routes - redirect to new service pages */}
+      <Route path={"/leak-repair"} component={() => {
+        if (typeof window !== 'undefined') {
+          window.location.href = '/service/leak-repair';
+        }
+        return null;
+      }} />
+      <Route path={"/bathroom-reform"} component={() => {
+        if (typeof window !== 'undefined') {
+          window.location.href = '/service/remodel';
+        }
+        return null;
+      }} />
+      <Route path={"/new-construction"} component={() => {
+        if (typeof window !== 'undefined') {
+          window.location.href = '/service/new-construction';
+        }
+        return null;
+      }} />
       {/* Service pages */}
       <Route path={"/service/leak-repair"} component={LeakRepairService} />
       <Route path={"/service/remodel"} component={RemodelService} />

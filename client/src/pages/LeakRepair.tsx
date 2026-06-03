@@ -151,7 +151,7 @@ export default function LeakRepair() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 キッチン下の給水管から漏水が発生。最新の調査機器で漏水箇所を特定し、配管を交換いたしました。
               </p>
-              <a href="#" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
+              <a href="/works" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
                 詳細を見る →
               </a>
             </div>
@@ -159,9 +159,9 @@ export default function LeakRepair() {
               <h3 className="text-lg font-semibold mb-2 text-gray-800">清水区△△で埋設管漏水修理</h3>
               <p className="text-sm text-gray-600 mb-3">地中の埋設管からの漏水を修理</p>
               <p className="text-gray-700 text-sm leading-relaxed">
-                庭の埋設管からの漏水により、水道料金が大幅に増加。掘削工事を行い、配管を交換いたしました。
+                府の埋設管からの漏水により、水道料金が大幅に増加。掘削工事を行い、配管を交換いたしました。
               </p>
-              <a href="#" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
+              <a href="/works" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
                 詳細を見る →
               </a>
             </div>
@@ -169,9 +169,9 @@ export default function LeakRepair() {
               <h3 className="text-lg font-semibold mb-2 text-gray-800">清水区□□で漏水調査</h3>
               <p className="text-sm text-gray-600 mb-3">水道料金増加の原因を調査</p>
               <p className="text-gray-700 text-sm leading-relaxed">
-                水道料金が急に上がったため、漏水調査を実施。蛇口のパッキン劣化が原因で、交換いたしました。
+                水道料金が急に上がったため、漏水調査を実施。螒口のパッキン劣化が原因で、交換いたしました。
               </p>
-              <a href="#" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
+              <a href="/works" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
                 詳細を見る →
               </a>
             </div>

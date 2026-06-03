@@ -240,7 +240,7 @@ export default function BathroomReform() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 老朽化したトイレを最新の温水洗浄便座付きトイレに交換。快適性と省エネ性が大幅に向上しました。
               </p>
-              <a href="#" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
+              <a href="/works" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
                 詳細を見る →
               </a>
             </div>
@@ -248,9 +248,9 @@ export default function BathroomReform() {
               <h3 className="text-lg font-semibold mb-2 text-gray-800">洗面台交換工事</h3>
               <p className="text-sm text-gray-600 mb-3">新しい洗面台に交換</p>
               <p className="text-gray-700 text-sm leading-relaxed">
-                古い洗面台を新しいデザインの洗面台に交換。洗面所の雰囲気が大きく変わり、使い勝手も向上しました。
+                古い洗面台を新しいデザインの洗面台に交換。洗面所の雰囲気が大きく変わり、使い刓手も向上しました。
               </p>
-              <a href="#" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
+              <a href="/works" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
                 詳細を見る →
               </a>
             </div>
@@ -260,7 +260,7 @@ export default function BathroomReform() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 古いキッチンを最新のシステムキッチンに改修。調理スペースが広がり、使い勝手が大幅に改善されました。
               </p>
-              <a href="#" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
+              <a href="/works" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
                 詳細を見る →
               </a>
             </div>
