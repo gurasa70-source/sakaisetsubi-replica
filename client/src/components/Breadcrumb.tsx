@@ -52,9 +52,9 @@ export default function Breadcrumb() {
   return (
     <nav className="bg-gray-100 border-b-2 border-gray-300 py-4 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm overflow-x-auto whitespace-nowrap pb-2">
+        <ol className="flex flex-wrap items-center gap-2 text-sm pb-2">
           {breadcrumbs.map((item, index) => (
-            <li key={item.href} className="flex items-center gap-2 flex-shrink-0">
+            <li key={item.href} className="flex items-center gap-2">
               {index === 0 ? (
                 <a
                   href={item.href}
