@@ -4,7 +4,9 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LoadingProvider } from "./contexts/LoadingContext";
 import Header from "./components/Header";
+import GlobalLoading from "./components/GlobalLoading";
 import Home from "./pages/Home";
 import LeakRepair from "./pages/LeakRepair";
 import BathroomReform from "./pages/BathroomReform";
@@ -61,12 +63,15 @@ function App() {
         defaultTheme="light"
         // switchable
       >
-        <TooltipProvider>
-          <Toaster />
-          <Header />
-          <ScrollToTopButton />
-          <Router />
-        </TooltipProvider>
+        <LoadingProvider>
+          <TooltipProvider>
+            <Toaster />
+            <GlobalLoading />
+            <Header />
+            <ScrollToTopButton />
+            <Router />
+          </TooltipProvider>
+        </LoadingProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
