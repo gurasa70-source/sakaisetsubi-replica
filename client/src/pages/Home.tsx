@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { useSchemaOrg } from "@/hooks/useSchemaOrg";
-import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/schema";
+import { generateLocalBusinessDetailSchema, generateWebsiteSchema } from "@/lib/schema";
 
 /**
  * Design Philosophy: Modern Professional with Gradient & Photos
@@ -21,7 +21,7 @@ export default function Home() {
   const { user, loading, error, isAuthenticated, logout } = useAuth();
 
   // Schema.org 構造化データを追加
-  useSchemaOrg(generateOrganizationSchema(), 'organization-schema');
+  useSchemaOrg(generateLocalBusinessDetailSchema(), 'local-business-schema');
   useSchemaOrg(generateWebsiteSchema(), 'website-schema');
 
   const [currentSlide, setCurrentSlide] = useState(0);

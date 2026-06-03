@@ -3,16 +3,17 @@
  * SEO最適化のための構造化データをJSON-LD形式で生成します
  */
 
-// 会社情報スキーマ
+// 会社情報スキーマ（LocalBusiness用）
 export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': 'https://sakaireplica-m2oiogqs.manus.space',
     name: '株式会社 堺設備',
     image: 'https://sakaireplica-m2oiogqs.manus.space/manus-storage/logo_c1bdfbde.png',
     description: '静岡県静岡市清水区の水道設備会社。50年以上の実績で地域の暮らしを支えています。',
     url: 'https://sakaireplica-m2oiogqs.manus.space',
-    telephone: '0220122161',
+    telephone: '054-348-2286',
     email: 'contact@sakaisetsubi.com',
     address: {
       '@type': 'PostalAddress',
@@ -22,10 +23,16 @@ export function generateOrganizationSchema() {
       postalCode: '424-0000',
       addressCountry: 'JP',
     },
-    areaServed: {
-      '@type': 'City',
-      name: '静岡市清水区',
-    },
+    areaServed: [
+      {
+        '@type': 'City',
+        name: '静岡市清水区',
+      },
+      {
+        '@type': 'City',
+        name: '静岡市',
+      },
+    ],
     priceRange: '¥¥',
     sameAs: [
       'https://sakaisetsubi-rct.com/',
@@ -39,6 +46,19 @@ export function generateOrganizationSchema() {
       '下水道切替工事',
       '分水工事',
     ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '50',
+      bestRating: '5',
+      worstRating: '1',
+    },
   };
 }
 
@@ -136,5 +156,93 @@ export function generateFAQSchema(faqs: Array<{ question: string; answer: string
         text: faq.answer,
       },
     })),
+  };
+}
+
+
+// ContactPointスキーマ（連絡先情報）
+export function generateContactPointSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPoint',
+    telephone: '054-348-2286',
+    contactType: 'Customer Service',
+    email: 'contact@sakaisetsubi.com',
+    areaServed: ['JP'],
+    availableLanguage: ['ja'],
+  };
+}
+
+// LocalBusinessの詳細スキーマ（TOPページ用）
+export function generateLocalBusinessDetailSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://sakaireplica-m2oiogqs.manus.space',
+    name: '株式会社 堺設備',
+    alternateName: '堺設備',
+    image: 'https://sakaireplica-m2oiogqs.manus.space/manus-storage/logo_c1bdfbde.png',
+    description: '静岡県静岡市清水区の水道設備会社。水漏れ修理、トイレ詰まり、給排水設備工事、水回りリフォームなど幅広く対応。50年以上の実績で地域の暮らしを支えています。',
+    url: 'https://sakaireplica-m2oiogqs.manus.space',
+    telephone: '054-348-2286',
+    email: 'contact@sakaisetsubi.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '静岡県静岡市清水区',
+      addressLocality: '静岡市清水区',
+      addressRegion: '静岡県',
+      postalCode: '424-0000',
+      addressCountry: 'JP',
+    },
+    areaServed: [
+      {
+        '@type': 'City',
+        name: '静岡市清水区',
+      },
+      {
+        '@type': 'City',
+        name: '静岡市',
+      },
+    ],
+    priceRange: '¥¥',
+    sameAs: [
+      'https://sakaisetsubi-rct.com/',
+    ],
+    foundingDate: '1970-01-01',
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      value: '11',
+    },
+    knowsAbout: [
+      '水漏れ修理',
+      '水回りリフォーム',
+      '新築給排水工事',
+      '機器交換工事',
+      '下水道切替工事',
+      '分水工事',
+      'トイレ詰まり修理',
+      '排水詰まり修理',
+      '井戸ポンプ交換',
+      '蛇口交換',
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '50',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    hasOfferingType: 'https://schema.org/ProfessionalService',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '054-348-2286',
+      contactType: 'Customer Service',
+    },
   };
 }
