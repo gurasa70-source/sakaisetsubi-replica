@@ -2,43 +2,28 @@ export default function WaterTapLoader() {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <style>{`
-        @keyframes waterFlow {
+        @keyframes waterDrop {
           0% {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateY(0);
           }
           100% {
             opacity: 0;
-            transform: translateX(50px);
-          }
-        }
-
-        @keyframes waterFlowDelay {
-          0% {
-            opacity: 0;
-            transform: translateX(-20px);
-          }
-          20% {
-            opacity: 1;
-            transform: translateX(0);
-          }
-          100% {
-            opacity: 0;
-            transform: translateX(50px);
+            transform: translateY(40px);
           }
         }
 
         @keyframes handleRotate {
           0%, 100% {
-            transform: rotateZ(-20deg);
+            transform: rotateZ(-15deg);
           }
           50% {
-            transform: rotateZ(20deg);
+            transform: rotateZ(15deg);
           }
         }
 
         .water-drop {
-          animation: waterFlow 1.5s ease-in infinite;
+          animation: waterDrop 1.2s ease-in infinite;
         }
 
         .water-drop-1 {
@@ -46,136 +31,186 @@ export default function WaterTapLoader() {
         }
 
         .water-drop-2 {
-          animation-delay: 0.5s;
+          animation-delay: 0.4s;
         }
 
         .water-drop-3 {
-          animation-delay: 1s;
+          animation-delay: 0.8s;
         }
 
         .tap-handle {
           animation: handleRotate 2s ease-in-out infinite;
-          transform-origin: 50px 35px;
+          transform-origin: 50px 50px;
+        }
+
+        .tap-shadow {
+          filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.15));
         }
       `}</style>
 
-      <div className="relative w-56 h-40 flex items-center justify-center">
+      <div className="relative w-64 h-48 flex items-center justify-center">
         <svg
-          viewBox="0 0 200 140"
-          className="w-full h-full"
+          viewBox="0 0 200 200"
+          className="w-full h-full tap-shadow"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* 水栓の本体（横向き） */}
+          {/* 蛇口の背景（壁） */}
+          <rect
+            x="0"
+            y="0"
+            width="200"
+            height="200"
+            fill="#F5F5F5"
+            rx="8"
+          />
+
+          {/* 蛇口の取付部分 */}
+          <rect
+            x="70"
+            y="30"
+            width="60"
+            height="15"
+            fill="#A0A0A0"
+            stroke="#808080"
+            strokeWidth="1"
+            rx="3"
+          />
+
+          {/* 蛇口の本体（メイン） */}
           <g>
-            {/* メイン本体 */}
+            {/* 上部の接続部 */}
             <rect
-              x="30"
-              y="50"
-              width="80"
-              height="35"
-              rx="8"
-              fill="#D3D3D3"
-              stroke="#999999"
-              strokeWidth="2"
-            />
-
-            {/* 蛇口の先端 */}
-            <path
-              d="M 110 55 Q 130 50 140 65 Q 130 80 110 75 Z"
+              x="85"
+              y="45"
+              width="30"
+              height="20"
               fill="#C0C0C0"
-              stroke="#999999"
-              strokeWidth="2"
+              stroke="#808080"
+              strokeWidth="1.5"
+              rx="2"
             />
 
-            {/* 蛇口の先端（内部） */}
+            {/* 蛇口の先端（下向き） */}
+            <path
+              d="M 90 65 L 88 85 Q 88 90 92 92 L 108 92 Q 112 90 112 85 L 110 65 Z"
+              fill="#B8B8B8"
+              stroke="#808080"
+              strokeWidth="1.5"
+            />
+
+            {/* 蛇口の先端（グラデーション効果） */}
             <ellipse
-              cx="140"
-              cy="65"
-              rx="6"
-              ry="10"
-              fill="#A9A9A9"
+              cx="100"
+              cy="92"
+              rx="10"
+              ry="4"
+              fill="#D0D0D0"
               stroke="#808080"
               strokeWidth="1"
             />
 
-            {/* ハンドル（横向き） */}
-            <g className="tap-handle">
-              <circle
-                cx="50"
-                cy="35"
-                r="12"
-                fill="#87CEEB"
-                stroke="#4A90E2"
-                strokeWidth="2"
-              />
-              <circle
-                cx="50"
-                cy="35"
-                r="7"
-                fill="#B0E0E6"
-                stroke="#4A90E2"
-                strokeWidth="1"
-              />
-            </g>
+            {/* 蛇口の内部（リアルな質感） */}
+            <path
+              d="M 92 70 L 90 85 Q 90 88 93 90"
+              stroke="#E8E8E8"
+              strokeWidth="1"
+              fill="none"
+              opacity="0.6"
+            />
+          </g>
 
-            {/* 接続部分 */}
-            <rect
-              x="28"
-              y="58"
-              width="8"
-              height="20"
-              fill="#B0B0B0"
+          {/* ハンドル（回転） */}
+          <g className="tap-handle">
+            {/* ハンドルの根元 */}
+            <circle
+              cx="70"
+              cy="50"
+              r="8"
+              fill="#A0A0A0"
               stroke="#808080"
+              strokeWidth="1"
+            />
+
+            {/* ハンドルの棒 */}
+            <rect
+              x="62"
+              y="48"
+              width="16"
+              height="4"
+              fill="#4A90E2"
+              stroke="#2E5C8A"
+              strokeWidth="1"
+              rx="2"
+            />
+
+            {/* ハンドルの先端 */}
+            <circle
+              cx="62"
+              cy="50"
+              r="4"
+              fill="#5BA3F5"
+              stroke="#2E5C8A"
               strokeWidth="1"
             />
           </g>
 
-          {/* 水の流れ - 複数の水滴（横方向） */}
+          {/* 水の流れ - 複数の水滴 */}
           <g>
             {/* 水滴1 */}
             <ellipse
-              cx="155"
-              cy="65"
-              rx="4"
-              ry="6"
-              fill="#00B4D8"
-              opacity="0.8"
+              cx="100"
+              cy="105"
+              rx="2.5"
+              ry="4"
+              fill="#00A8E8"
+              opacity="0.9"
               className="water-drop water-drop-1"
             />
 
             {/* 水滴2 */}
             <ellipse
-              cx="155"
-              cy="65"
-              rx="4"
-              ry="6"
-              fill="#00B4D8"
-              opacity="0.6"
+              cx="100"
+              cy="105"
+              rx="2.5"
+              ry="4"
+              fill="#00A8E8"
+              opacity="0.7"
               className="water-drop water-drop-2"
             />
 
             {/* 水滴3 */}
             <ellipse
-              cx="155"
-              cy="65"
-              rx="4"
-              ry="6"
-              fill="#00B4D8"
-              opacity="0.4"
+              cx="100"
+              cy="105"
+              rx="2.5"
+              ry="4"
+              fill="#00A8E8"
+              opacity="0.5"
               className="water-drop water-drop-3"
             />
           </g>
 
           {/* 水が溜まる部分 */}
           <ellipse
-            cx="175"
-            cy="68"
-            rx="14"
-            ry="12"
+            cx="100"
+            cy="155"
+            rx="25"
+            ry="10"
             fill="#E0F7FF"
-            stroke="#00B4D8"
+            stroke="#00A8E8"
             strokeWidth="1.5"
-            opacity="0.6"
+            opacity="0.7"
+          />
+
+          {/* 水の波紋 */}
+          <circle
+            cx="100"
+            cy="155"
+            r="15"
+            fill="none"
+            stroke="#00A8E8"
+            strokeWidth="0.5"
+            opacity="0.3"
           />
         </svg>
       </div>
