@@ -439,6 +439,102 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Service Area Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4 text-center"
+            style={{ color: "#0052CC" }}
+          >
+            対応エリア
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            静岡市を中心に、藤枝市・焼津市の上下水道指定工事店として対応しています。
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {/* Main Service Area */}
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <h3 className="text-2xl font-bold mb-6" style={{ color: "#0052CC" }}>
+                主要対応エリア
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🏙️</span>
+                  <div>
+                    <h4 className="font-bold text-lg text-gray-800">静岡市</h4>
+                    <p className="text-gray-600 text-sm">清水区・駿河区・葵区全域対応</p>
+                    <p className="text-gray-600 text-sm">年間100件以上の施工実績</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🏘️</span>
+                  <div>
+                    <h4 className="font-bold text-lg text-gray-800">藤枝市</h4>
+                    <p className="text-gray-600 text-sm">上下水道指定工事店として対応</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🏘️</span>
+                  <div>
+                    <h4 className="font-bold text-lg text-gray-800">焼津市</h4>
+                    <p className="text-gray-600 text-sm">上下水道指定工事店として対応</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Service Details */}
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-6" style={{ color: "#0052CC" }}>
+                対応サービス
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3">
+                  <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                  <span className="text-gray-700">給排水設備工事</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                  <span className="text-gray-700">水漏れ修理・調査</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                  <span className="text-gray-700">トイレ詰まり対応</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                  <span className="text-gray-700">設計・申請業務</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                  <span className="text-gray-700">水回りリフォーム</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
+                  <span className="text-gray-700">機器交換工事</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-600 mb-6">
+              対応エリア外のご相談もお気軽にお問い合わせください
+            </p>
+            <a
+              href="tel:054-348-2286"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-bold text-white"
+              style={{ backgroundColor: "#00A8E8" }}
+            >
+              <span>📞</span>
+              お電話でのお問い合わせ
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Business Section */}
       <section id="business" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
