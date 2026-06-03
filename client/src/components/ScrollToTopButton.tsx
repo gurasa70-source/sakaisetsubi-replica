@@ -33,11 +33,9 @@ export default function ScrollToTopButton() {
         @keyframes dropPulse {
           0%, 100% {
             transform: translateY(0) scale(1);
-            box-shadow: 0 10px 30px rgba(0, 168, 232, 0.3);
           }
           50% {
             transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 168, 232, 0.5);
           }
         }
 
@@ -52,14 +50,21 @@ export default function ScrollToTopButton() {
 
         .scroll-to-top-btn {
           animation: dropFloat 3s ease-in-out infinite;
+          box-shadow: none !important;
         }
 
         .scroll-to-top-btn:hover {
           animation: dropPulse 0.6s ease-in-out;
+          box-shadow: none !important;
+        }
+
+        .scroll-to-top-btn:focus {
+          box-shadow: none !important;
         }
 
         .scroll-to-top-btn:active {
           transform: scale(0.95);
+          box-shadow: none !important;
         }
       `}</style>
 
@@ -68,7 +73,7 @@ export default function ScrollToTopButton() {
           onClick={scrollToTop}
           className="scroll-to-top-btn fixed bottom-8 right-8 z-40 transition-all duration-300 outline-none focus:outline-none"
           aria-label="トップへ戻る"
-          style={{ outline: 'none' }}
+          style={{ outline: 'none', boxShadow: 'none' }}
         >
           {/* 水滴型ボタン */}
           <svg
