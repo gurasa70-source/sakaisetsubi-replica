@@ -82,11 +82,12 @@ export default function DesignService() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* 左側：画像 */}
             <div className="order-2 md:order-1">
-              <div className="bg-blue-700 rounded-lg p-8 text-center">
-                <p className="text-sm text-blue-200 mb-4">CAD図面・現場写真</p>
-                <div className="bg-blue-800 rounded h-64 flex items-center justify-center">
-                  <span className="text-blue-300">画像エリア</span>
-                </div>
+              <div className="bg-blue-700 rounded-lg overflow-hidden shadow-lg">
+                <img
+                  src="https://d35hueqnbj0jwy.cloudfront.net/38nnuP1214iB8HwzhBZz"
+                  alt="設計・申請業務 CAD図面と現場写真"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
 
