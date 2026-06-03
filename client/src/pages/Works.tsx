@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react';
 
 export default function Works() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
   const categories = [
     { id: '漏水修理', name: '漏水修理', icon: '💧' },
@@ -17,12 +18,21 @@ export default function Works() {
   // データベースから公開済みの施工実績を取得
   const { data: works = [] } = trpc.works.getPublished.useQuery();
 
+  // 施工年を抽出してソート
+  const years = useMemo(() => {
+    const uniqueYears = Array.from(new Set(works.map(work => work.date?.split('年')[0]).filter(Boolean)))
+      .sort((a, b) => (b as string).localeCompare(a as string));
+    return uniqueYears as string[];
+  }, [works]);
+
   // メモ化してパフォーマンス向上
   const filteredWorks = useMemo(() => {
-    return selectedCategory
-      ? works.filter(work => work.category === selectedCategory)
-      : works;
-  }, [works, selectedCategory]);
+    return works.filter(work => {
+      const categoryMatch = !selectedCategory || work.category === selectedCategory;
+      const yearMatch = !selectedYear || work.date?.startsWith(selectedYear);
+      return categoryMatch && yearMatch;
+    });
+  }, [works, selectedCategory, selectedYear]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -55,46 +65,96 @@ export default function Works() {
 
       {/* メインコンテンツ */}
       <main className="container max-w-6xl mx-auto px-4 py-16">
-        {/* カテゴリーフィルター - モダンなデザイン */}
+        {/* フィルターセクション - モダンなデザイン */}
         <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-8 text-slate-900">カテゴリーから探す</h2>
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                selectedCategory === null
-                  ? 'text-white shadow-lg scale-105'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-              style={selectedCategory === null ? { backgroundColor: "#0052CC" } : {}}
-            >
-              すべて
-            </button>
-            {categories.map(category => (
+          {/* カテゴリーフィルター */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-8 text-slate-900">カテゴリーから探す</h2>
+            <div className="flex flex-wrap gap-3">
               <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
-                  selectedCategory === category.id
+                onClick={() => setSelectedCategory(null)}
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                  selectedCategory === null
                     ? 'text-white shadow-lg scale-105'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
-                style={selectedCategory === category.id ? { backgroundColor: "#0052CC" } : {}}
+                style={selectedCategory === null ? { backgroundColor: "#0052CC" } : {}}
               >
-                <span>{category.icon}</span>
-                {category.name}
+                すべて
               </button>
-            ))}
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
+                    selectedCategory === category.id
+                      ? 'text-white shadow-lg scale-105'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                  style={selectedCategory === category.id ? { backgroundColor: "#0052CC" } : {}}
+                >
+                  <span>{category.icon}</span>
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* 施工年フィルター */}
+          {years.length > 0 && (
+            <div>
+              <h2 className="text-3xl font-bold mb-8 text-slate-900">施工年から探す</h2>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => setSelectedYear(null)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                    selectedYear === null
+                      ? 'text-white shadow-lg scale-105'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                  style={selectedYear === null ? { backgroundColor: "#5B5FDE" } : {}}
+                >
+                  すべて
+                </button>
+                {years.map(year => (
+                  <button
+                    key={year}
+                    onClick={() => setSelectedYear(year)}
+                    className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                      selectedYear === year
+                        ? 'text-white shadow-lg scale-105'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                    style={selectedYear === year ? { backgroundColor: "#5B5FDE" } : {}}
+                  >
+                    {year}年
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         {/* 施工実績グリッド - 高性能レイアウト */}
         <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-12 text-slate-900">
-            {selectedCategory
-              ? categories.find(c => c.id === selectedCategory)?.name
-              : 'すべての施工実績'}
-          </h2>
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-slate-900">
+              {selectedCategory || selectedYear
+                ? `検索結果 (${filteredWorks.length}件)`
+                : 'すべての施工実績'}
+            </h2>
+            {(selectedCategory || selectedYear) && (
+              <button
+                onClick={() => {
+                  setSelectedCategory(null);
+                  setSelectedYear(null);
+                }}
+                className="text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"
+              >
+                フィルターをリセット
+              </button>
+            )}
+          </div>
 
           {filteredWorks.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-8">
@@ -127,9 +187,9 @@ export default function Works() {
                     )}
                     {/* カテゴリーバッジ - ホバーで浮き上がる */}
                     <div className="absolute top-4 right-4 transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
-                  <span className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg group-hover:shadow-xl" style={{ backgroundColor: "#0052CC" }}>
-                    {work.category}
-                  </span>
+                      <span className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg group-hover:shadow-xl" style={{ backgroundColor: "#0052CC" }}>
+                        {work.category}
+                      </span>
                     </div>
                   </div>
 
@@ -154,45 +214,44 @@ export default function Works() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <div className="text-6xl mb-4">🔍</div>
-              <p className="text-slate-500 text-lg">
-                このカテゴリーの施工実績はまだありません。
-              </p>
+            <div className="text-center py-16">
+              <p className="text-2xl text-slate-500 mb-4">該当する施工実績がありません</p>
+              <button
+                onClick={() => {
+                  setSelectedCategory(null);
+                  setSelectedYear(null);
+                }}
+                className="px-6 py-3 rounded-full font-semibold transition-all duration-300 text-white"
+                style={{ backgroundColor: "#0052CC" }}
+              >
+                フィルターをリセット
+              </button>
             </div>
           )}
         </section>
 
-        {/* CTA セクション - TOPと統一 */}
-        <section className="relative overflow-hidden rounded-3xl p-12 md:p-16 bg-gray-900">
-          {/* 背景装飾 */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "#0052CC" }}></div>
-          </div>
-
-          <div className="relative z-10 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              ご不明な点やご質問がございましたら
-            </h2>
-            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-              堺設備の専門スタッフがお客様のご要望にお応えします。
-              お気軽にお問い合わせください。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:054-348-2286"
-                className="inline-flex items-center justify-center gap-2 text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 bg-white"
-              >
-                📞 電話する
-              </a>
-              <a
-                href="/#contact"
-                className="inline-flex items-center justify-center gap-2 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-                style={{ backgroundColor: "#FF4444" }}
-              >
-                📧 お問い合わせ
-              </a>
-            </div>
+        {/* ご不明な点セクション */}
+        <section className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-3xl p-12 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-slate-900">ご不明な点やご質問がございましたら</h2>
+          <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
+            堺設備の専門スタッフがお客様のご要望にお応えします。
+            お気軽にお問い合わせください。
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="tel:054-348-2286"
+              className="px-8 py-4 rounded-full font-semibold transition-all duration-300 text-white flex items-center justify-center gap-2"
+              style={{ backgroundColor: "#0052CC" }}
+            >
+              📞 電話する
+            </a>
+            <a
+              href="/#contact"
+              className="px-8 py-4 rounded-full font-semibold transition-all duration-300 text-white flex items-center justify-center gap-2"
+              style={{ backgroundColor: "#FF4444" }}
+            >
+              📧 お問い合わせ
+            </a>
           </div>
         </section>
       </main>
