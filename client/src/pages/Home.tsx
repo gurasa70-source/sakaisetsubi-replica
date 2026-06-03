@@ -76,7 +76,7 @@ export default function Home() {
     <div className="min-h-screen bg-white overflow-hidden">
 
       {/* Mobile Fixed Call Button */}
-      <div className="fixed bottom-20 right-4 z-40 md:hidden">
+      <div className="fixed bottom-20 left-4 z-40 md:hidden">
         <a
           href="tel:054-348-2286"
           className="flex items-center justify-center w-14 h-14 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
@@ -87,7 +87,7 @@ export default function Home() {
       </div>
 
       {/* Mobile Fixed Contact Button */}
-      <div className="fixed bottom-4 right-4 z-40 md:hidden">
+      <div className="fixed bottom-4 left-4 z-40 md:hidden">
         <a
           href="#contact"
           className="flex items-center justify-center w-14 h-14 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
