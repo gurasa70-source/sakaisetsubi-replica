@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { trpc } from '@/lib/trpc';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import WaterTapLoader from '@/components/WaterTapLoader';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -8,6 +9,7 @@ export default function Works() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const categories = [
     { id: '漏水修理', name: '漏水修理', icon: '💧' },
@@ -45,19 +47,40 @@ export default function Works() {
 
   // フィルター変更時にページをリセット
   const handleCategoryChange = (category: string | null) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedCategory(category);
+      setCurrentPage(1);
+      setIsLoading(false);
+    }, 600);
   };
 
   const handleYearChange = (year: string | null) => {
-    setSelectedYear(year);
-    setCurrentPage(1);
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedYear(year);
+      setCurrentPage(1);
+      setIsLoading(false);
+    }, 600);
   };
 
   const handleResetFilters = () => {
-    setSelectedCategory(null);
-    setSelectedYear(null);
-    setCurrentPage(1);
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedCategory(null);
+      setSelectedYear(null);
+      setCurrentPage(1);
+      setIsLoading(false);
+    }, 600);
+  };
+
+  const handlePageChange = (page: number) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+      setIsLoading(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 600);
   };
 
   // ページ番号配列を生成（最大5ページまで表示）
@@ -122,6 +145,7 @@ export default function Works() {
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
                 style={selectedCategory === null ? { backgroundColor: "#0052CC" } : {}}
+                disabled={isLoading}
               >
                 すべて
               </button>
@@ -135,6 +159,7 @@ export default function Works() {
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                   style={selectedCategory === category.id ? { backgroundColor: "#0052CC" } : {}}
+                  disabled={isLoading}
                 >
                   <span>{category.icon}</span>
                   {category.name}
@@ -156,6 +181,7 @@ export default function Works() {
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                   style={selectedYear === null ? { backgroundColor: "#5B5FDE" } : {}}
+                  disabled={isLoading}
                 >
                   すべて
                 </button>
@@ -169,6 +195,7 @@ export default function Works() {
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                     style={selectedYear === year ? { backgroundColor: "#5B5FDE" } : {}}
+                    disabled={isLoading}
                   >
                     {year}年
                   </button>
@@ -178,8 +205,17 @@ export default function Works() {
           )}
         </section>
 
+        {/* ローディング中のオーバーレイ */}
+        {isLoading && (
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 shadow-2xl">
+              <WaterTapLoader />
+            </div>
+          </div>
+        )}
+
         {/* 施工実績グリッド - 高性能レイアウト */}
-        <section className="mb-20">
+        <section className={`mb-20 transition-opacity duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl font-bold text-slate-900">
               {selectedCategory || selectedYear
@@ -190,6 +226,7 @@ export default function Works() {
               <button
                 onClick={handleResetFilters}
                 className="text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"
+                disabled={isLoading}
               >
                 フィルターをリセット
               </button>
@@ -260,13 +297,10 @@ export default function Works() {
                 <div className="flex items-center justify-center gap-2 mb-8">
                   {/* 前へボタン */}
                   <button
-                    onClick={() => {
-                      setCurrentPage(Math.max(1, currentPage - 1));
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    disabled={currentPage === 1}
+                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1 || isLoading}
                     className={`p-2 rounded-lg transition-all duration-300 ${
-                      currentPage === 1
+                      currentPage === 1 || isLoading
                         ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
@@ -278,10 +312,8 @@ export default function Works() {
                   {getPageNumbers().map((page) => (
                     <button
                       key={page}
-                      onClick={() => {
-                        setCurrentPage(page);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
+                      onClick={() => handlePageChange(page)}
+                      disabled={isLoading}
                       className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
                         currentPage === page
                           ? 'text-white shadow-lg'
@@ -295,13 +327,10 @@ export default function Works() {
 
                   {/* 次へボタン */}
                   <button
-                    onClick={() => {
-                      setCurrentPage(Math.min(totalPages, currentPage + 1));
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    disabled={currentPage === totalPages}
+                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages || isLoading}
                     className={`p-2 rounded-lg transition-all duration-300 ${
-                      currentPage === totalPages
+                      currentPage === totalPages || isLoading
                         ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
@@ -323,6 +352,7 @@ export default function Works() {
                 onClick={handleResetFilters}
                 className="px-6 py-3 rounded-full font-semibold transition-all duration-300 text-white"
                 style={{ backgroundColor: "#0052CC" }}
+                disabled={isLoading}
               >
                 フィルターをリセット
               </button>
