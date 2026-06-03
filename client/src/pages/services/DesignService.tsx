@@ -3,7 +3,7 @@ import { useSchemaOrg } from '@/hooks/useSchemaOrg';
 import { generateServiceSchema } from '@/lib/schema';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Check, FileText, Pencil, Zap, Users, MapPin } from 'lucide-react';
+import { Check, FileText, Pencil, Zap, Users } from 'lucide-react';
 
 export default function DesignService() {
   // Schema.org構造化データを追加
@@ -46,11 +46,6 @@ export default function DesignService() {
       icon: <Check className="w-8 h-8" />,
       title: '竣工図作成',
       description: '施工完了後の竣工図を作成',
-    },
-    {
-      icon: <MapPin className="w-8 h-8" />,
-      title: '現場調査',
-      description: '正確な設計のための現場調査を実施',
     },
     {
       icon: <Users className="w-8 h-8" />,
