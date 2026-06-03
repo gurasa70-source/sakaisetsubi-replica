@@ -329,6 +329,22 @@ export default function Home() {
             <p className="text-gray-700 text-center mb-8">
               確かな技術と国家資格をもとに、設計・申請から施工まで責任を持って対応いたします。
             </p>
+            {/* 上下水道指定工事店 */}
+            <div className="mb-8 p-6 bg-white rounded-lg border-2 border-blue-500">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <span className="text-3xl">🏢</span>
+                <h4 className="text-xl font-bold" style={{ color: "#0052CC" }}>上下水道指定工事店</h4>
+              </div>
+              <p className="text-center text-gray-700 font-semibold mb-3">
+                静岡市・藤枝市・焼津市の指定工事店として認定されています
+              </p>
+              <div className="flex flex-wrap justify-center gap-2">
+                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">静岡市指定</span>
+                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">藤枝市指定</span>
+                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">焼津市指定</span>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-start gap-3">
                 <span className="text-2xl" style={{ color: "#0052CC" }}>✓</span>
@@ -750,9 +766,17 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
               <h4 className="text-lg font-bold mb-4">株式会社 堺設備</h4>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm mb-4">
                 静岡市の給排水工事・配管工事のプロフェッショナル
               </p>
+              <div className="bg-blue-900 p-3 rounded">
+                <p className="text-xs font-semibold text-blue-200 mb-2">上下水道指定工事店</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-blue-700 px-2 py-1 rounded">静岡市</span>
+                  <span className="text-xs bg-blue-700 px-2 py-1 rounded">藤枝市</span>
+                  <span className="text-xs bg-blue-700 px-2 py-1 rounded">焼津市</span>
+                </div>
+              </div>
             </div>
 
             <div>
