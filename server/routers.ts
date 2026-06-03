@@ -100,6 +100,10 @@ export const appRouter = router({
       }
       return await getAllWorks();
     }),
+    getByCategory: publicProcedure.input(z.string()).query(async ({ input }) => {
+      const works = await getPublishedWorks();
+      return works.filter(work => work.category === input).slice(0, 3);
+    }),
   }),
 
   // Blog news router

@@ -19,7 +19,7 @@ export default function EquipmentService() {
     },
     {
       question: "保証はありますか？",
-      answer: "機器本体の保証に加えて、施工部分についても1年～5年の保証をさせていただきます。"
+      answer: "施工不良が原因である場合、施工部分について保証をさせていただきます。"
     }
   ];
 
@@ -133,8 +133,8 @@ export default function EquipmentService() {
               静岡市内を中心に対応いたします
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              {["清水区", "葵区", "駿河区"].map((area, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+              {["清水区", "葵区", "駿河区", "焼津市"].map((area, index) => (
                 <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100">
                   <div className="text-5xl font-bold mb-4" style={{ color: "#0052CC" }}>📍</div>
                   <h3 className="text-2xl font-bold text-gray-800">{area}</h3>
