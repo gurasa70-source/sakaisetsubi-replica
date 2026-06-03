@@ -252,7 +252,7 @@ export default function WorkDetail() {
           {/* サイドバー */}
           <aside className="md:col-span-1 space-y-6">
             {/* 担当者コメント */}
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-l-4 border-blue-500 sticky top-24">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-l-4 border-blue-500">
               <h3 className="text-xl font-bold mb-4 text-slate-900 flex items-center gap-2">
                 <span className="text-2xl">💬</span>
                 担当者コメント
