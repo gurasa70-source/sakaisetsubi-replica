@@ -204,6 +204,89 @@ export default function DesignService() {
         </div>
       </section>
 
+      {/* 対応可能な業務 */}
+      <section className="py-16 md:py-24 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+            対応可能な業務
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* 給排水 */}
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">給排水</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-3">
+                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-gray-700">申請・竣工図面作成</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-gray-700">申請手続き代行</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 許可申請 */}
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">許可申請</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-3">
+                  <span className="text-purple-600 font-bold">✓</span>
+                  <span className="text-gray-700">道路使用許可申請</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-purple-600 font-bold">✓</span>
+                  <span className="text-gray-700">道路占用許可申請</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-purple-600 font-bold">✓</span>
+                  <span className="text-gray-700">河川占用許可申請</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 調査代行 */}
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">調査代行</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-3">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-gray-700">上下水道局調査代行</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-gray-700">法務局調査代行</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 対応建物・設備 */}
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">対応建物・設備</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-3">
+                  <span className="text-orange-600 font-bold">✓</span>
+                  <span className="text-gray-700">一般住宅</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-orange-600 font-bold">✓</span>
+                  <span className="text-gray-700">集合住宅</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-orange-600 font-bold">✓</span>
+                  <span className="text-gray-700">受水槽</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-orange-600 font-bold">✓</span>
+                  <span className="text-gray-700">水理計算</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 選ばれる理由 */}
       <section className="py-16 md:py-24 px-4 bg-gradient-to-r from-blue-50 to-blue-100">
         <div className="max-w-4xl mx-auto">
