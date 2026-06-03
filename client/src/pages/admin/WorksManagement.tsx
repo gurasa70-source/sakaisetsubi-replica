@@ -25,6 +25,7 @@ export default function WorksManagement() {
     imageUrl: '',
     beforeImageUrl: '',
     afterImageUrl: '',
+    designInvolved: 0,
     status: 'draft' as const,
   });
 
@@ -110,6 +111,7 @@ export default function WorksManagement() {
         imageUrl: '',
         beforeImageUrl: '',
         afterImageUrl: '',
+        designInvolved: 0,
         status: 'draft',
       });
       setEditingId(null);
@@ -132,6 +134,7 @@ export default function WorksManagement() {
       imageUrl: work.imageUrl || '',
       beforeImageUrl: work.beforeImageUrl || '',
       afterImageUrl: work.afterImageUrl || '',
+      designInvolved: work.designInvolved || 0,
       status: work.status,
     });
     setEditingId(work.id);
@@ -197,6 +200,20 @@ export default function WorksManagement() {
                     <option value="下水道切替工事">下水道切替工事</option>
                     <option value="分水工事">分水工事</option>
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">設計関与</label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="designInvolved"
+                      checked={formData.designInvolved === 1}
+                      onChange={(e) => setFormData({ ...formData, designInvolved: e.target.checked ? 1 : 0 })}
+                      className="w-4 h-4"
+                    />
+                    <label htmlFor="designInvolved" className="text-sm">設計・施工一貫対応</label>
+                  </div>
                 </div>
 
                 <div>
@@ -339,6 +356,7 @@ export default function WorksManagement() {
                         imageUrl: '',
                         beforeImageUrl: '',
                         afterImageUrl: '',
+                        designInvolved: 0,
                         status: 'draft',
                       });
                     }}
@@ -362,6 +380,9 @@ export default function WorksManagement() {
                 <div className="space-y-2 mb-4">
                   <p><strong>カテゴリー:</strong> {work.category}</p>
                   <p><strong>工事日:</strong> {work.date}</p>
+                  {work.designInvolved === 1 && (
+                    <p><strong>設計関与:</strong> <span className="text-green-600 font-semibold">設計・施工一貫対応</span></p>
+                  )}
                   <p><strong>ステータス:</strong> {work.status === 'published' ? '公開' : '下書き'}</p>
                 </div>
                 <div className="flex gap-2">
