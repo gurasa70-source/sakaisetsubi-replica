@@ -336,11 +336,11 @@ export default function Home() {
                 <h4 className="text-xl font-bold" style={{ color: "#0052CC" }}>上下水道指定工事店</h4>
               </div>
               <p className="text-center text-gray-700 font-semibold mb-3">
-                静岡市・藤枝市・焼津市の指定工事店として認定されています
+                静岡市・焼津市の指定工事店として認定されています
               </p>
               <div className="flex flex-wrap justify-center gap-2">
                 <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">静岡市指定</span>
-                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">藤枝市指定</span>
+
                 <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">焼津市指定</span>
               </div>
             </div>
@@ -449,7 +449,7 @@ export default function Home() {
             対応エリア
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            静岡市を中心に、藤枝市・焼津市の上下水道指定工事店として対応しています。
+            静岡市・焼津市の上下水道指定工事店として対応しています。
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -470,7 +470,7 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <span className="text-3xl">🏘️</span>
                   <div>
-                    <h4 className="font-bold text-lg text-gray-800">藤枝市</h4>
+
                     <p className="text-gray-600 text-sm">上下水道指定工事店として対応</p>
                   </div>
                 </div>
@@ -869,7 +869,7 @@ export default function Home() {
                 <p className="text-xs font-semibold text-blue-200 mb-2">上下水道指定工事店</p>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-xs bg-blue-700 px-2 py-1 rounded">静岡市</span>
-                  <span className="text-xs bg-blue-700 px-2 py-1 rounded">藤枝市</span>
+
                   <span className="text-xs bg-blue-700 px-2 py-1 rounded">焼津市</span>
                 </div>
               </div>

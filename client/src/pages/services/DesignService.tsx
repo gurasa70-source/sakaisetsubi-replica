@@ -72,7 +72,7 @@ export default function DesignService() {
     },
   ];
 
-  const serviceAreas = ['静岡市', '焼津市', '藤枝市', '島田市'];
+  const serviceAreas = ['静岡市', '焼津市'];
 
   return (
     <div className="min-h-screen bg-white">
@@ -107,17 +107,17 @@ export default function DesignService() {
                 <Button
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50 font-bold"
-                  onClick={() => window.location.href = '#contact'}
+                  onClick={() => window.location.href = 'tel:054-348-2286'}
                 >
-                  設計相談をする
+                  電話でご相談
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-blue-600 font-bold"
-                  onClick={() => window.location.href = '#contact'}
+                  onClick={() => window.location.href = 'mailto:sakai-sekkei@ace.ocn.ne.jp'}
                 >
-                  見積依頼
+                  設計・見積依頼を送信
                 </Button>
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function DesignService() {
           </div>
 
           <p className="text-center text-gray-600 mt-8">
-            静岡県中部エリア中心に対応しています
+            静岡市・焼津市の上下水道指定工事店として対応しています
           </p>
         </div>
       </section>
@@ -298,17 +298,9 @@ export default function DesignService() {
               size="lg"
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-blue-600 font-bold"
-              onClick={() => window.location.href = '#'}
+              onClick={() => window.location.href = 'mailto:sakai-sekkei@ace.ocn.ne.jp'}
             >
-              設計相談
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 font-bold"
-              onClick={() => window.location.href = '#'}
-            >
-              見積依頼
+              設計・見積依頁を送信
             </Button>
           </div>
         </div>
