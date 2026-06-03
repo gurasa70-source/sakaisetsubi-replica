@@ -50,15 +50,15 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
         </svg>
       </button>
 
-      {/* Twitter */}
+      {/* X (Twitter) */}
       <button
         onClick={handleTwitterShare}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-400 text-white hover:bg-blue-500 transition-all duration-300 hover:shadow-lg"
-        title="Twitterでシェア"
-        aria-label="Twitterでシェア"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300 hover:shadow-lg"
+        title="Xでシェア"
+        aria-label="Xでシェア"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9-1.5 9-5.5v-1c3.05-2.25 4.5-5.5 4.5-5.5"/>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.207-6.807-5.974 6.807H2.882l7.432-8.491L1.227 2.25h6.836l4.713 6.231 5.579-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       </button>
 
