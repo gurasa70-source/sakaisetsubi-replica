@@ -309,15 +309,21 @@ export default function DesignService() {
             <div className="space-y-4 text-gray-800">
               <div>
                 <p className="text-sm text-gray-600 font-semibold">電話</p>
-                <p className="text-2xl font-bold text-blue-600">054-348-2286</p>
+                <a href="tel:054-348-2286" className="text-2xl font-bold text-blue-600 hover:underline active:scale-95 transition-transform">
+                  054-348-2286
+                </a>
               </div>
               <div>
                 <p className="text-sm text-gray-600 font-semibold">FAX</p>
-                <p className="text-2xl font-bold text-blue-600">054-340-1401</p>
+                <a href="tel:054-340-1401" className="text-2xl font-bold text-blue-600 hover:underline active:scale-95 transition-transform">
+                  054-340-1401
+                </a>
               </div>
               <div>
                 <p className="text-sm text-gray-600 font-semibold">メール</p>
-                <p className="text-lg font-bold text-blue-600 break-all">sakai-sekkei@ace.ocn.ne.jp</p>
+                <a href="mailto:sakai-sekkei@ace.ocn.ne.jp" className="text-lg font-bold text-blue-600 break-all hover:underline active:scale-95 transition-transform">
+                  sakai-sekkei@ace.ocn.ne.jp
+                </a>
               </div>
             </div>
           </div>

@@ -734,9 +734,9 @@ export default function Home() {
                   <p className="text-sm text-gray-600 font-semibold mb-2">
                     FAX
                   </p>
-                  <p className="text-3xl font-bold" style={{ color: "#0052CC" }}>
+                  <a href="tel:054-348-2287" className="text-3xl font-bold hover:underline active:scale-95 transition-transform" style={{ color: "#0052CC" }}>
                     054-348-2287
-                  </p>
+                  </a>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600 font-semibold mb-2">
