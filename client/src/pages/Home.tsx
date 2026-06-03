@@ -464,16 +464,10 @@ export default function Home() {
                   <div>
                     <h4 className="font-bold text-lg text-gray-800">静岡市</h4>
                     <p className="text-gray-600 text-sm">清水区・駿河区・葵区全域対応</p>
-                    <p className="text-gray-600 text-sm">年間100件以上の施工実績</p>
+                    <p className="text-gray-600 text-sm">年間100件以上の施工実績　上下水道指定工事店として対応</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">🏘️</span>
-                  <div>
 
-                    <p className="text-gray-600 text-sm">上下水道指定工事店として対応</p>
-                  </div>
-                </div>
                 <div className="flex items-start gap-4">
                   <span className="text-3xl">🏘️</span>
                   <div>
