@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 
@@ -30,8 +30,8 @@ export default function Home() {
   // Fetch latest news from blog
   const { data: newsData = [], isLoading: newsLoading } = trpc.blog.getLatestNews.useQuery();
 
-  // Hero Slideshow Images
-  const heroSlides = [
+  // Hero Slideshow Images - メモ化
+  const heroSlides = useMemo(() => [
     {
       image: "/manus-storage/sakaisetsubi_main03_ea74aaa0.jpg",
       title: "静岡市の新築・リフォーム給排水設備工事",
@@ -48,7 +48,7 @@ export default function Home() {
       image: "/manus-storage/construction_example_01_edfdea19.jpg",
       title: "応援・請負・協力業者相談可能",
     },
-  ];
+  ], []);
 
   // Auto-advance slideshow
   useEffect(() => {
@@ -58,18 +58,19 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    },
+    []
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     const mailtoLink = `mailto:sakai-setubi@eagle.ocn.ne.jp?subject=お問い合わせ：${formData.name}&body=お名前：${formData.name}%0D%0Aメールアドレス：${formData.email}%0D%0A電話番号：${formData.phone}%0D%0Aメッセージ：${formData.message}`;
     window.location.href = mailtoLink;
-  };
+  }, [formData]);
 
   return (
     <div className="min-h-screen bg-white overflow-hidden">
@@ -100,22 +101,23 @@ export default function Home() {
       <section className="pt-24 pb-0 relative overflow-hidden bg-gray-900">
         <div className="relative w-full h-96 md:h-screen max-h-screen">
           {/* Slideshow Container */}
-          {heroSlides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-black/40" />
-            </div>
-          ))}
+            {heroSlides.map((slide, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                  loading={index === currentSlide ? "eager" : "lazy"}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
+            ))}
 
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
@@ -237,6 +239,7 @@ export default function Home() {
                     src="/manus-storage/sakai_otsurao_founder_correct_ecc6ddc1.webp"
                     alt="会長"
                     className="w-full h-full object-cover object-top"
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>会長</p>
@@ -253,6 +256,8 @@ export default function Home() {
                     src="/manus-storage/sakai_otsurao_founder_a6c41900.webp"
                     alt="前社長"
                     className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p className="text-sm font-semibold mb-2" style={{ color: "#5B5FDE" }}>前社長</p>
