@@ -223,9 +223,11 @@ export default function WaterTapService() {
               給水引込から申請手続きまで、一貫して対応いたします。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
-                📞 0120-XXX-XXX
-              </button>
+              <a href="tel:054-348-2286" className="inline-block">
+                <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
+                  📞 054-348-2286
+                </button>
+              </a>
               <button className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition">
                 📧 お問い合わせ
               </button>

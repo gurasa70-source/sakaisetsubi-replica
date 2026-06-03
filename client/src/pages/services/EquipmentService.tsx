@@ -141,6 +141,14 @@ export default function EquipmentService() {
                 </div>
               ))}
             </div>
+
+            <div className="mt-16 text-center">
+              <Link href="/contact">
+                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
+                  📧 対象エリア内のお見積り・ご相談はこちら
+                </button>
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -223,9 +231,11 @@ export default function EquipmentService() {
               無料でお見積もりさせていただきます。お気軽にお問い合わせください。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
-                📞 0120-XXX-XXX
-              </button>
+              <a href="tel:054-348-2286" className="inline-block">
+                <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
+                  📞 054-348-2286
+                </button>
+              </a>
               <button className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition">
                 📧 お問い合わせ
               </button>
