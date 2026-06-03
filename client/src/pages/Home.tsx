@@ -2,6 +2,8 @@ import { Mail, Phone, MapPin, Menu, X, ChevronLeft, ChevronRight } from "lucide-
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
+import { useSchemaOrg } from "@/hooks/useSchemaOrg";
+import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/schema";
 
 /**
  * Design Philosophy: Modern Professional with Gradient & Photos
@@ -18,6 +20,9 @@ export default function Home() {
   // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
   const { user, loading, error, isAuthenticated, logout } = useAuth();
 
+  // Schema.org 構造化データを追加
+  useSchemaOrg(generateOrganizationSchema(), 'organization-schema');
+  useSchemaOrg(generateWebsiteSchema(), 'website-schema');
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);

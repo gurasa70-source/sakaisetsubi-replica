@@ -1,9 +1,12 @@
 import { useRoute } from 'wouter';
+import { useMemo } from 'react';
 import { trpc } from '@/lib/trpc';
 import { ChevronLeft } from 'lucide-react';
 import ShareButtons from '@/components/ShareButtons';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useFavorites } from '@/hooks/useFavorites';
+import { useSchemaOrg } from '@/hooks/useSchemaOrg';
+import { generateWorkSchema } from '@/lib/schema';
 
 const categoryIconMap: Record<string, string> = {
   '漏水修理': '💧',
@@ -31,6 +34,21 @@ export default function WorkDetail() {
   const { data: work, isLoading } = trpc.works.getById.useQuery(workId || 0, {
     enabled: workId !== null && !isNaN(workId),
   });
+
+  // Schema.org 構造化データを追加
+  const workSchema = useMemo(() => {
+    if (!work) return {};
+    return generateWorkSchema({
+      id: work.id,
+      title: work.title,
+      workContent: work.workContent,
+      date: typeof work.date === 'string' ? work.date : new Date(work.date).toISOString(),
+      category: work.category,
+      imageUrl: work.imageUrl || undefined,
+    });
+  }, [work]);
+
+  useSchemaOrg(workSchema, 'work-schema');
 
   if (!match) return null;
 

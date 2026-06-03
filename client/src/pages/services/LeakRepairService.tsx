@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { useSchemaOrg } from "@/hooks/useSchemaOrg";
+import { generateServiceSchema, generateFAQSchema } from "@/lib/schema";
 
 export default function LeakRepairService() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
@@ -22,6 +24,21 @@ export default function LeakRepairService() {
       answer: "施工内容に応じて、1年～5年の保証をさせていただきます。詳しくはお問い合わせください。"
     }
   ];
+
+  // Schema.org 構造化データを追加
+  useSchemaOrg(
+    generateServiceSchema({
+      name: '漏水修理',
+      description: '静岡市清水区の漏水修理。水漏れの調査、修理を一体的に対応。',
+      url: 'https://sakaireplica-m2oiogqs.manus.space/service/leak-repair',
+    }),
+    'service-leak-repair-schema'
+  );
+
+  useSchemaOrg(
+    generateFAQSchema(faqs),
+    'faq-leak-repair-schema'
+  );
 
   const relatedWorks = [
     {

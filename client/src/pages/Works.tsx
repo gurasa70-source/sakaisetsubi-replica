@@ -5,6 +5,8 @@ import ShareButtons from '@/components/ShareButtons';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useLoading } from '@/contexts/LoadingContext';
 import { useFavorites } from '@/hooks/useFavorites';
+import { useSchemaOrg } from '@/hooks/useSchemaOrg';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -14,6 +16,15 @@ export default function Works() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Schema.org 構造化データ（パンくずリスト）を追加
+  useSchemaOrg(
+    generateBreadcrumbSchema([
+      { name: 'ホーム', url: 'https://sakaireplica-m2oiogqs.manus.space' },
+      { name: '施工実績', url: 'https://sakaireplica-m2oiogqs.manus.space/works' },
+    ]),
+    'breadcrumb-works-schema'
+  );
 
   const categories = [
     { id: '漏水修理', name: '漏水修理', icon: '💧' },
