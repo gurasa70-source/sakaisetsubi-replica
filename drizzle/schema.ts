@@ -39,6 +39,7 @@ export const works = mysqlTable("works", {
   imageUrl: text("imageUrl"),
   beforeImageUrl: text("beforeImageUrl"),
   afterImageUrl: text("afterImageUrl"),
+  designInvolved: int("designInvolved").default(0).notNull(),
   status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),

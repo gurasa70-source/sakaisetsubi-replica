@@ -1,0 +1,1 @@
+ALTER TABLE `works` ADD `designInvolved` int DEFAULT 0 NOT NULL;

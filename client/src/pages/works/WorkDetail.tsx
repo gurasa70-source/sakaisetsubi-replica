@@ -102,10 +102,17 @@ export default function WorkDetail() {
           
           <div className="flex items-start gap-4 mb-6">
             <span className="text-5xl">{categoryIcon}</span>
-            <div>
-              <span className="inline-block px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold mb-4">
-                {work.category}
-              </span>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4 flex-wrap">
+                <span className="inline-block px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold">
+                  {work.category}
+                </span>
+                {work.designInvolved === 1 && (
+                  <span className="inline-block px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm font-semibold">
+                    設計・施工一貫対応
+                  </span>
+                )}
+              </div>
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 {work.title}
               </h1>

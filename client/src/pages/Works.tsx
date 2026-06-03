@@ -267,10 +267,17 @@ export default function Works() {
 
                     {/* コンテンツ */}
                     <div className="p-6">
-                      <p className="text-sm text-slate-500 font-semibold mb-3 flex items-center gap-2">
-                        <span>📅</span>
-                        {work.date}
-                      </p>
+                      <div className="flex items-center justify-between mb-3">
+                        <p className="text-sm text-slate-500 font-semibold flex items-center gap-2">
+                          <span>📅</span>
+                          {work.date}
+                        </p>
+                        {work.designInvolved === 1 && (
+                          <span className="inline-block px-2 py-1 text-white text-xs font-bold rounded-full" style={{ backgroundColor: "#FF6B6B" }}>
+                            設計関与
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-lg font-bold mb-3 text-slate-900 line-clamp-2 group-hover:text-blue-600 transition">
                         {work.title}
                       </h3>
