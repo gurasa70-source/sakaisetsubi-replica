@@ -20,12 +20,32 @@ export default function Home() {
 
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+
+  // スクロール状態を管理
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 500); // スクロール停止後500msで透明度を戻す
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
 
   // Fetch latest news from blog
   const { data: newsData = [], isLoading: newsLoading } = trpc.blog.getLatestNews.useQuery();
@@ -76,7 +96,10 @@ export default function Home() {
     <div className="min-h-screen bg-white overflow-hidden">
 
       {/* Mobile Fixed Call Button */}
-      <div className="fixed bottom-20 left-4 z-40 md:hidden">
+      <div 
+        className="fixed bottom-20 left-4 z-40 md:hidden transition-opacity duration-300"
+        style={{ opacity: isScrolling ? 0.3 : 1 }}
+      >
         <a
           href="tel:054-348-2286"
           className="flex items-center justify-center w-14 h-14 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
@@ -87,7 +110,10 @@ export default function Home() {
       </div>
 
       {/* Mobile Fixed Contact Button */}
-      <div className="fixed bottom-4 left-4 z-40 md:hidden">
+      <div 
+        className="fixed bottom-4 left-4 z-40 md:hidden transition-opacity duration-300"
+        style={{ opacity: isScrolling ? 0.3 : 1 }}
+      >
         <a
           href="#contact"
           className="flex items-center justify-center w-14 h-14 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-shadow"
