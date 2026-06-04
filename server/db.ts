@@ -176,11 +176,42 @@ export async function deleteWork(id: number): Promise<void> {
 }
 
 export async function getPublishedWorks(): Promise<Work[]> {
-  return getAllWorks("published");
+  const works = await getAllWorks("published");
+  // 年月でソート（新しい順）
+  return works.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+  });
 }
 
 export async function getDraftWorks(): Promise<Work[]> {
   return getAllWorks("draft");
+}
+
+export async function getWorksByCategory(category: string): Promise<Work[]> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get works: database not available");
+    return [];
+  }
+
+  try {
+    const result = await db
+      .select()
+      .from(works)
+      .where(eq(works.category, category))
+      .orderBy(desc(works.createdAt));
+    // 年月でソート（新しい順）
+    return result.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+  } catch (error) {
+    console.error("[Database] Failed to get works by category:", error);
+    throw error;
+  }
 }
 
 // 設計・申請実績クエリヘルパー
