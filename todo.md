@@ -43,3 +43,7 @@
 - [x] すべてのカテゴリーで「施工背景・施工理由」に統一
 - [x] WorkDetail.tsxを修正
 - [x] WorksManagement.tsxを修正
+
+## 施工実績の年月ソート改善
+- [x] getPublishedWorks関数で年月でソート（新しい順）
+- [x] getWorksByCategory関数で年月でソート（新しい順）

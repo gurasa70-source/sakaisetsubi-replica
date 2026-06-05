@@ -178,10 +178,19 @@ export async function deleteWork(id: number): Promise<void> {
 export async function getPublishedWorks(): Promise<Work[]> {
   const works = await getAllWorks("published");
   // 年月でソート（新しい順）
+  // 「2024年12月」形式の文字列を解析してソート
   return works.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateB.getTime() - dateA.getTime();
+    const parseDate = (dateStr: string): number => {
+      // "2024年12月" -> [2024, 12]
+      const match = dateStr.match(/(\d{4})年(\d{1,2})月/);
+      if (match) {
+        const year = parseInt(match[1], 10);
+        const month = parseInt(match[2], 10);
+        return year * 100 + month; // 202412 のような数値に変換
+      }
+      return 0;
+    };
+    return parseDate(b.date) - parseDate(a.date);
   });
 }
 
@@ -203,10 +212,18 @@ export async function getWorksByCategory(category: string): Promise<Work[]> {
       .where(eq(works.category, category))
       .orderBy(desc(works.createdAt));
     // 年月でソート（新しい順）
+    // 「2024年12月」形式の文字列を解析してソート
     return result.sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateB.getTime() - dateA.getTime();
+      const parseDate = (dateStr: string): number => {
+        const match = dateStr.match(/(\d{4})年(\d{1,2})月/);
+        if (match) {
+          const year = parseInt(match[1], 10);
+          const month = parseInt(match[2], 10);
+          return year * 100 + month;
+        }
+        return 0;
+      };
+      return parseDate(b.date) - parseDate(a.date);
     });
   } catch (error) {
     console.error("[Database] Failed to get works by category:", error);
