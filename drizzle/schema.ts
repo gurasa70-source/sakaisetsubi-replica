@@ -31,6 +31,7 @@ export const works = mysqlTable("works", {
   title: text("title").notNull(),
   category: varchar("category", { length: 64 }).notNull(),
   date: varchar("date", { length: 64 }).notNull(),
+  location: varchar("location", { length: 64 }).notNull().default("静岡市"),
   workContent: text("workContent").notNull(),
   requestContent: text("requestContent").notNull(),
   cause: text("cause").notNull(),

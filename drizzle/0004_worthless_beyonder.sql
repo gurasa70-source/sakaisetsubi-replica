@@ -1,0 +1,1 @@
+ALTER TABLE `works` ADD `location` varchar(64) DEFAULT '静岡市' NOT NULL;

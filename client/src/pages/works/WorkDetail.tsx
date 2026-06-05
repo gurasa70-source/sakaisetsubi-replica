@@ -184,11 +184,11 @@ export default function WorkDetail() {
               </p>
             </section>
 
-            {/* 原因 */}
+            {/* 施工背景・施工理由 */}
             <section>
               <h2 className="text-3xl font-bold mb-6 text-slate-900 flex items-center gap-3">
                 <span className="text-4xl">🔍</span>
-                原因
+                施工背景・施工理由
               </h2>
               <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
                 {work.cause}

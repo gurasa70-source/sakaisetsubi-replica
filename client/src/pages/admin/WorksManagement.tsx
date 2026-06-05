@@ -17,6 +17,7 @@ export default function WorksManagement() {
     title: '',
     category: '',
     date: '',
+    location: '静岡市',
     workContent: '',
     requestContent: '',
     cause: '',
@@ -103,6 +104,7 @@ export default function WorksManagement() {
         title: '',
         category: '',
         date: '',
+        location: '静岡市',
         workContent: '',
         requestContent: '',
         cause: '',
@@ -126,6 +128,7 @@ export default function WorksManagement() {
       title: work.title,
       category: work.category,
       date: work.date,
+      location: work.location || '静岡市',
       workContent: work.workContent,
       requestContent: work.requestContent,
       cause: work.cause,
@@ -227,6 +230,19 @@ export default function WorksManagement() {
                 </div>
 
                 <div>
+                  <label className="block text-sm font-medium mb-1">施工地域</label>
+                  <select
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    <option value="静岡市">静岡市</option>
+                    <option value="焼津市">焼津市</option>
+                  </select>
+                </div>
+
+                <div>
                   <label className="block text-sm font-medium mb-1">工事内容</label>
                   <Textarea
                     value={formData.workContent}
@@ -245,10 +261,13 @@ export default function WorksManagement() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">原因</label>
+                  <label className="block text-sm font-medium mb-1">
+                    施工背景・施工理由
+                  </label>
                   <Textarea
                     value={formData.cause}
                     onChange={(e) => setFormData({ ...formData, cause: e.target.value })}
+                    placeholder='例：新築住宅の給排水工事が必要になったため'
                     required
                   />
                 </div>
@@ -348,6 +367,7 @@ export default function WorksManagement() {
                         title: '',
                         category: '',
                         date: '',
+                        location: '静岡市',
                         workContent: '',
                         requestContent: '',
                         cause: '',

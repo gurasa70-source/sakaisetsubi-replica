@@ -46,6 +46,7 @@ export const appRouter = router({
         title: z.string(),
         category: z.string(),
         date: z.string(),
+        location: z.string().default("静岡市"),
         workContent: z.string(),
         requestContent: z.string(),
         cause: z.string(),
@@ -68,6 +69,7 @@ export const appRouter = router({
         title: z.string().optional(),
         category: z.string().optional(),
         date: z.string().optional(),
+        location: z.string().optional(),
         workContent: z.string().optional(),
         requestContent: z.string().optional(),
         cause: z.string().optional(),
@@ -104,6 +106,21 @@ export const appRouter = router({
       const works = await getPublishedWorks();
       return works.filter(work => work.category === input).slice(0, 3);
     }),
+    getFiltered: publicProcedure
+      .input(z.object({
+        category: z.string().optional(),
+        year: z.string().optional(),
+        location: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        const works = await getPublishedWorks();
+        return works.filter(work => {
+          const categoryMatch = !input.category || work.category === input.category;
+          const yearMatch = !input.year || work.date?.startsWith(input.year);
+          const locationMatch = !input.location || work.location === input.location;
+          return categoryMatch && yearMatch && locationMatch;
+        });
+      }),
   }),
 
   // Blog news router

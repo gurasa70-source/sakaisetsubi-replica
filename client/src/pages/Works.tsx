@@ -15,6 +15,7 @@ export default function Works() {
   const { toggleFavorite, isFavorite } = useFavorites();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Schema.org 構造化データ（パンくずリスト）を追加
@@ -45,14 +46,21 @@ export default function Works() {
     return uniqueYears as string[];
   }, [works]);
 
+  // 地域を抽出してソート
+  const availableLocations = useMemo(() => {
+    const uniqueLocations = Array.from(new Set(works.map(work => work.location).filter(Boolean)));
+    return uniqueLocations as string[];
+  }, [works]);
+
   // メモ化してパフォーマンス向上
   const filteredWorks = useMemo(() => {
     return works.filter(work => {
       const categoryMatch = !selectedCategory || work.category === selectedCategory;
       const yearMatch = !selectedYear || work.date?.startsWith(selectedYear);
-      return categoryMatch && yearMatch;
+      const locationMatch = !selectedLocation || work.location === selectedLocation;
+      return categoryMatch && yearMatch && locationMatch;
     });
-  }, [works, selectedCategory, selectedYear]);
+  }, [works, selectedCategory, selectedYear, selectedLocation]);
 
   // ページネーション計算
   const totalPages = Math.ceil(filteredWorks.length / ITEMS_PER_PAGE);
@@ -62,12 +70,12 @@ export default function Works() {
 
   // フィルター変更時にローディング表示
   useEffect(() => {
-    if (selectedCategory !== null || selectedYear !== null || currentPage > 1) {
+    if (selectedCategory !== null || selectedYear !== null || selectedLocation !== null || currentPage > 1) {
       showLoading();
       const timer = setTimeout(() => hideLoading(), 300);
       return () => clearTimeout(timer);
     }
-  }, [selectedCategory, selectedYear, currentPage, showLoading, hideLoading]);
+  }, [selectedCategory, selectedYear, selectedLocation, currentPage, showLoading, hideLoading]);
 
   // フィルター変更時にページをリセット
   const handleCategoryChange = (category: string | null) => {
@@ -80,9 +88,15 @@ export default function Works() {
     setCurrentPage(1);
   };
 
+  const handleLocationChange = (location: string | null) => {
+    setSelectedLocation(location);
+    setCurrentPage(1);
+  };
+
   const handleResetFilters = () => {
     setSelectedCategory(null);
     setSelectedYear(null);
+    setSelectedLocation(null);
     setCurrentPage(1);
   };
 
@@ -176,7 +190,7 @@ export default function Works() {
 
           {/* 施工年フィルター */}
           {years.length > 0 && (
-            <div>
+            <div className="mb-12">
               <h2 className="text-3xl font-bold mb-8 text-slate-900">施工年から探す</h2>
               <div className="flex flex-wrap gap-3">
                 <button
@@ -207,17 +221,51 @@ export default function Works() {
               </div>
             </div>
           )}
+
+          {/* 地域フィルター */}
+          {availableLocations.length > 0 && (
+            <div>
+              <h2 className="text-3xl font-bold mb-8 text-slate-900">地域から探す</h2>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => handleLocationChange(null)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                    selectedLocation === null
+                      ? 'text-white shadow-lg scale-105'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                  style={selectedLocation === null ? { backgroundColor: "#FF6B6B" } : {}}
+                >
+                  すべて
+                </button>
+                {availableLocations.map(location => (
+                  <button
+                    key={location}
+                    onClick={() => handleLocationChange(location)}
+                    className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                      selectedLocation === location
+                        ? 'text-white shadow-lg scale-105'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                    style={selectedLocation === location ? { backgroundColor: "#FF6B6B" } : {}}
+                  >
+                    {location}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         {/* 施工実績グリッド - 高性能レイアウト */}
         <section className="mb-20">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl font-bold text-slate-900">
-              {selectedCategory || selectedYear
+              {selectedCategory || selectedYear || selectedLocation
                 ? `検索結果 (${filteredWorks.length}件)`
                 : `すべての施工実績 (${filteredWorks.length}件)`}
             </h2>
-            {(selectedCategory || selectedYear) && (
+            {(selectedCategory || selectedYear || selectedLocation) && (
               <button
                 onClick={handleResetFilters}
                 className="text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all"
@@ -278,6 +326,10 @@ export default function Works() {
                           </span>
                         )}
                       </div>
+                      <p className="text-sm text-slate-500 font-semibold mb-3 flex items-center gap-2">
+                        <span>📍</span>
+                        {work.location}
+                      </p>
                       <h3 className="text-lg font-bold mb-3 text-slate-900 line-clamp-2 group-hover:text-blue-600 transition">
                         {work.title}
                       </h3>
@@ -325,7 +377,7 @@ export default function Works() {
                   </button>
 
                   {/* ページ番号 */}
-                  {getPageNumbers().map((page) => (
+                  {getPageNumbers().map(page => (
                     <button
                       key={page}
                       onClick={() => handlePageChange(page)}
@@ -354,49 +406,19 @@ export default function Works() {
                   </button>
                 </div>
               )}
-
-              {/* ページ情報 */}
-              <div className="text-center text-slate-600 text-sm">
-                {startIndex + 1}～{Math.min(endIndex, filteredWorks.length)}件を表示 / 全{filteredWorks.length}件
-              </div>
             </>
           ) : (
             <div className="text-center py-16">
-              <p className="text-2xl text-slate-500 mb-4">該当する施工実績がありません</p>
+              <p className="text-2xl text-slate-500 mb-4">該当する施工実績が見つかりません</p>
               <button
                 onClick={handleResetFilters}
-                className="px-6 py-3 rounded-full font-semibold transition-all duration-300 text-white"
+                className="px-6 py-3 rounded-full font-semibold text-white transition-all"
                 style={{ backgroundColor: "#0052CC" }}
               >
                 フィルターをリセット
               </button>
             </div>
           )}
-        </section>
-
-        {/* ご不明な点セクション */}
-        <section className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-3xl p-12 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-slate-900">ご不明な点やご質問がございましたら</h2>
-          <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
-            堺設備の専門スタッフがお客様のご要望にお応えします。
-            お気軽にお問い合わせください。
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:054-348-2286"
-              className="px-8 py-4 rounded-full font-semibold transition-all duration-300 text-white flex items-center justify-center gap-2"
-              style={{ backgroundColor: "#0052CC" }}
-            >
-              📞 電話する
-            </a>
-            <a
-              href="/#contact"
-              className="px-8 py-4 rounded-full font-semibold transition-all duration-300 text-white flex items-center justify-center gap-2"
-              style={{ backgroundColor: "#FF4444" }}
-            >
-              📧 お問い合わせ
-            </a>
-          </div>
         </section>
       </main>
     </div>
