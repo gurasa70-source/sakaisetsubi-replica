@@ -8,7 +8,7 @@ import { useFavorites } from '@/hooks/useFavorites';
 import { useSchemaOrg } from '@/hooks/useSchemaOrg';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 12;
 
 export default function Works() {
   const { showLoading, hideLoading } = useLoading();

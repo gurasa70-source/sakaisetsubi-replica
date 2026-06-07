@@ -111,15 +111,31 @@ export const appRouter = router({
         category: z.string().optional(),
         year: z.string().optional(),
         location: z.string().optional(),
+        page: z.number().int().min(1).default(1),
+        pageSize: z.number().int().min(1).max(100).default(12),
       }))
       .query(async ({ input }) => {
         const works = await getPublishedWorks();
-        return works.filter(work => {
+        const filtered = works.filter(work => {
           const categoryMatch = !input.category || work.category === input.category;
           const yearMatch = !input.year || work.date?.startsWith(input.year);
           const locationMatch = !input.location || work.location === input.location;
           return categoryMatch && yearMatch && locationMatch;
         });
+        
+        const totalCount = filtered.length;
+        const totalPages = Math.ceil(totalCount / input.pageSize);
+        const startIndex = (input.page - 1) * input.pageSize;
+        const endIndex = startIndex + input.pageSize;
+        const items = filtered.slice(startIndex, endIndex);
+        
+        return {
+          items,
+          totalCount,
+          totalPages,
+          currentPage: input.page,
+          pageSize: input.pageSize,
+        };
       }),
   }),
 
