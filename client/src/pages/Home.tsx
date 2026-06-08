@@ -54,8 +54,17 @@ export default function Home() {
 
   // Fetch latest news from blog
   const { data: newsData = [], isLoading: newsLoading } = trpc.blog.getLatestNews.useQuery();
+  
+  // Fetch latest works
+  const { data: latestWorks = [], isLoading: worksLoading } = trpc.works.getPublished.useQuery();
+  const displayWorks = latestWorks.slice(0, 2); // Show only 2 latest works
 
   // Hero Slideshow Images - メモ化
+  // Helper function to truncate text
+  const truncateText = (text: string, maxLength: number) => {
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  };
+
   const heroSlides = useMemo(() => [
     {
       image: "/manus-storage/sakaisetsubi_main03_ea74aaa0.jpg",
@@ -649,10 +658,51 @@ export default function Home() {
               最新施工実績
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Placeholder for latest works - will be fetched from trpc.works.getPublished */}
-              <p className="text-gray-600 col-span-full text-center py-8">
-                施工実績を取得中です...
-              </p>
+              {worksLoading ? (
+                <p className="text-gray-600 col-span-full text-center py-8">
+                  施工実績を取得中です...
+                </p>
+              ) : displayWorks.length > 0 ? (
+                displayWorks.map((work) => (
+                  <a
+                    key={work.id}
+                    href={`/works/${work.id}`}
+                    className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow block"
+                  >
+                    {work.imageUrl && (
+                      <img
+                        src={work.imageUrl}
+                        alt={work.title}
+                        className="w-full h-48 object-cover"
+                      />
+                    )}
+                    <div className="p-6">
+                      <p
+                        className="text-sm font-semibold mb-2"
+                        style={{ color: "#0052CC" }}
+                      >
+                        {work.date}
+                      </p>
+                      <h4 className="text-lg font-bold mb-2 text-gray-800 line-clamp-2">
+                        {work.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                        {work.workContent}
+                      </p>
+                      <span
+                        className="inline-block px-4 py-2 rounded text-sm font-semibold text-white"
+                        style={{ backgroundColor: "#0052CC" }}
+                      >
+                        詳しく見る
+                      </span>
+                    </div>
+                  </a>
+                ))
+              ) : (
+                <p className="text-gray-600 col-span-full text-center py-8">
+                  施工実績がまだありません
+                </p>
+              )}
             </div>
             <div className="text-center mt-8">
               <a
