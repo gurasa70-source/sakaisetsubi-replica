@@ -691,6 +691,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4 text-center"
+            style={{ color: "#0052CC" }}
+          >
+            お客様からの評価
+          </h2>
+          <p className="text-gray-600 text-center mb-12 text-lg">
+            Google口コミで多くのお客様からご好評をいただいています
+          </p>
+
+          {/* Google Maps Embed */}
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3260.8894537894006!2d138.45718612346848!3d35.02401743525127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601a3450c8406f03%3A0x722027aac56fa27f!2z5pil5pil6YeR5bGx!5e0!3m2!1sja!2sjp!4v1717857600000"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full"
+            />
+          </div>
+
+          <div className="mt-8 text-center">
+            <a
+              href="https://www.google.com/maps/place/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE+%E5%A0%BA%E8%A8%AD%E5%82%099/@35.0239184,138.4571861,18.75z/data=!4m6!3m5!1s0x601a3450c8406f03:0x722027aac56fa27f!8m2!3d35.0240174!4d138.4575712!16s%2Fg%2F11b7syh1mn?entry=ttu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-bold text-white"
+              style={{ backgroundColor: "#0052CC" }}
+            >
+              <span>📍</span>
+              Google口コミをもっと見る
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
