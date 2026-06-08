@@ -3,12 +3,43 @@
  */
 
 export function generateSitemap(baseUrl: string): string {
+  const today = new Date().toISOString().split('T')[0];
   const pages = [
     {
       url: '/',
-      lastmod: new Date().toISOString().split('T')[0],
+      lastmod: today,
       changefreq: 'weekly',
       priority: '1.0',
+    },
+    {
+      url: '/about',
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: '0.8',
+    },
+    {
+      url: '/works',
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.9',
+    },
+    {
+      url: '/design',
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.9',
+    },
+    {
+      url: '/blog',
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.8',
+    },
+    {
+      url: '/contact',
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: '0.7',
     },
   ];
 
