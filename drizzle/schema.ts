@@ -65,3 +65,21 @@ export const designProjects = mysqlTable("designProjects", {
 
 export type DesignProject = typeof designProjects.$inferSelect;
 export type InsertDesignProject = typeof designProjects.$inferInsert;
+
+// ブログ記事テーブル
+export const blogPosts = mysqlTable("blogPosts", {
+  id: int("id").autoincrement().primaryKey(),
+  title: text("title").notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(), // URL用スラッグ
+  content: text("content").notNull(), // マークダウン形式
+  category: varchar("category", { length: 64 }).notNull(), // ブログカテゴリー
+  excerpt: text("excerpt"), // 概要（一覧表示用）
+  imageUrl: text("imageUrl"), // アイキャッチ画像
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  publishedAt: timestamp("publishedAt"), // 公開日
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;

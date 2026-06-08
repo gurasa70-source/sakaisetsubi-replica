@@ -5,8 +5,8 @@ import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { generateSitemap } from "./sitemap";
-import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects } from "./db";
-import { InsertWork, InsertDesignProject } from "../drizzle/schema";
+import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects, createBlogPost, getBlogPostById, getBlogPostBySlug, getAllBlogPosts, getPublishedBlogPosts, updateBlogPost, deleteBlogPost, getBlogPostsByCategory } from "./db";
+import { InsertWork, InsertDesignProject, InsertBlogPost } from "../drizzle/schema";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -142,75 +142,79 @@ export const appRouter = router({
   // Blog news router
   blog: router({
     getLatestNews: publicProcedure.query(async () => {
-      try {
-        // Fetch from external blog
-        const response = await axios.get("https://sakaisetsubi-rct.com/blog/p/1/", {
-          timeout: 10000,
+      const posts = await getPublishedBlogPosts();
+      return posts.slice(0, 4).map(post => ({
+        date: post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ja-JP') : '日付不明',
+        title: post.title,
+        description: post.excerpt || '',
+        image: post.imageUrl || '',
+        link: `/blog/${post.slug}`,
+      }));
+    }),
+    getPublished: publicProcedure.query(async () => {
+      return await getPublishedBlogPosts();
+    }),
+    getById: publicProcedure.input(z.number()).query(async ({ input }) => {
+      return await getBlogPostById(input);
+    }),
+    getBySlug: publicProcedure.input(z.string()).query(async ({ input }) => {
+      return await getBlogPostBySlug(input);
+    }),
+    create: protectedProcedure
+      .input(z.object({
+        title: z.string(),
+        slug: z.string(),
+        content: z.string(),
+        category: z.string(),
+        excerpt: z.string().optional(),
+        imageUrl: z.string().optional(),
+        publishedAt: z.date().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can create blog posts");
+        }
+        return await createBlogPost({
+          ...input,
+          status: "draft",
         });
-        
-        const html = response.data;
-        const $ = cheerio.load(html);
-        
-        const articles: Array<{
-          date: string;
-          title: string;
-          description: string;
-          image: string;
-          link: string;
-        }> = [];
-        
-        // Extract articles from the page
-        // Each article is in a div.innerBox with photoBox and textBox
-        $("div.innerBox").each((index, element) => {
-          if (articles.length >= 2) return; // Only get first 2 articles
-          
-          const $box = $(element);
-          
-          // Get image from background-image style
-          const photoBox = $box.find("div.photoBox");
-          const bgImageStyle = photoBox.attr("style") || "";
-          const imageMatch = bgImageStyle.match(/url\((https?:\/\/[^)]+)\)/);
-          const image = imageMatch ? imageMatch[1] : "";
-          
-          // Get title from h3.headLine03
-          const title = $box.find("h3.headLine03").text().trim();
-          
-          // Get description from p.txt
-          const description = $box.find("p.txt").text().trim();
-          
-          // Get link from a href in comMore
-          const link = $box.find("div.comMore a").attr("href") || "";
-          const fullLink = link ? `https://sakaisetsubi-rct.com${link}` : "";
-          
-          // Extract date from link URL (format: /blog/202605251253/)
-          let date = "";
-          if (link) {
-            const dateMatch = link.match(/\/blog\/(\d{4})(\d{2})(\d{2})/);
-            if (dateMatch) {
-              const year = dateMatch[1];
-              const month = dateMatch[2];
-              const day = dateMatch[3];
-              date = `${year}年${month}月${day}日`;
-            }
-          }
-          
-          if (title && description) {
-            articles.push({
-              date: date || "日付不明",
-              title,
-              description,
-              image,
-              link: fullLink,
-            });
-          }
-        });
-        
-        return articles;
-      } catch (error) {
-        console.error("Failed to fetch blog posts:", error);
-        // Return empty array on error
-        return [];
+      }),
+    update: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        content: z.string().optional(),
+        category: z.string().optional(),
+        excerpt: z.string().optional(),
+        imageUrl: z.string().optional(),
+        status: z.enum(["draft", "published"]).optional(),
+        publishedAt: z.date().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can update blog posts");
+        }
+        const { id, ...updates } = input;
+        return await updateBlogPost(id, updates as Partial<InsertBlogPost>);
+      }),
+    delete: protectedProcedure
+      .input(z.number())
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== "admin") {
+          throw new Error("Only admin can delete blog posts");
+        }
+        await deleteBlogPost(input);
+        return { success: true };
+      }),
+    getAll: protectedProcedure.query(async ({ ctx }) => {
+      if (ctx.user?.role !== "admin") {
+        throw new Error("Only admin can view all blog posts");
       }
+      return await getAllBlogPosts();
+    }),
+    getByCategory: publicProcedure.input(z.string()).query(async ({ input }) => {
+      return await getBlogPostsByCategory(input);
     }),
   }),
 

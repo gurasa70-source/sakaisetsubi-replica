@@ -632,7 +632,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News Section */}
+      {/* News Section - Split into Works and Blog */}
       <section className="py-20 bg-gradient-to-b from-white to-blue-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
@@ -642,51 +642,87 @@ export default function Home() {
             ニュース
           </h2>
 
-          {/* News Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {newsLoading ? (
+          {/* Latest Works Section */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-gray-800 flex items-center">
+              <span className="inline-block w-1 h-8 bg-red-500 mr-3"></span>
+              最新施工実績
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Placeholder for latest works - will be fetched from trpc.works.getPublished */}
               <p className="text-gray-600 col-span-full text-center py-8">
-                外部ブログから最新記事を取得中です...
+                施工実績を取得中です...
               </p>
-            ) : newsData.length > 0 ? (
-              newsData.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow block"
-                >
-                  {item.image && (
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-48 object-cover rounded-lg mb-4"
-                    />
-                  )}
-                  <p
-                    className="text-sm font-semibold mb-2"
-                    style={{ color: "#0052CC" }}
+            </div>
+            <div className="text-center mt-8">
+              <a
+                href="/works"
+                className="inline-block px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105"
+                style={{ backgroundColor: "#0052CC" }}
+              >
+                すべての施工実績を見る →
+              </a>
+            </div>
+          </div>
+
+          {/* Latest Blog Section */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-gray-800 flex items-center">
+              <span className="inline-block w-1 h-8 bg-purple-600 mr-3"></span>
+              お知らせ・コラム
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {newsLoading ? (
+                <p className="text-gray-600 col-span-full text-center py-8">
+                  ブログ記事を取得中です...
+                </p>
+              ) : newsData.length > 0 ? (
+                newsData.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.link}
+                    className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow block"
                   >
-                    {item.date}
-                  </p>
-                  <h3 className="text-xl font-bold mb-3 text-gray-800">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{item.description}</p>
-                  <span
-                    className="inline-block px-6 py-2 rounded font-semibold text-white"
-                    style={{ backgroundColor: "#0052CC" }}
-                  >
-                    詳しく見る
-                  </span>
-                </a>
-              ))
-            ) : (
-              <p className="text-gray-600 col-span-full text-center py-8">
-                記事を取得できませんでした
-              </p>
-            )}
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-48 object-cover rounded-lg mb-4"
+                      />
+                    )}
+                    <p
+                      className="text-sm font-semibold mb-2"
+                      style={{ color: "#5B5FDE" }}
+                    >
+                      {item.date}
+                    </p>
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <span
+                      className="inline-block px-6 py-2 rounded font-semibold text-white"
+                      style={{ backgroundColor: "#5B5FDE" }}
+                    >
+                      詳しく見る
+                    </span>
+                  </a>
+                ))
+              ) : (
+                <p className="text-gray-600 col-span-full text-center py-8">
+                  記事を取得できませんでした
+                </p>
+              )}
+            </div>
+            <div className="text-center mt-8">
+              <a
+                href="/blog"
+                className="inline-block px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105"
+                style={{ backgroundColor: "#5B5FDE" }}
+              >
+                すべてのお知らせ・コラムを見る →
+              </a>
+            </div>
           </div>
         </div>
       </section>
