@@ -5,9 +5,11 @@ import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import Header from "./components/Header";
 import GlobalLoading from "./components/GlobalLoading";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import Home from "./pages/Home";
 import LeakRepair from "./pages/LeakRepair";
 import BathroomReform from "./pages/BathroomReform";
@@ -75,8 +77,8 @@ function RouterContent() {
       <Route path={"/works/:slug"} component={WorkDetail} />
       <Route path={"/works"} component={Works} />
       {/* Admin pages */}
-      <Route path={"/admin/works"} component={WorksManagement} />
-      <Route path={"/admin/design-projects"} component={DesignProjectsManagement} />
+      <Route path={"/kanri-kojikiroku"} component={() => <AdminProtectedRoute><WorksManagement /></AdminProtectedRoute>} />
+      <Route path={"/kanri-design"} component={() => <AdminProtectedRoute><DesignProjectsManagement /></AdminProtectedRoute>} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
@@ -93,20 +95,22 @@ function RouterContent() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
-        <LoadingProvider>
-          <TooltipProvider>
-            <Toaster />
-            <GlobalLoading />
-            <Header />
-            <ScrollToTopButton />
-            <RouterContent />
-          </TooltipProvider>
-        </LoadingProvider>
-      </ThemeProvider>
+      <AdminAuthProvider>
+        <ThemeProvider
+          defaultTheme="light"
+          // switchable
+        >
+          <LoadingProvider>
+            <TooltipProvider>
+              <Toaster />
+              <GlobalLoading />
+              <Header />
+              <ScrollToTopButton />
+              <RouterContent />
+            </TooltipProvider>
+          </LoadingProvider>
+        </ThemeProvider>
+      </AdminAuthProvider>
     </ErrorBoundary>
   );
 }
