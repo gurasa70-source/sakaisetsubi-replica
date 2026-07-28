@@ -4,7 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Google Fonts - Noto Sans JP */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap&subset=japanese');
+
+/* Font Display Optimization */
+font-display: swap;
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

@@ -16,7 +16,25 @@ export default function Breadcrumb() {
     ];
 
     // ページ別のパンくずリスト
-    if (location === '/design') {
+    if (location === '/service/leak-repair') {
+      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: '漏水修理', href: '/service/leak-repair' });
+    } else if (location === '/service/remodel') {
+      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: '水回りリフォーム', href: '/service/remodel' });
+    } else if (location === '/service/equipment') {
+      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: '機器交換工事', href: '/service/equipment' });
+    } else if (location === '/service/new-construction') {
+      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: '新築給排水工事', href: '/service/new-construction' });
+    } else if (location === '/service/sewer') {
+      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: '下水道切替工事', href: '/service/sewer' });
+    } else if (location === '/service/water-tap') {
+      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: '水栓工事', href: '/service/water-tap' });
+    } else if (location === '/design') {
       breadcrumbs.push({ label: '設計・申請', href: '/design' });
     } else if (location === '/design-projects') {
       breadcrumbs.push({ label: '設計・申請', href: '/design' });
@@ -26,17 +44,12 @@ export default function Breadcrumb() {
     } else if (location.startsWith('/works/')) {
       breadcrumbs.push({ label: '施工実績', href: '/works' });
       breadcrumbs.push({ label: '詳細', href: location });
-    } else if (location === '/admin/works') {
-      breadcrumbs.push({ label: '管理画面', href: '/admin' });
-      breadcrumbs.push({ label: '施工実績管理', href: '/admin/works' });
-    } else if (location === '/admin/design-projects') {
-      breadcrumbs.push({ label: '管理画面', href: '/admin' });
-      breadcrumbs.push({ label: '設計・申請実績管理', href: '/admin/design-projects' });
-    } else if (location === '/admin/blog') {
-      breadcrumbs.push({ label: '管理画面', href: '/admin' });
-      breadcrumbs.push({ label: 'ブログ管理', href: '/admin/blog' });
-    } else if (location === '/admin') {
-      breadcrumbs.push({ label: '管理画面', href: '/admin' });
+    } else if (location === '/kanri-kojikiroku') {
+      breadcrumbs.push({ label: '管理画面', href: '/kanri-kojikiroku' });
+      breadcrumbs.push({ label: '施工実績管理', href: '/kanri-kojikiroku' });
+    } else if (location === '/kanri-design') {
+      breadcrumbs.push({ label: '管理画面', href: '/kanri-design' });
+      breadcrumbs.push({ label: '設計・申請実績管理', href: '/kanri-design' });
     }
 
     return breadcrumbs;

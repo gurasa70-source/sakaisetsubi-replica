@@ -153,6 +153,8 @@ export default function Home() {
                   alt={slide.title}
                   className="w-full h-full object-cover"
                   loading={index === currentSlide ? "eager" : "lazy"}
+                  fetchPriority={index === currentSlide ? "high" : "low"}
+                  decoding="async"
                 />
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/40" />
@@ -674,6 +676,8 @@ export default function Home() {
                         src={work.imageUrl}
                         alt={work.title}
                         className="w-full h-48 object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                     <div className="p-6">
@@ -738,6 +742,8 @@ export default function Home() {
                         src={item.image}
                         alt={item.title}
                         className="w-full h-48 object-cover rounded-lg mb-4"
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                     <p
