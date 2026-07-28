@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin/
+Disallow: /kanri-kojikiroku
+Disallow: /kanri-design
 
 # Sitemap
 Sitemap: https://sakaireplica-m2oiogqs.manus.space/sitemap.xml
