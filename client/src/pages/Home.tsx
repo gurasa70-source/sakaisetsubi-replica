@@ -461,7 +461,7 @@ export default function Home() {
             frameBorder="0"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3260.8894537894006!2d138.45718612346848!3d35.02401743525127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601a3450c8406f03%3A0x722027aac56fa27f!2z5pil5pil6YeR5bGx!5e0!3m2!1sja!2sjp!4v1717857600000"
             allowFullScreen
-            loading={true as any}
+            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </section>
