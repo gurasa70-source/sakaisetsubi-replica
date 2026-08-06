@@ -181,18 +181,26 @@ export function generateLocalBusinessDetailSchema() {
     '@id': 'https://sakaireplica-m2oiogqs.manus.space',
     name: '株式会社 堺設備',
     alternateName: '堺設備',
-    image: 'https://sakaireplica-m2oiogqs.manus.space/manus-storage/logo_c1bdfbde.png',
+    image: [
+      'https://sakaireplica-m2oiogqs.manus.space/manus-storage/logo_c1bdfbde.png',
+      'https://sakaireplica-m2oiogqs.manus.space/manus-storage/company_building_real_d2e0ace2.jpg',
+    ],
     description: '静岡県静岡市清水区の水道設備会社。水漏れ修理、トイレ詰まり、給排水設備工事、水回りリフォームなど幅広く対応。50年以上の実績で地域の暮らしを支えています。',
     url: 'https://sakaireplica-m2oiogqs.manus.space',
     telephone: '054-348-2286',
     email: 'contact@sakaisetsubi.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '静岡県静岡市清水区',
+      streetAddress: '静岡県静岡市清水区押切1273',
       addressLocality: '静岡市清水区',
       addressRegion: '静岡県',
       postalCode: '424-0000',
       addressCountry: 'JP',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '35.024017',
+      longitude: '138.457186',
     },
     areaServed: [
       {
@@ -225,12 +233,20 @@ export function generateLocalBusinessDetailSchema() {
       '井戸ポンプ交換',
       '蛇口交換',
     ],
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '08:00',
+        closes: '18:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Sunday',
+        opens: '09:00',
+        closes: '17:00',
+      },
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
@@ -239,10 +255,34 @@ export function generateLocalBusinessDetailSchema() {
       worstRating: '1',
     },
     hasOfferingType: 'https://schema.org/ProfessionalService',
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '054-348-2286',
-      contactType: 'Customer Service',
-    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '054-348-2286',
+        contactType: 'Customer Service',
+        areaServed: 'JP',
+        availableLanguage: 'ja',
+      },
+    ],
+    offers: [
+      {
+        '@type': 'Offer',
+        name: '水漏れ修理',
+        description: '水漏れの迅速な修理対応。緊急対応可能。',
+        areaServed: '静岡市',
+      },
+      {
+        '@type': 'Offer',
+        name: '給排水設備工事',
+        description: '新築・リフォーム時の給排水設備工事。',
+        areaServed: '静岡市',
+      },
+      {
+        '@type': 'Offer',
+        name: '水回りリフォーム',
+        description: 'キッチン・トイレ・浴室などの水回りリフォーム。',
+        areaServed: '静岡市',
+      },
+    ],
   };
 }
