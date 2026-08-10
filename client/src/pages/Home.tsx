@@ -392,52 +392,119 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Leadership Section */}
+        <section id="leadership" className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 flex items-center">
+            <span className="inline-block w-1 h-10 bg-blue-600 mr-4"></span>
+            経営陣紹介
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* CEO */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="aspect-square overflow-hidden bg-gray-200">
+                <img
+                  src="/manus-storage/ceo_profile_6d4836f8.png"
+                  alt="現社長"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">現社長</h3>
+                <p className="text-gray-600 mb-3">堺 太郎</p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  2代目社長として、会社の経営を担当。顧客満足度を最優先に、最新の技術と丁寧な施工を実現。
+                </p>
+              </div>
+            </div>
+
+            {/* Chairman */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="aspect-square overflow-hidden bg-gray-200">
+                <img
+                  src="/manus-storage/chairman_profile_e9b27e45.png"
+                  alt="会長"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">会長</h3>
+                <p className="text-gray-600 mb-3">堺 次郎</p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  初代社長の息子。会社の基盤を築き、現在は会長として経営方針を指導。業界経験40年以上。
+                </p>
+              </div>
+            </div>
+
+            {/* Founder */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="aspect-square overflow-hidden bg-gray-200">
+                <img
+                  src="/manus-storage/founder_profile_f520a3be.png"
+                  alt="先代"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">先代</h3>
+                <p className="text-gray-600 mb-3">堺 一郎</p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  創業者。1970年に会社を設立し、地域の水道工事業界を牽引。現在は顧問として経営をサポート。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
-        <section id="contact" className="mb-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-lg">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        <section id="contact" className="mb-20 bg-white p-12 rounded-lg border-2 border-blue-600">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800 flex items-center justify-center">
+            <span className="inline-block w-1 h-10 bg-blue-600 mr-4"></span>
             お問い合わせ・見積もり相談
           </h2>
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
             <div>
-              <label className="block text-sm font-semibold mb-2">お名前</label>
+              <label className="block text-sm font-semibold mb-2 text-gray-800">お名前</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 rounded text-gray-800"
+                className="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-blue-600 focus:outline-none text-gray-800 transition-colors"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2">メールアドレス</label>
+              <label className="block text-sm font-semibold mb-2 text-gray-800">メールアドレス</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 rounded text-gray-800"
+                className="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-blue-600 focus:outline-none text-gray-800 transition-colors"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2">電話番号</label>
+              <label className="block text-sm font-semibold mb-2 text-gray-800">電話番号</label>
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 rounded text-gray-800"
+                className="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-blue-600 focus:outline-none text-gray-800 transition-colors"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2">メッセージ</label>
+              <label className="block text-sm font-semibold mb-2 text-gray-800">メッセージ</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={5}
-                className="w-full px-4 py-2 rounded text-gray-800"
+                className="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-blue-600 focus:outline-none text-gray-800 transition-colors"
               />
             </div>
             <button
