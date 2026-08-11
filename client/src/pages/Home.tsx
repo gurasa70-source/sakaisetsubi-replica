@@ -392,68 +392,56 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Leadership Section */}
+        {/* Executive Team */}
         <section id="leadership" className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 flex items-center">
-            <span className="inline-block w-1 h-10 bg-blue-600 mr-4"></span>
-            経営陣紹介
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center" style={{ color: "#0052CC" }}>
+            経営者紹介
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* CEO */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="aspect-square overflow-hidden bg-gray-200">
-                <img
-                  src="/manus-storage/ceo_profile_6d4836f8.png"
-                  alt="現社長"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">現社長</h3>
-                <p className="text-gray-600 mb-3">堺 太郎</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  2代目社長として、会社の経営を担当。顧客満足度を最優先に、最新の技術と丁寧な施工を実現。
-                </p>
-              </div>
-            </div>
-
-            {/* Chairman */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="aspect-square overflow-hidden bg-gray-200">
-                <img
-                  src="/manus-storage/chairman_profile_e9b27e45.png"
-                  alt="会長"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">会長</h3>
-                <p className="text-gray-600 mb-3">堺 次郎</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  初代社長の息子。会社の基盤を築き、現在は会長として経営方針を指導。業界経験40年以上。
-                </p>
-              </div>
-            </div>
-
             {/* Founder */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="aspect-square overflow-hidden bg-gray-200">
+            <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
                 <img
-                  src="/manus-storage/founder_profile_f520a3be.png"
-                  alt="先代"
+                  src="/manus-storage/sakai_otsurao_founder_a6c41900.webp"
+                  alt="会長 堺 乙雄"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">先代</h3>
-                <p className="text-gray-600 mb-3">堺 一郎</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  創業者。1970年に会社を設立し、地域の水道工事業界を牽引。現在は顧問として経営をサポート。
-                </p>
+              <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>会長</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">堺　乙雄</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                1970年の創業以来、千葉県から静岡へ移住し、何もないところから一人で仕事を始めました。「地域の方々の役に立ちたい」という想いを大切に、地域の暮らしを支え続けています。
+              </p>
+            </div>
+
+            {/* Second Generation President */}
+            <div className="bg-gradient-to-b from-purple-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
+                <img
+                  src="/manus-storage/sakai_shigitake_president2_6b9bf572.webp"
+                  alt="前社長 堺 滋岳"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
+              <p className="text-sm font-semibold mb-2" style={{ color: "#5B5FDE" }}>前社長</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">堺　滋岳</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                創業者の長男として、その想いと技術を受け継ぎ、現場を大切にしながら地域の暮らしを支え続けてきました。丁寧な仕事をすることを何より大切にしていました。
+              </p>
+            </div>
+
+            {/* Current President */}
+            <div className="bg-gradient-to-b from-blue-100 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-6xl font-bold" style={{ color: "#0052CC" }}>堺</span>
+              </div>
+              <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>代表取締役</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">堺　貴央</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                3代目に就任。多くの国家資格を所有し、確かな技術と専門知識をもとに対応いたします。創業からの想いを受け継ぎながら、地域の暮らしを支え続けています。
+              </p>
             </div>
           </div>
         </section>
