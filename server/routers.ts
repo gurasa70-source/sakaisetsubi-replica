@@ -42,7 +42,7 @@ export const appRouter = router({
     getById: publicProcedure.input(z.number()).query(async ({ input }) => {
       return await getWorkById(input);
     }),
-    create: protectedProcedure
+    create: adminSessionProcedure
       .input(z.object({
         title: z.string(),
         category: z.string(),
@@ -58,13 +58,10 @@ export const appRouter = router({
         afterImageUrl: z.string().optional(),
         status: z.enum(["draft", "published"]).default("draft"),
       }))
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can create works");
-        }
+      .mutation(async ({ input }) => {
         return await createWork(input as InsertWork);
       }),
-    update: protectedProcedure
+    update: adminSessionProcedure
       .input(z.object({
         id: z.number(),
         title: z.string().optional(),
@@ -81,26 +78,17 @@ export const appRouter = router({
         afterImageUrl: z.string().optional(),
         status: z.enum(["draft", "published"]).optional(),
       }))
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can update works");
-        }
+      .mutation(async ({ input }) => {
         const { id, ...updates } = input;
         return await updateWork(id, updates as Partial<InsertWork>);
       }),
-    delete: protectedProcedure
+    delete: adminSessionProcedure
       .input(z.number())
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can delete works");
-        }
+      .mutation(async ({ input }) => {
         await deleteWork(input);
         return { success: true };
       }),
-    getAll: protectedProcedure.query(async ({ ctx }) => {
-      if (ctx.user?.role !== "admin") {
-        throw new Error("Only admin can view all works");
-      }
+    getAll: adminSessionProcedure.query(async () => {
       return await getAllWorks();
     }),
     getByCategory: publicProcedure.input(z.string()).query(async ({ input }) => {
@@ -229,7 +217,7 @@ export const appRouter = router({
     getById: publicProcedure.input(z.number()).query(async ({ input }) => {
       return await getDesignProjectById(input);
     }),
-    create: protectedProcedure
+    create: adminSessionProcedure
       .input(z.object({
         title: z.string(),
         building: z.string(),
@@ -239,13 +227,10 @@ export const appRouter = router({
         imageUrl: z.string().optional(),
         status: z.enum(["draft", "published"]).default("draft"),
       }))
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can create design projects");
-        }
+      .mutation(async ({ input }) => {
         return await createDesignProject(input as InsertDesignProject);
       }),
-    update: protectedProcedure
+    update: adminSessionProcedure
       .input(z.object({
         id: z.number(),
         title: z.string().optional(),
@@ -256,26 +241,17 @@ export const appRouter = router({
         imageUrl: z.string().optional(),
         status: z.enum(["draft", "published"]).optional(),
       }))
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can update design projects");
-        }
+      .mutation(async ({ input }) => {
         const { id, ...updates } = input;
         return await updateDesignProject(id, updates as Partial<InsertDesignProject>);
       }),
-    delete: protectedProcedure
+    delete: adminSessionProcedure
       .input(z.number())
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can delete design projects");
-        }
+      .mutation(async ({ input }) => {
         await deleteDesignProject(input);
         return { success: true };
       }),
-    getAll: protectedProcedure.query(async ({ ctx }) => {
-      if (ctx.user?.role !== "admin") {
-        throw new Error("Only admin can view all design projects");
-      }
+    getAll: adminSessionProcedure.query(async () => {
       return await getAllDesignProjects();
     }),
   }),

@@ -3,6 +3,7 @@ import { trpc } from "@/lib/trpc";
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
+  isLoading: boolean;
   login: () => void;
   logout: () => void;
 }
@@ -11,7 +12,7 @@ const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefin
 
 export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [localAuthenticated, setLocalAuthenticated] = useState(false);
-  const { data: session } = trpc.admin.session.useQuery();
+  const { data: session, isLoading: sessionLoading } = trpc.admin.session.useQuery();
   const logoutMutation = trpc.admin.logout.useMutation();
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localAuthenticated && session?.authenticated === true;
 
   return (
-    <AdminAuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AdminAuthContext.Provider value={{ isAuthenticated, isLoading: sessionLoading, login, logout }}>
       {children}
     </AdminAuthContext.Provider>
   );

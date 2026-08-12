@@ -10,6 +10,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { generateSitemap } from "../sitemap";
 import { storagePut } from "../storage";
+import { hasAdminSession } from "./adminAuth";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -43,6 +44,9 @@ async function startServer() {
   const upload = multer({ storage: multer.memoryStorage() });
   app.post('/api/upload', upload.single('file'), async (req: any, res: any) => {
     try {
+      if (!(await hasAdminSession(req))) {
+        return res.status(401).json({ error: 'Admin authentication required' });
+      }
       if (!req.file) {
         return res.status(400).json({ error: 'No file provided' });
       }

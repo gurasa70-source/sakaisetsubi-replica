@@ -77,3 +77,8 @@
 - [x] 会長の写真をGit履歴で特定した以前の画像に差し替える
 - [x] お知らせ管理の統一URL `/kanri-oshirase` を追加し、施工実績 `/kanri-kojikiroku` と命名規則を揃える
 - [x] 既存のお知らせ管理URL `/kanri-blog` と `/admin/blog` を互換ルートとして維持する
+- [x] すべての管理用URL（/kanri-kojikiroku、/kanri-oshirase、/kanri-blog、/kanri-design）を独自管理者ログイン必須にする
+- [x] 未認証アクセス時に管理画面が表示されないことを確認する
+- [x] 施工実績・設計管理のCRUDからManus useAuth/protectedProcedure依存を外し、独自管理者セッションへ統一する
+- [x] 未認証状態で全管理URLにアクセスした際に管理画面本体が表示されないことを専用テストで確認する
+- [x] 各管理URL（/kanri-kojikiroku、/kanri-oshirase、/kanri-blog、/kanri-design）への未認証アクセス時にログイン画面が表示されることをテストで確認する

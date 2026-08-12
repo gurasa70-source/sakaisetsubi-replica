@@ -4,11 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/_core/hooks/useAuth';
 import { Pencil, Trash2, Plus } from 'lucide-react';
 
 export default function DesignProjectsManagement() {
-  const { user, loading } = useAuth();
   const [isCreating, setIsCreating] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -31,7 +29,7 @@ export default function DesignProjectsManagement() {
   });
 
   const { data: projects = [] } = trpc.designProjects.getAll.useQuery(undefined, {
-    enabled: user?.role === 'admin',
+    enabled: true,
   });
 
   const createMutation = trpc.designProjects.create.useMutation();
@@ -149,14 +147,6 @@ export default function DesignProjectsManagement() {
       status: 'published',
     });
   };
-
-  if (loading) {
-    return <div className="p-8">読み込み中...</div>;
-  }
-
-  if (user?.role !== 'admin') {
-    return <div className="p-8">管理者のみアクセス可能です</div>;
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">

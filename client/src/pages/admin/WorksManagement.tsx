@@ -6,10 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/_core/hooks/useAuth';
 
 export default function WorksManagement() {
-  const { user, loading } = useAuth();
   const [isCreating, setIsCreating] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -31,7 +29,7 @@ export default function WorksManagement() {
   });
 
   const { data: works = [] } = trpc.works.getAll.useQuery(undefined, {
-    enabled: user?.role === 'admin',
+    enabled: true,
   });
 
   const createMutation = trpc.works.create.useMutation();
@@ -153,14 +151,6 @@ export default function WorksManagement() {
       }
     }
   };
-
-  if (loading) {
-    return <div className="p-8">読み込み中...</div>;
-  }
-
-  if (user?.role !== 'admin') {
-    return <div className="p-8">管理者のみアクセス可能です</div>;
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">

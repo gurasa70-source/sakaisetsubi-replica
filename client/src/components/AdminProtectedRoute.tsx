@@ -6,7 +6,11 @@ interface AdminProtectedRouteProps {
 }
 
 export default function AdminProtectedRoute({ children }: AdminProtectedRouteProps) {
-  const { isAuthenticated } = useAdminAuth();
+  const { isAuthenticated, isLoading } = useAdminAuth();
+
+  if (isLoading) {
+    return <div className="flex min-h-screen items-center justify-center bg-gray-50 text-gray-600">管理者認証を確認しています...</div>;
+  }
 
   if (!isAuthenticated) {
     return <AdminLoginPage />;
