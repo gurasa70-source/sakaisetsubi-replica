@@ -1,7 +1,8 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
+import { publicProcedure, router, protectedProcedure, adminSessionProcedure } from "./_core/trpc";
+import { loginAdmin, logoutAdmin } from "./_core/adminAuth";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { generateSitemap } from "./sitemap";
@@ -139,6 +140,18 @@ export const appRouter = router({
       }),
   }),
 
+  // Independent admin password authentication
+  admin: router({
+    login: publicProcedure
+      .input(z.object({ password: z.string().min(1) }))
+      .mutation(async ({ input, ctx }) => ({ success: await loginAdmin(input.password, ctx.req, ctx.res) })),
+    logout: publicProcedure.mutation(({ ctx }) => {
+      logoutAdmin(ctx.req, ctx.res);
+      return { success: true };
+    }),
+    session: publicProcedure.query(({ ctx }) => ({ authenticated: ctx.adminAuthenticated })),
+  }),
+
   // Blog news router
   blog: router({
     getLatestNews: publicProcedure.query(async () => {
@@ -160,7 +173,7 @@ export const appRouter = router({
     getBySlug: publicProcedure.input(z.string()).query(async ({ input }) => {
       return await getBlogPostBySlug(input);
     }),
-    create: protectedProcedure
+    create: adminSessionProcedure
       .input(z.object({
         title: z.string(),
         slug: z.string(),
@@ -168,18 +181,14 @@ export const appRouter = router({
         category: z.string(),
         excerpt: z.string().optional(),
         imageUrl: z.string().optional(),
+        status: z.enum(["draft", "published"]).default("draft"),
         publishedAt: z.date().optional(),
       }))
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can create blog posts");
-        }
-        return await createBlogPost({
-          ...input,
-          status: "draft",
-        });
+      .mutation(async ({ input }) => {
+        const publishedAt = input.status === "published" ? (input.publishedAt || new Date()) : input.publishedAt;
+        return await createBlogPost({ ...input, publishedAt });
       }),
-    update: protectedProcedure
+    update: adminSessionProcedure
       .input(z.object({
         id: z.number(),
         title: z.string().optional(),
@@ -191,26 +200,20 @@ export const appRouter = router({
         status: z.enum(["draft", "published"]).optional(),
         publishedAt: z.date().optional(),
       }))
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can update blog posts");
-        }
+      .mutation(async ({ input }) => {
         const { id, ...updates } = input;
-        return await updateBlogPost(id, updates as Partial<InsertBlogPost>);
+        const normalizedUpdates = updates.status === "published" && !updates.publishedAt
+          ? { ...updates, publishedAt: new Date() }
+          : updates;
+        return await updateBlogPost(id, normalizedUpdates as Partial<InsertBlogPost>);
       }),
-    delete: protectedProcedure
+    delete: adminSessionProcedure
       .input(z.number())
-      .mutation(async ({ input, ctx }) => {
-        if (ctx.user?.role !== "admin") {
-          throw new Error("Only admin can delete blog posts");
-        }
+      .mutation(async ({ input }) => {
         await deleteBlogPost(input);
         return { success: true };
       }),
-    getAll: protectedProcedure.query(async ({ ctx }) => {
-      if (ctx.user?.role !== "admin") {
-        throw new Error("Only admin can view all blog posts");
-      }
+    getAll: adminSessionProcedure.query(async () => {
       return await getAllBlogPosts();
     }),
     getByCategory: publicProcedure.input(z.string()).query(async ({ input }) => {

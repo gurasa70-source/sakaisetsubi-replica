@@ -44,6 +44,14 @@ export default function Breadcrumb() {
     } else if (location.startsWith('/works/')) {
       breadcrumbs.push({ label: '施工実績', href: '/works' });
       breadcrumbs.push({ label: '詳細', href: location });
+    } else if (location === '/blog') {
+      breadcrumbs.push({ label: 'お知らせ・コラム', href: '/blog' });
+    } else if (location.startsWith('/blog/')) {
+      breadcrumbs.push({ label: 'お知らせ・コラム', href: '/blog' });
+      breadcrumbs.push({ label: '記事詳細', href: location });
+    } else if (location === '/kanri-blog' || location === '/admin/blog') {
+      breadcrumbs.push({ label: '管理画面', href: location });
+      breadcrumbs.push({ label: 'お知らせ管理', href: location });
     } else if (location === '/kanri-kojikiroku') {
       breadcrumbs.push({ label: '管理画面', href: '/kanri-kojikiroku' });
       breadcrumbs.push({ label: '施工実績管理', href: '/kanri-kojikiroku' });

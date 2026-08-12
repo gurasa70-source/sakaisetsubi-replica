@@ -75,3 +75,28 @@ describe("blog.getLatestNews", () => {
     expect(Array.isArray(result)).toBe(true);
   });
 });
+
+describe("blog public pages", () => {
+  it("returns published posts as an array for the list page", async () => {
+    const caller = appRouter.createCaller(createContext());
+    const result = await caller.blog.getPublished();
+    expect(Array.isArray(result)).toBe(true);
+    if (result.length > 0) {
+      expect(result[0]).toHaveProperty("title");
+      expect(result[0]).toHaveProperty("slug");
+      expect(result[0].status).toBe("published");
+    }
+  }, { timeout: 15000 });
+
+  it("returns category-filtered posts as an array", async () => {
+    const caller = appRouter.createCaller(createContext());
+    const result = await caller.blog.getByCategory("お知らせ");
+    expect(Array.isArray(result)).toBe(true);
+  }, { timeout: 15000 });
+
+  it("returns undefined for a missing slug", async () => {
+    const caller = appRouter.createCaller(createContext());
+    const result = await caller.blog.getBySlug("missing-blog-slug-for-test");
+    expect(result === undefined || result === null).toBe(true);
+  }, { timeout: 15000 });
+});

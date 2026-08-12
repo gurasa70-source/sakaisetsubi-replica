@@ -402,7 +402,7 @@ export default function Home() {
             <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
                 <img
-                  src="/manus-storage/sakai_otsurao_founder_a6c41900.webp"
+                  src="/manus-storage/president_founder_a7e618f0.png"
                   alt="会長 堺 乙雄"
                   className="w-full h-full object-cover"
                   loading="lazy"

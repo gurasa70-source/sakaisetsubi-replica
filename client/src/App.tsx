@@ -26,6 +26,9 @@ import Works from "./pages/Works";
 import WorkDetail from "./pages/works/WorkDetail";
 import WorksManagement from "./pages/admin/WorksManagement";
 import DesignProjectsManagement from "./pages/admin/DesignProjectsManagement";
+import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
+import BlogManagement from "./pages/admin/BlogManagement";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Breadcrumb from "./components/Breadcrumb";
 
@@ -76,8 +79,13 @@ function RouterContent() {
       {/* Works pages */}
       <Route path={"/works/:slug"} component={WorkDetail} />
       <Route path={"/works"} component={Works} />
+      {/* Blog pages */}
+      <Route path={"/blog/:slug"} component={BlogDetail} />
+      <Route path={"/blog"} component={Blog} />
       {/* Admin pages */}
       <Route path={"/kanri-kojikiroku"} component={() => <AdminProtectedRoute><WorksManagement /></AdminProtectedRoute>} />
+      <Route path={"/kanri-blog"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
+      <Route path={"/admin/blog"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
       <Route path={"/kanri-design"} component={() => <AdminProtectedRoute><DesignProjectsManagement /></AdminProtectedRoute>} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}

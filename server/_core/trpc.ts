@@ -27,6 +27,18 @@ const requireUser = t.middleware(async opts => {
 
 export const protectedProcedure = t.procedure.use(requireUser);
 
+export const adminSessionProcedure = t.procedure.use(
+  t.middleware(async opts => {
+    const { ctx, next } = opts;
+
+    if (!ctx.adminAuthenticated) {
+      throw new TRPCError({ code: "UNAUTHORIZED", message: "管理者パスワードでログインしてください" });
+    }
+
+    return next({ ctx });
+  }),
+);
+
 export const adminProcedure = t.procedure.use(
   t.middleware(async opts => {
     const { ctx, next } = opts;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAdminAuth } from '@/contexts/AdminAuthContext';
+import { trpc } from '@/lib/trpc';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,6 +8,8 @@ import { AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const { login } = useAdminAuth();
+  const utils = trpc.useUtils();
+  const loginMutation = trpc.admin.login.useMutation();
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -17,8 +20,11 @@ export default function AdminLoginPage() {
     setIsLoading(true);
 
     try {
-      const success = login(password);
-      if (!success) {
+      const result = await loginMutation.mutateAsync({ password });
+      if (result.success) {
+        login();
+        await utils.admin.session.invalidate();
+      } else {
         setError('パスワードが正しくありません');
         setPassword('');
       }
@@ -65,11 +71,11 @@ export default function AdminLoginPage() {
 
             <Button
               type="submit"
-              disabled={isLoading || !password}
+              disabled={isLoading || loginMutation.isPending || !password}
               className="w-full"
               style={{ backgroundColor: '#0052CC' }}
             >
-              {isLoading ? 'ログイン中...' : 'ログイン'}
+              {isLoading || loginMutation.isPending ? 'ログイン中...' : 'ログイン'}
             </Button>
           </form>
         </CardContent>
