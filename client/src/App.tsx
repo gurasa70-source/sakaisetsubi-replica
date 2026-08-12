@@ -84,6 +84,7 @@ function RouterContent() {
       <Route path={"/blog"} component={Blog} />
       {/* Admin pages */}
       <Route path={"/kanri-kojikiroku"} component={() => <AdminProtectedRoute><WorksManagement /></AdminProtectedRoute>} />
+      <Route path={"/kanri-oshirase"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
       <Route path={"/kanri-blog"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
       <Route path={"/admin/blog"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
       <Route path={"/kanri-design"} component={() => <AdminProtectedRoute><DesignProjectsManagement /></AdminProtectedRoute>} />

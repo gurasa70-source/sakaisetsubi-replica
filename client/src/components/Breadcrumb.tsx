@@ -49,7 +49,7 @@ export default function Breadcrumb() {
     } else if (location.startsWith('/blog/')) {
       breadcrumbs.push({ label: 'お知らせ・コラム', href: '/blog' });
       breadcrumbs.push({ label: '記事詳細', href: location });
-    } else if (location === '/kanri-blog' || location === '/admin/blog') {
+    } else if (location === '/kanri-oshirase' || location === '/kanri-blog' || location === '/admin/blog') {
       breadcrumbs.push({ label: '管理画面', href: location });
       breadcrumbs.push({ label: 'お知らせ管理', href: location });
     } else if (location === '/kanri-kojikiroku') {
