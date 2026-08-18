@@ -66,7 +66,7 @@ export default function Header() {
               <h1 className="text-lg font-bold" style={{ color: "#0052CC" }}>
                 株式会社 堺設備
               </h1>
-              <p className="text-xs text-gray-600">静岡市の水廻りのトラブルスピード対応</p>
+              <p className="text-xs text-gray-600">静岡市・焼津市の水廻りのトラブル対応</p>
             </div>
           </a>
         </div>

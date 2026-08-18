@@ -359,7 +359,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                株式会社堺設備は、静岡市を中心に給排水設備工事・水道工事・リフォームを行う設備工事会社です。
+                株式会社堺設備は、静岡市・焼津市の上下水道指定工事店として、給排水設備工事・水道工事・リフォームを行う設備工事会社です。
               </p>
               <p className="text-gray-700 mb-4 leading-relaxed">
                 水漏れ修理、トイレ詰まり、排水詰まり、井戸ポンプ交換など、水回りのトラブルに迅速に対応します。
@@ -385,7 +385,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="font-semibold">対応エリア</p>
-                  <p>静岡市・清水区周辺</p>
+                  <p>静岡市・焼津市</p>
                 </div>
               </div>
             </div>
@@ -511,7 +511,7 @@ export default function Home() {
             アクセス・会社案内
           </h2>
           <p className="text-gray-600 mb-6">
-            株式会社堺設備（静岡市清水区押切1273）｜清水区の水道修理・トイレつまり・水漏れ対応拠点
+            株式会社堺設備（静岡市清水区押切1273）｜静岡市・焼津市の上下水道指定工事店
           </p>
           <iframe
             width="100%"

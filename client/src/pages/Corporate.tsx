@@ -17,7 +17,7 @@ export default function Corporate() {
             給排水設備の設計図書作成および各種申請業務
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed font-light">
-            株式会社堺設備は、静岡市上下水道指定工事店として、一般住宅の新築・リフォームから学校等の大規模公共工事まで、給排水設備の設計図書作成および水道申請業務を専門的に手掛けております。道路使用許可や占用許可などの行政手続きも含め、確かな技術でトータルにサポートいたします。
+            株式会社堺設備は、静岡市・焼津市の上下水道指定工事店として、一般住宅の新築・リフォームから学校等の大規模公共工事まで、給排水設備の設計図書作成および水道申請業務を専門的に手掛けております。道路使用許可や占用許可などの行政手続きも含め、確かな技術でトータルにサポートいたします。
           </p>
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function Corporate() {
               </div>
               <div>
                 <h4 className="font-bold text-white mb-1.5 text-sm tracking-wide">水道局への各種申請手続き</h4>
-                <p className="text-slate-400 text-xs leading-relaxed">上下水道指定工事店としての給水装置工事申込書、設計審査書類の提出および協議。</p>
+                <p className="text-slate-400 text-xs leading-relaxed">静岡市・焼津市の上下水道指定工事店として、給水装置工事申込書、設計審査書類の提出および協議。</p>
               </div>
             </div>
 

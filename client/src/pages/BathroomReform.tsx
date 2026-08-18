@@ -2,12 +2,12 @@ export default function BathroomReform() {
   return (
     <div className="min-h-screen bg-white">
       {/* ヘッダー */}
-      <header className="bg-gradient-to-r from-green-600 to-green-800 text-white py-16">
+      <header className="bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16">
         <div className="container max-w-4xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             水回りリフォーム
           </h1>
-          <p className="text-xl text-green-100">
+          <p className="text-xl text-blue-100">
             トイレ・洗面台・キッチン交換で、快適な生活空間を実現
           </p>
         </div>
@@ -34,31 +34,31 @@ export default function BathroomReform() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">対応内容</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-green-600">トイレ交換</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">トイレ交換</h3>
               <p className="text-gray-700 leading-relaxed">
                 最新の節水型トイレへの交換。温水洗浄便座や自動開閉機能など、快適機能を備えた製品をご提案します。既存トイレの撤去から新規設置まで、一貫して対応いたします。
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-green-600">洗面台交換</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">洗面台交換</h3>
               <p className="text-gray-700 leading-relaxed">
                 洗面台の交換で、朝の準備がより快適に。収納力の高い最新型洗面台から、シンプルで使いやすいタイプまで、様々な製品からお選びいただけます。
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-green-600">キッチン交換</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">キッチン交換</h3>
               <p className="text-gray-700 leading-relaxed">
                 キッチンリフォームで、料理がより楽しくなります。システムキッチンの交換から、シンク・蛇口の単体交換まで、ご予算に合わせたプランをご提案します。
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-green-600">浴室・浴槽交換</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">浴室・浴槽交換</h3>
               <p className="text-gray-700 leading-relaxed">
                 浴室全体のリフォームから、浴槽の単体交換まで対応。ユニットバスの導入で、清潔で快適な浴室空間を実現できます。
               </p>
             </div>
             <div className="md:col-span-2">
-              <h3 className="text-xl font-semibold mb-4 text-green-600">給排水管の更新</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">給排水管の更新</h3>
               <p className="text-gray-700 leading-relaxed">
                 リフォームに合わせて、給排水管の更新も可能です。古い配管を新しくすることで、水漏れのリスクを減らし、より安心した生活環境を整えられます。
               </p>
@@ -69,27 +69,19 @@ export default function BathroomReform() {
         {/* 対応エリアセクション */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8 text-gray-800">対応エリア</h2>
-          <div className="bg-green-50 p-8 rounded-lg">
+          <div className="bg-blue-50 p-8 rounded-lg">
             <p className="text-gray-700 mb-6 leading-relaxed">
-              当社は、静岡市清水区を中心に、周辺地域での水回りリフォームに対応しています。迅速な対応が可能なエリアは以下の通りです。
+              当社は、静岡市・焼津市の上下水道指定工事店として、水回りリフォームに対応しています。対応エリアは以下の通りです。
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold text-gray-800 mb-3">主要対応エリア</h3>
+                <h3 className="font-semibold text-gray-800 mb-3">指定工事店対応エリア</h3>
                 <ul className="text-gray-700 space-y-2">
-                  <li>✓ 静岡市清水区</li>
-                  <li>✓ 静岡市葵区</li>
-                  <li>✓ 静岡市駿河区</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-3">周辺対応エリア</h3>
-                <ul className="text-gray-700 space-y-2">
-                  <li>✓ 富士市</li>
+                  <li>✓ 静岡市</li>
                   <li>✓ 焼津市</li>
-                  <li>✓ 藤枝市</li>
                 </ul>
               </div>
+
             </div>
             <p className="text-gray-700 mt-6">
               上記以外のエリアでも対応可能な場合がございます。お気軽にお問い合わせください。
@@ -234,33 +226,33 @@ export default function BathroomReform() {
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8 text-gray-800">施工実績</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg hover:shadow-lg transition">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
               <h3 className="text-lg font-semibold mb-2 text-gray-800">トイレ交換工事</h3>
               <p className="text-sm text-gray-600 mb-3">最新のトイレ機器に交換</p>
               <p className="text-gray-700 text-sm leading-relaxed">
                 老朽化したトイレを最新の温水洗浄便座付きトイレに交換。快適性と省エネ性が大幅に向上しました。
               </p>
-              <a href="/works" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
+              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-green-800">
                 詳細を見る →
               </a>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg hover:shadow-lg transition">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
               <h3 className="text-lg font-semibold mb-2 text-gray-800">洗面台交換工事</h3>
               <p className="text-sm text-gray-600 mb-3">新しい洗面台に交換</p>
               <p className="text-gray-700 text-sm leading-relaxed">
                 古い洗面台を新しいデザインの洗面台に交換。洗面所の雰囲気が大きく変わり、使い刓手も向上しました。
               </p>
-              <a href="/works" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
+              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-green-800">
                 詳細を見る →
               </a>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg hover:shadow-lg transition">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
               <h3 className="text-lg font-semibold mb-2 text-gray-800">キッチン改修工事</h3>
               <p className="text-sm text-gray-600 mb-3">キッチン全面改修</p>
               <p className="text-gray-700 text-sm leading-relaxed">
                 古いキッチンを最新のシステムキッチンに改修。調理スペースが広がり、使い勝手が大幅に改善されました。
               </p>
-              <a href="/works" className="text-green-600 font-semibold mt-4 inline-block hover:text-green-800">
+              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-green-800">
                 詳細を見る →
               </a>
             </div>
@@ -268,13 +260,13 @@ export default function BathroomReform() {
         </section>
 
         {/* CTA セクション */}
-        <section className="bg-gradient-to-r from-green-600 to-green-800 text-white p-8 rounded-lg text-center">
+        <section className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-8 rounded-lg text-center">
           <h2 className="text-3xl font-bold mb-4">水回りのリフォームをお考えですか？</h2>
           <p className="text-xl mb-8">
             快適な生活空間を実現するなら、堺設備にお任せください
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:0220122-1817" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+            <a href="tel:0220122-1817" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
               📞 電話する
             </a>
             <a 

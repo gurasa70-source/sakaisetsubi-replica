@@ -8,7 +8,7 @@ export default function LeakRepair() {
             漏水修理
           </h1>
           <p className="text-xl text-blue-100">
-            静岡市清水区の水漏れ・漏水トラブルはスピード対応
+            静岡市・焼津市の水漏れ・漏水トラブルに対応
           </p>
         </div>
       </header>
@@ -78,25 +78,17 @@ export default function LeakRepair() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">対応エリア</h2>
           <div className="bg-blue-50 p-8 rounded-lg">
             <p className="text-gray-700 mb-6 leading-relaxed">
-              堺設備は、静岡市清水区を中心に、周辺地域での漏水修理に迅速に対応いたします。年間100件以上の修理実績があります。
+              堺設備は、静岡市・焼津市の上下水道指定工事店として、漏水修理に対応いたします。
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold text-gray-800 mb-3">主要対応エリア</h3>
+                <h3 className="font-semibold text-gray-800 mb-3">指定工事店対応エリア</h3>
                 <ul className="text-gray-700 space-y-2">
-                  <li>✓ 静岡市清水区（全域）</li>
-                  <li>✓ 静岡市葵区</li>
-                  <li>✓ 静岡市駿河区</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-3">周辺対応エリア</h3>
-                <ul className="text-gray-700 space-y-2">
-                  <li>✓ 富士市</li>
+                  <li>✓ 静岡市</li>
                   <li>✓ 焼津市</li>
-                  <li>✓ 藤枝市</li>
                 </ul>
               </div>
+
             </div>
             <p className="text-gray-700 mt-6">
               上記以外のエリアでも対応可能な場合がございます。お気軽にお問い合わせください。

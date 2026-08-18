@@ -2,12 +2,12 @@ export default function NewConstructionPlumbing() {
   return (
     <div className="min-h-screen bg-white">
       {/* ヘッダー */}
-      <header className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
+      <header className="bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16">
         <div className="container max-w-4xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             新築給排水設備工事
           </h1>
-          <p className="text-xl text-purple-100">
+          <p className="text-xl text-blue-100">
             工務店様・建築会社様向け。確実で信頼できる給排水設備工事
           </p>
         </div>
@@ -34,31 +34,31 @@ export default function NewConstructionPlumbing() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">対応内容</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-purple-600">給水設備工事</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">給水設備工事</h3>
               <p className="text-gray-700 leading-relaxed">
                 水道本管からの引き込み工事、配管設計・施工、給水ポンプ設置など、給水に関する全ての工事に対応いたします。建築基準法に基づいた安全な施工を実施します。
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-purple-600">排水設備工事</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">排水設備工事</h3>
               <p className="text-gray-700 leading-relaxed">
                 排水管の配管設計・施工、下水道への接続工事、グリストラップ設置など、排水に関する全ての工事に対応いたします。適切な勾配と材質を選定し、確実な施工を行います。
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-purple-600">配管設計・施工</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">配管設計・施工</h3>
               <p className="text-gray-700 leading-relaxed">
                 建築図面に基づいた給排水配管の設計・施工。最適な配管ルートを提案し、建築スケジュールに合わせた施工を実現します。
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-purple-600">給水装置工事</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">給水装置工事</h3>
               <p className="text-gray-700 leading-relaxed">
                 指定給水装置工事事業者として、水道局への申請・届け出を代行いたします。法令に基づいた適切な給水装置工事を実施します。
               </p>
             </div>
             <div className="md:col-span-2">
-              <h3 className="text-xl font-semibold mb-4 text-purple-600">検査・試験</h3>
+              <h3 className="text-xl font-semibold mb-4 text-blue-700">検査・試験</h3>
               <p className="text-gray-700 leading-relaxed">
                 施工完了後、水圧試験、通水試験、漏水検査など、各種検査を実施いたします。確実な施工品質を保証し、竣工後のトラブルを防ぎます。
               </p>
@@ -69,27 +69,19 @@ export default function NewConstructionPlumbing() {
         {/* 対応エリアセクション */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8 text-gray-800">対応エリア</h2>
-          <div className="bg-purple-50 p-8 rounded-lg">
+          <div className="bg-blue-50 p-8 rounded-lg">
             <p className="text-gray-700 mb-6 leading-relaxed">
-              当社は、静岡市清水区を中心に、周辺地域での新築給排水工事に対応しています。工務店様・建築会社様との連携実績が豊富です。
+              当社は、静岡市・焼津市の上下水道指定工事店として、新築給排水工事に対応しています。工務店様・建築会社様からの設計・施工相談を承ります。
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold text-gray-800 mb-3">主要対応エリア</h3>
+                <h3 className="font-semibold text-gray-800 mb-3">指定工事店対応エリア</h3>
                 <ul className="text-gray-700 space-y-2">
-                  <li>✓ 静岡市清水区</li>
-                  <li>✓ 静岡市葵区</li>
-                  <li>✓ 静岡市駿河区</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-3">周辺対応エリア</h3>
-                <ul className="text-gray-700 space-y-2">
-                  <li>✓ 富士市</li>
+                  <li>✓ 静岡市</li>
                   <li>✓ 焼津市</li>
-                  <li>✓ 藤枝市</li>
                 </ul>
               </div>
+
             </div>
             <p className="text-gray-700 mt-6">
               上記以外のエリアでも対応可能な場合がございます。お気軽にお問い合わせください。
@@ -102,7 +94,7 @@ export default function NewConstructionPlumbing() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">資格・認定</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <div>
@@ -113,7 +105,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <div>
@@ -124,7 +116,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <div>
@@ -142,7 +134,7 @@ export default function NewConstructionPlumbing() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">堺設備の特徴</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 1
               </div>
               <div>
@@ -153,7 +145,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 2
               </div>
               <div>
@@ -164,7 +156,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 3
               </div>
               <div>
@@ -175,7 +167,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 4
               </div>
               <div>
@@ -193,7 +185,7 @@ export default function NewConstructionPlumbing() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">工事の流れ</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 1
               </div>
               <div>
@@ -204,7 +196,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 2
               </div>
               <div>
@@ -215,7 +207,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 3
               </div>
               <div>
@@ -226,7 +218,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 4
               </div>
               <div>
@@ -237,7 +229,7 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 5
               </div>
               <div>
@@ -282,13 +274,13 @@ export default function NewConstructionPlumbing() {
         </section>
 
         {/* CTA セクション */}
-        <section className="bg-gradient-to-r from-purple-600 to-purple-800 text-white p-8 rounded-lg text-center">
+        <section className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-8 rounded-lg text-center">
           <h2 className="text-3xl font-bold mb-4">新築プロジェクトの給排水工事はお任せください</h2>
           <p className="text-xl mb-8">
             工務店様・建築会社様との信頼の実績で、確実な施工を実現します
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:0220122-1817" className="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+            <a href="tel:0220122-1817" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
               📞 電話する
             </a>
             <a 
