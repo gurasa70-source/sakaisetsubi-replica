@@ -93,9 +93,37 @@ async function startServer() {
         mimeType = mimeTypeMap[ext || ''] || 'application/octet-stream';
       }
 
-      const { url } = await storagePut(fileName, req.file.buffer, mimeType);
+      let fileBuffer = req.file.buffer;
+      // If it's an image, apply automatic privacy anonymization (blur/mosaic for plates, faces, signs)
+      if (mimeType.startsWith('image/') && mimeType !== 'image/svg+xml') {
+        try {
+          const fs = await import('fs');
+          const path = await import('path');
+          const { execSync } = await import('child_process');
+          const os = await import('os');
 
-      res.json({ url });
+          const tmpDir = os.tmpdir();
+          const tmpIn = path.join(tmpDir, `upload-in-${Date.now()}.jpg`);
+          const tmpOut = path.join(tmpDir, `upload-out-${Date.now()}.jpg`);
+
+          fs.writeFileSync(tmpIn, req.file.buffer);
+          const scriptPath = path.resolve(__dirname, '../../server/privacy_blur.py');
+          execSync(`python3 "${scriptPath}" "${tmpIn}" "${tmpOut}"`, { timeout: 10000 });
+
+          if (fs.existsSync(tmpOut)) {
+            fileBuffer = fs.readFileSync(tmpOut);
+            fs.unlinkSync(tmpIn);
+            fs.unlinkSync(tmpOut);
+          }
+        } catch (blurErr) {
+          console.error('Auto privacy blur failed:', blurErr);
+          return res.status(500).json({ error: `Privacy anonymization failed: ${blurErr instanceof Error ? blurErr.message : 'Unknown error'}` });
+        }
+      }
+
+      const { url } = await storagePut(fileName, fileBuffer, mimeType);
+
+      res.json({ url, autoAnonymized: true });
     } catch (error) {
       console.error('Upload error:', error);
       res.status(500).json({ error: `Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}` });

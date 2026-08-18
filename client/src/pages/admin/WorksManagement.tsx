@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function WorksManagement() {
   const [isCreating, setIsCreating] = useState(false);
@@ -302,6 +302,25 @@ export default function WorksManagement() {
                       <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
                     </div>
                   )}
+                </div>
+
+                {/* プライバシー保護・撮影チェックリストの案内バナー */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-900 space-y-2">
+                  <div className="font-semibold flex items-center gap-2">
+                    <ShieldCheck className="h-5 w-5 text-blue-600" />
+                    <span>プライバシー自動保護および撮影時のご注意</span>
+                  </div>
+                  <p className="text-xs text-blue-800 leading-relaxed">
+                    アップロードされた画像は、サーバー側で車両ナンバープレートや人物の顔、表札などのプライバシー情報が自動検知・匿名化（モザイク処理）されます。安心してアップロードしてください。
+                  </p>
+                  <div className="pt-1 border-t border-blue-200">
+                    <span className="font-medium text-xs block mb-1">撮影時の確認チェックリスト:</span>
+                    <ul className="text-xs space-y-1 text-blue-800 list-disc list-inside">
+                      <li>車両ナンバープレートが鮮明に映り込んでいないか（自動モザイク対象）</li>
+                      <li>表札や個人を特定できる看板・郵便受けが映り込んでいないか</li>
+                      <li>お客様や通行人の顔が特定できないアングルになっているか</li>
+                    </ul>
+                  </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
