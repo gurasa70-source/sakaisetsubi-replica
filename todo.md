@@ -82,3 +82,4 @@
 - [x] 施工実績・設計管理のCRUDからManus useAuth/protectedProcedure依存を外し、独自管理者セッションへ統一する
 - [x] 未認証状態で全管理URLにアクセスした際に管理画面本体が表示されないことを専用テストで確認する
 - [x] 各管理URL（/kanri-kojikiroku、/kanri-oshirase、/kanri-blog、/kanri-design）への未認証アクセス時にログイン画面が表示されることをテストで確認する
+- [x] 検索結果のタイトルと説明文の先頭に「株式会社堺設備」が来るように `client/index.html` のメタタグおよび構造化データを最適化する
