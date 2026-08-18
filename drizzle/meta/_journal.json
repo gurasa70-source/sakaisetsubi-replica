@@ -50,6 +50,13 @@
       "when": 1787029312847,
       "tag": "0006_misty_peter_quill",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1787039267002,
+      "tag": "0007_misty_sphinx",
+      "breakpoints": true
     }
   ]
 }

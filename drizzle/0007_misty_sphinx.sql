@@ -1,0 +1,1 @@
+ALTER TABLE `blogPosts` ADD `views` int DEFAULT 0 NOT NULL;

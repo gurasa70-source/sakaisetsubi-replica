@@ -21,6 +21,7 @@ export default function Header() {
     { href: '/#business', label: '事業内容' },
     { href: '/corporate', label: '設計' },
     { href: '/works', label: '施工実績' },
+    { href: '/blog', label: 'お知らせ' },
     { href: '/#contact', label: 'お問い合わせ' },
   ];
 

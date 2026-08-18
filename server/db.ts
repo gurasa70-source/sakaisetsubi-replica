@@ -1,5 +1,5 @@
-import { eq, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
+import { eq, desc } from "drizzle-orm";
 import { InsertUser, users, works, InsertWork, Work, designProjects, InsertDesignProject, DesignProject, blogPosts, InsertBlogPost, BlogPost } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -46,31 +46,33 @@ export async function upsertUser(user: InsertUser): Promise<void> {
       updateSet[field] = normalized;
     };
 
-    textFields.forEach(assignNullable);
+    assignNullable("name");
+    assignNullable("email");
+    assignNullable("loginMethod");
 
+    if (user.role !== undefined) {
+      values.role = user.role;
+      updateSet.role = user.role;
+    }
+    if (user.createdAt !== undefined) {
+      values.createdAt = user.createdAt;
+      updateSet.createdAt = user.createdAt;
+    }
+    if (user.updatedAt !== undefined) {
+      values.updatedAt = user.updatedAt;
+      updateSet.updatedAt = user.updatedAt;
+    }
     if (user.lastSignedIn !== undefined) {
       values.lastSignedIn = user.lastSignedIn;
       updateSet.lastSignedIn = user.lastSignedIn;
     }
-    if (user.role !== undefined) {
-      values.role = user.role;
-      updateSet.role = user.role;
-    } else if (user.openId === ENV.ownerOpenId) {
-      values.role = 'admin';
-      updateSet.role = 'admin';
-    }
 
-    if (!values.lastSignedIn) {
-      values.lastSignedIn = new Date();
-    }
-
-    if (Object.keys(updateSet).length === 0) {
-      updateSet.lastSignedIn = new Date();
-    }
-
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
-      set: updateSet,
-    });
+    await db
+      .insert(users)
+      .values(values)
+      .onDuplicateKeyUpdate({
+        set: updateSet,
+      });
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
@@ -79,17 +81,18 @@ export async function upsertUser(user: InsertUser): Promise<void> {
 
 export async function getUserByOpenId(openId: string) {
   const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
-    return undefined;
-  }
-
+  if (!db) return undefined;
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-
-  return result.length > 0 ? result[0] : undefined;
+  return result[0];
 }
 
-// 施工実績クエリヘルパー
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return result[0];
+}
+
 export async function createWork(work: InsertWork): Promise<Work | undefined> {
   const db = await getDb();
   if (!db) {
@@ -177,16 +180,13 @@ export async function deleteWork(id: number): Promise<void> {
 
 export async function getPublishedWorks(): Promise<Work[]> {
   const works = await getAllWorks("published");
-  // 年月でソート（新しい順）
-  // 「2024年12月」形式の文字列を解析してソート
   return works.sort((a, b) => {
     const parseDate = (dateStr: string): number => {
-      // "2024年12月" -> [2024, 12]
       const match = dateStr.match(/(\d{4})年(\d{1,2})月/);
       if (match) {
         const year = parseInt(match[1], 10);
         const month = parseInt(match[2], 10);
-        return year * 100 + month; // 202412 のような数値に変換
+        return year * 100 + month;
       }
       return 0;
     };
@@ -211,8 +211,6 @@ export async function getWorksByCategory(category: string): Promise<Work[]> {
       .from(works)
       .where(eq(works.category, category))
       .orderBy(desc(works.createdAt));
-    // 年月でソート（新しい順）
-    // 「2024年12月」形式の文字列を解析してソート
     return result.sort((a, b) => {
       const parseDate = (dateStr: string): number => {
         const match = dateStr.match(/(\d{4})年(\d{1,2})月/);
@@ -231,7 +229,6 @@ export async function getWorksByCategory(category: string): Promise<Work[]> {
   }
 }
 
-// 設計・申請実績クエリヘルパー
 export async function createDesignProject(project: InsertDesignProject): Promise<DesignProject | undefined> {
   const db = await getDb();
   if (!db) {
@@ -321,11 +318,6 @@ export async function getPublishedDesignProjects(): Promise<DesignProject[]> {
   return getAllDesignProjects("published");
 }
 
-export async function getDraftDesignProjects(): Promise<DesignProject[]> {
-  return getAllDesignProjects("draft");
-}
-
-// ブログ記事クエリヘルパー
 export async function createBlogPost(post: InsertBlogPost): Promise<BlogPost | undefined> {
   const db = await getDb();
   if (!db) {
@@ -452,5 +444,36 @@ export async function getBlogPostsByCategory(category: string): Promise<BlogPost
   } catch (error) {
     console.error("[Database] Failed to get blog posts by category:", error);
     throw error;
+  }
+}
+
+export async function incrementBlogPostViews(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  try {
+    const post = await getBlogPostById(id);
+    if (post) {
+      const currentViews = post.views || 0;
+      await db.update(blogPosts).set({ views: currentViews + 1 }).where(eq(blogPosts.id, id));
+    }
+  } catch (error) {
+    console.error("[Database] Failed to increment blog post views:", error);
+  }
+}
+
+export async function getPopularBlogPosts(limit: number = 5): Promise<BlogPost[]> {
+  const db = await getDb();
+  if (!db) return [];
+  try {
+    const result = await db
+      .select()
+      .from(blogPosts)
+      .where(eq(blogPosts.status, "published"))
+      .orderBy(desc(blogPosts.views), desc(blogPosts.publishedAt))
+      .limit(limit);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get popular blog posts:", error);
+    return [];
   }
 }

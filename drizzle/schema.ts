@@ -78,6 +78,7 @@ export const blogPosts = mysqlTable("blogPosts", {
   excerpt: text("excerpt"), // 概要（一覧表示用）
   imageUrl: text("imageUrl"), // アイキャッチ画像
   status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  views: int("views").default(0).notNull(), // 閲覧数
   publishedAt: timestamp("publishedAt"), // 公開日
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
