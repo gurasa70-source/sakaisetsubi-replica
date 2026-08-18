@@ -35,7 +35,7 @@ export default function Breadcrumb() {
       breadcrumbs.push({ label: 'サービス', href: '/#business' });
       breadcrumbs.push({ label: '水栓工事', href: '/service/water-tap' });
     } else if (location === '/corporate' || location === '/design' || location === '/design-projects') {
-      breadcrumbs.push({ label: '法人様向け（BtoB）', href: '/corporate' });
+      breadcrumbs.push({ label: '設計', href: '/corporate' });
     } else if (location === '/works') {
       breadcrumbs.push({ label: '施工実績', href: '/works' });
     } else if (location.startsWith('/works/')) {
