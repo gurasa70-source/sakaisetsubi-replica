@@ -216,13 +216,13 @@ export default function WorkDetail() {
                 <div className="grid md:grid-cols-2 gap-8">
                   {work.beforeImageUrl && (
                     <div className="group">
-                      <div className="mb-4 p-4 bg-gradient-to-r from-orange-100 to-red-100 rounded-xl">
-                        <h3 className="text-lg font-bold text-slate-900">施工前</h3>
+                      <div className="mb-4 p-4 bg-gradient-to-r from-blue-100 to-slate-100 rounded-xl">
+                        <h3 className="text-lg font-bold text-slate-900">{work.beforeImageLabel || '施工前'}</h3>
                       </div>
                       <div className="relative overflow-hidden rounded-xl shadow-lg h-64">
                         <img
                           src={work.beforeImageUrl}
-                          alt="施工前"
+                          alt={work.beforeImageLabel || '施工前'}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
@@ -231,13 +231,13 @@ export default function WorkDetail() {
                   )}
                   {work.afterImageUrl && (
                     <div className="group">
-                      <div className="mb-4 p-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl">
-                        <h3 className="text-lg font-bold text-slate-900">施工後</h3>
+                      <div className="mb-4 p-4 bg-gradient-to-r from-blue-100 to-slate-100 rounded-xl">
+                        <h3 className="text-lg font-bold text-slate-900">{work.afterImageLabel || '施工後'}</h3>
                       </div>
                       <div className="relative overflow-hidden rounded-xl shadow-lg h-64">
                         <img
                           src={work.afterImageUrl}
-                          alt="施工後"
+                          alt={work.afterImageLabel || '施工後'}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />

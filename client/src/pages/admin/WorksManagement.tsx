@@ -24,7 +24,9 @@ export default function WorksManagement() {
     comment: '',
     imageUrl: '',
     beforeImageUrl: '',
+    beforeImageLabel: '施工前',
     afterImageUrl: '',
+    afterImageLabel: '施工後',
     designInvolved: 0,
     status: 'draft' as const,
   });
@@ -111,7 +113,9 @@ export default function WorksManagement() {
         comment: '',
         imageUrl: '',
         beforeImageUrl: '',
+        beforeImageLabel: '施工前',
         afterImageUrl: '',
+        afterImageLabel: '施工後',
         designInvolved: 0,
         status: 'draft',
       });
@@ -135,7 +139,9 @@ export default function WorksManagement() {
       comment: work.comment,
       imageUrl: work.imageUrl || '',
       beforeImageUrl: work.beforeImageUrl || '',
+      beforeImageLabel: work.beforeImageLabel || '施工前',
       afterImageUrl: work.afterImageUrl || '',
+      afterImageLabel: work.afterImageLabel || '施工後',
       designInvolved: work.designInvolved || 0,
       status: work.status,
     });
@@ -298,38 +304,61 @@ export default function WorksManagement() {
                   )}
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-1">ビフォー画像 (JPG, PNG, GIF, WebP, SVG, PDF, DOC, DOCX, XLS, XLSX)</label>
-                  <div className="flex gap-2">
+                <div className="grid md:grid-cols-2 gap-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">画像1の状態ラベル</label>
+                    <select
+                      value={formData.beforeImageLabel}
+                      onChange={(e) => setFormData({ ...formData, beforeImageLabel: e.target.value })}
+                      className="w-full px-3 py-2 border border-slate-300 rounded-md mb-3 bg-white"
+                    >
+                      <option value="施工前">施工前</option>
+                      <option value="施工中">施工中</option>
+                      <option value="交換前">交換前</option>
+                      <option value="交換中">交換中</option>
+                      <option value="点検時">点検時</option>
+                      <option value="その他">その他</option>
+                    </select>
+                    <label className="block text-sm font-medium mb-1">画像1ファイル (任意)</label>
                     <Input
                       type="file"
                       accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.doc,.docx,.xls,.xlsx"
                       onChange={(e) => handleFileUpload(e, 'beforeImageUrl')}
                       disabled={uploading}
                     />
+                    {formData.beforeImageUrl && (
+                      <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
+                        <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
+                      </div>
+                    )}
                   </div>
-                  {formData.beforeImageUrl && (
-                    <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
-                      <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
-                    </div>
-                  )}
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-1">アフター画像 (JPG, PNG, GIF, WebP, SVG, PDF, DOC, DOCX, XLS, XLSX)</label>
-                  <div className="flex gap-2">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">画像2の状態ラベル</label>
+                    <select
+                      value={formData.afterImageLabel}
+                      onChange={(e) => setFormData({ ...formData, afterImageLabel: e.target.value })}
+                      className="w-full px-3 py-2 border border-slate-300 rounded-md mb-3 bg-white"
+                    >
+                      <option value="施工後">施工後</option>
+                      <option value="施工中">施工中</option>
+                      <option value="交換後">交換後</option>
+                      <option value="完了">完了</option>
+                      <option value="その他">その他</option>
+                    </select>
+                    <label className="block text-sm font-medium mb-1">画像2ファイル (任意)</label>
                     <Input
                       type="file"
                       accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.doc,.docx,.xls,.xlsx"
                       onChange={(e) => handleFileUpload(e, 'afterImageUrl')}
                       disabled={uploading}
                     />
+                    {formData.afterImageUrl && (
+                      <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
+                        <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
+                      </div>
+                    )}
                   </div>
-                  {formData.afterImageUrl && (
-                    <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
-                      <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
-                    </div>
-                  )}
                 </div>
 
                 <div>
@@ -366,7 +395,9 @@ export default function WorksManagement() {
                         comment: '',
                         imageUrl: '',
                         beforeImageUrl: '',
+                        beforeImageLabel: '施工前',
                         afterImageUrl: '',
+                        afterImageLabel: '施工後',
                         designInvolved: 0,
                         status: 'draft',
                       });

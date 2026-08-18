@@ -68,7 +68,7 @@ export default function Home() {
 
   const heroSlides = useMemo(() => [
     {
-      image: "/manus-storage/sakaisetsubi_main03_ea74aaa0.jpg",
+      image: "/manus-storage/sakaisetsubi_main03_mosaiced_8dff3162.png",
       title: "静岡市の新築・リフォーム給排水設備工事",
     },
     {

@@ -55,7 +55,9 @@ export const appRouter = router({
         comment: z.string(),
         imageUrl: z.string().optional(),
         beforeImageUrl: z.string().optional(),
+        beforeImageLabel: z.string().default("施工前"),
         afterImageUrl: z.string().optional(),
+        afterImageLabel: z.string().default("施工後"),
         status: z.enum(["draft", "published"]).default("draft"),
       }))
       .mutation(async ({ input }) => {
@@ -75,7 +77,9 @@ export const appRouter = router({
         comment: z.string().optional(),
         imageUrl: z.string().optional(),
         beforeImageUrl: z.string().optional(),
+        beforeImageLabel: z.string().optional(),
         afterImageUrl: z.string().optional(),
+        afterImageLabel: z.string().optional(),
         status: z.enum(["draft", "published"]).optional(),
       }))
       .mutation(async ({ input }) => {
