@@ -34,11 +34,8 @@ export default function Breadcrumb() {
     } else if (location === '/service/water-tap') {
       breadcrumbs.push({ label: 'サービス', href: '/#business' });
       breadcrumbs.push({ label: '水栓工事', href: '/service/water-tap' });
-    } else if (location === '/design') {
-      breadcrumbs.push({ label: '設計・申請', href: '/design' });
-    } else if (location === '/design-projects') {
-      breadcrumbs.push({ label: '設計・申請', href: '/design' });
-      breadcrumbs.push({ label: '設計・申請実績', href: '/design-projects' });
+    } else if (location === '/corporate' || location === '/design' || location === '/design-projects') {
+      breadcrumbs.push({ label: '法人様向け（BtoB）', href: '/corporate' });
     } else if (location === '/works') {
       breadcrumbs.push({ label: '施工実績', href: '/works' });
     } else if (location.startsWith('/works/')) {

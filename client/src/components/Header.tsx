@@ -19,7 +19,7 @@ export default function Header() {
   const navItems = [
     { href: '/#about', label: '会社紹介' },
     { href: '/#business', label: '事業内容' },
-    { href: '/design', label: '設計・申請' },
+    { href: '/corporate', label: '法人様向け（BtoB）' },
     { href: '/works', label: '施工実績' },
     { href: '/#contact', label: 'お問い合わせ' },
   ];

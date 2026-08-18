@@ -21,7 +21,7 @@ import NewConstructionService from "./pages/services/NewConstructionService";
 import SewerService from "./pages/services/SewerService";
 import WaterTapService from "./pages/services/WaterTapService";
 import DesignService from "./pages/services/DesignService";
-import DesignProjects from "./pages/DesignProjects";
+import Corporate from './pages/Corporate';
 import Works from "./pages/Works";
 import WorkDetail from "./pages/works/WorkDetail";
 import WorksManagement from "./pages/admin/WorksManagement";
@@ -74,8 +74,9 @@ function RouterContent() {
       <Route path={"/service/new-construction"} component={NewConstructionService} />
       <Route path={"/service/sewer"} component={SewerService} />
       <Route path={"/service/water-tap"} component={WaterTapService} />
-      <Route path={"/design"} component={DesignService} />
-      <Route path={"/design-projects"} component={DesignProjects} />
+      <Route path={"/corporate"} component={Corporate} />
+      <Route path={"/design"} component={Corporate} />
+      <Route path={"/design-projects"} component={Corporate} />
       {/* Works pages */}
       <Route path={"/works/:slug"} component={WorkDetail} />
       <Route path={"/works"} component={Works} />
