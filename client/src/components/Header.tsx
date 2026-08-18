@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLoading } from "@/contexts/LoadingContext";
+import { useConversionTracking } from "@/components/AnalyticsTracker";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
   const { showLoading } = useLoading();
+  const trackConversion = useConversionTracking();
 
   const handleNavigation = (href: string) => {
     if (href.startsWith('/') && !href.startsWith('/#')) {
@@ -27,7 +29,7 @@ export default function Header() {
 
   // 外部リンク
   const externalLink = {
-    href: 'https://sakaisetsubi-rct.com/',
+    href: 'https://sakaisetsubi-rct.com/?utm_source=sakai-site&utm_medium=referral&utm_campaign=recruit',
     label: '求人・採用',
   };
 
@@ -100,6 +102,7 @@ export default function Header() {
             href={externalLink.href}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackConversion("recruit_click", "ヘッダー：求人・採用")}
             className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
           >
             {externalLink.label}
@@ -125,6 +128,7 @@ export default function Header() {
               href={externalLink.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackConversion("recruit_click", "モバイルメニュー：求人・採用")}
               className="text-gray-700 font-medium"
             >
               {externalLink.label}

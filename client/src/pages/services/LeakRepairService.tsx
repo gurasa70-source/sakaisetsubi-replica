@@ -5,9 +5,11 @@ import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { CheckCircle2, ChevronRight, Mail, MapPin, Phone } from "lucide-react";
 import ServiceIcon from "@/components/ServiceIcon";
+import { useConversionTracking } from "@/components/AnalyticsTracker";
 
 export default function LeakRepairService() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+  const trackConversion = useConversionTracking();
   const { data: relatedWorks = [] } = trpc.works.getByCategory.useQuery("漏水修理");
 
   const faqs = [
@@ -68,12 +70,12 @@ export default function LeakRepairService() {
               迅速に漏水を特定・修理いたします
             </p>
             <div className="flex gap-4">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+              <a href="tel:0543482286" onClick={() => trackConversion("phone_click", "漏水修理：電話で相談")} className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
                 <Phone className="inline-block mr-2 w-5 h-5" />電話する
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
+              </a>
+              <a href="/#contact" onClick={() => trackConversion("contact_click", "漏水修理：お問い合わせ")} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
                 <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -96,6 +96,8 @@ export const analyticsEvents = mysqlTable("analyticsEvents", {
   searchQuery: varchar("searchQuery", { length: 255 }),
   device: varchar("device", { length: 64 }).notNull().default("Desktop"), // Mobile, Tablet, Desktop
   userAgent: text("userAgent"),
+  eventType: varchar("eventType", { length: 64 }).notNull().default("page_view"),
+  eventLabel: varchar("eventLabel", { length: 255 }),
   durationSeconds: int("durationSeconds").default(0).notNull(),
   isBounce: int("isBounce").default(1).notNull(), // 1: 直帰, 0: 非直帰
   userName: varchar("userName", { length: 128 }),
@@ -105,3 +107,18 @@ export const analyticsEvents = mysqlTable("analyticsEvents", {
 
 export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
 export type InsertAnalyticsEvent = typeof analyticsEvents.$inferInsert;
+
+// 問い合わせテーブル
+export const inquiries = mysqlTable("inquiries", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 128 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 64 }),
+  message: text("message").notNull(),
+  sourcePath: varchar("sourcePath", { length: 512 }).notNull().default("/"),
+  status: mysqlEnum("status", ["new", "reviewing", "completed"]).default("new").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Inquiry = typeof inquiries.$inferSelect;
+export type InsertInquiry = typeof inquiries.$inferInsert;

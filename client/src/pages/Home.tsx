@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ChevronLeft, ChevronRight, ClipboardList, MessageCircle } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { useConversionTracking } from "@/components/AnalyticsTracker";
 import { useSchemaOrg } from "@/hooks/useSchemaOrg";
 import { generateLocalBusinessDetailSchema, generateWebsiteSchema } from "@/lib/schema";
 import ServiceIcon, { type ServiceIconName } from "@/components/ServiceIcon";
@@ -33,6 +34,9 @@ export default function Home() {
     phone: "",
     message: "",
   });
+  const [submissionStatus, setSubmissionStatus] = useState<"idle" | "success" | "error">("idle");
+  const trackConversion = useConversionTracking();
+  const inquiryMutation = trpc.inquiries.create.useMutation();
 
   // スクロール状態を管理
   useEffect(() => {
@@ -104,10 +108,21 @@ export default function Home() {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      // Handle form submission here
-      console.log("Form submitted:", formData);
+      setSubmissionStatus("idle");
+      try {
+        await inquiryMutation.mutateAsync({
+          ...formData,
+          phone: formData.phone || undefined,
+          sourcePath: window.location.pathname,
+        });
+        trackConversion("contact_submit", "お問い合わせフォーム送信");
+        setSubmissionStatus("success");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } catch {
+        setSubmissionStatus("error");
+      }
     },
-    [formData]
+    [formData, inquiryMutation, trackConversion]
   );
 
   return (
@@ -144,6 +159,13 @@ export default function Home() {
           <p className="text-lg md:text-2xl text-white text-center mb-8">
             戸建・アパート・小規模店舗対応
           </p>
+          <a
+            href="tel:0543482286"
+            onClick={() => trackConversion("phone_click", "トップヒーロー：電話で相談")}
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-slate-950/35 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-slate-950/55"
+          >
+            水漏れ・つまりのご相談はお電話でも承ります
+          </a>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/works"
@@ -154,15 +176,17 @@ export default function Home() {
             </a>
             <a
               href="/#contact"
+              onClick={() => trackConversion("contact_click", "トップヒーロー：見積もり相談")}
               className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
               style={{ backgroundColor: "#1D4ED8" }}
             >
               <MessageCircle className="w-5 h-5" />見積もり相談
             </a>
             <a
-              href="https://sakaisetsubi-rct.com/"
+              href="https://sakaisetsubi-rct.com/?utm_source=sakai-site&utm_medium=referral&utm_campaign=recruit"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackConversion("recruit_click", "トップヒーロー：求人応募")}
               className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
               style={{ backgroundColor: "#0052CC" }}
             >
@@ -202,6 +226,33 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="mb-20 overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 px-6 py-10 text-white shadow-xl md:px-10">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="mb-3 text-xs font-bold tracking-[0.22em] text-blue-200">WATER TROUBLE SUPPORT</p>
+              <h2 className="text-3xl font-bold leading-tight md:text-4xl">こんな症状ありませんか？</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-blue-100 md:text-base">水漏れや詰まりなど、水回りの不具合は早めの確認が安心です。症状に近い項目を選ぶと、対応内容をご確認いただけます。</p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <a href="tel:0543482286" onClick={() => trackConversion("phone_click", "緊急症状セクション：電話で相談")} className="inline-flex items-center justify-center rounded-md bg-white px-5 py-3 font-bold text-blue-800 transition-colors hover:bg-blue-50">電話で相談する</a>
+                <a href="/#contact" onClick={() => trackConversion("contact_click", "緊急症状セクション：見積もり相談")} className="inline-flex items-center justify-center rounded-md border border-blue-300 px-5 py-3 font-bold text-white transition-colors hover:bg-white/10">お問い合わせ・見積もり相談</a>
+              </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { label: "蛇口から水が漏れる", href: "/service/leak-repair" },
+                { label: "トイレの水が止まらない・あふれそう", href: "/service/sewer" },
+                { label: "キッチン・浴室の排水が流れにくい", href: "/service/sewer" },
+                { label: "屋外の水道管まわりがぬれている", href: "/service/leak-repair" },
+              ].map((symptom) => (
+                <a key={symptom.label} href={symptom.href} onClick={() => trackConversion("service_symptom_click", `症状別導線：${symptom.label}`)} className="group rounded-xl border border-white/15 bg-white/10 p-4 text-sm font-bold text-white transition-colors hover:bg-white hover:text-blue-900">
+                  <span className="block text-blue-200 transition-colors group-hover:text-blue-600">症状を確認する</span>
+                  <span className="mt-1 block leading-6">{symptom.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Services Section */}
         <section className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 flex items-center">
@@ -280,10 +331,11 @@ export default function Home() {
               </p>
             )}
           </div>
-          <div className="text-center mt-8">
-            <a
-              href="/works"
-              className="inline-block px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105"
+	          <div className="text-center mt-8">
+	            <a
+	              href="/works"
+	              onClick={() => trackConversion("works_contact_click", "施工実績一覧への遷移")}
+	              className="inline-block px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105"
               style={{ backgroundColor: "#0052CC" }}
             >
               すべての施工実績を見る <ChevronRight className="inline-block ml-1 w-4 h-4 align-text-bottom" />
@@ -354,7 +406,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Company Info Section */}
+	        <section className="mb-20 rounded-2xl border border-blue-100 bg-blue-50 p-8 md:p-10">
+	          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+	            <div>
+	              <p className="text-sm font-bold tracking-wider text-blue-700">RECRUIT</p>
+	              <h2 className="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">給排水設備の仕事に興味がある方へ</h2>
+	              <p className="mt-3 max-w-2xl leading-7 text-slate-700">株式会社堺設備の採用情報や仕事内容は、採用サイトでご確認いただけます。応募前の職場見学・ご相談も受け付けています。</p>
+	            </div>
+	            <a href="https://sakaisetsubi-rct.com/?utm_source=sakai-site&utm_medium=referral&utm_campaign=recruit" target="_blank" rel="noopener noreferrer" onClick={() => trackConversion("recruit_click", "トップ採用導線：採用サイトへ")} className="inline-flex min-h-12 items-center justify-center rounded-md bg-blue-600 px-6 font-bold text-white transition-colors hover:bg-blue-700">求人応募・見学相談</a>
+	          </div>
+	        </section>
+
+	        {/* Company Info Section */}
         <section id="about" className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 flex items-center">
             <span className="inline-block w-1 h-10 bg-blue-600 mr-4"></span>
@@ -501,10 +564,17 @@ export default function Home() {
             </div>
             <button
               type="submit"
+              disabled={inquiryMutation.isPending}
               className="w-full bg-white text-blue-600 font-bold py-3 rounded hover:bg-gray-100 transition-colors"
             >
-              送信する
+              {inquiryMutation.isPending ? "送信中..." : "送信する"}
             </button>
+            {submissionStatus === "success" && (
+              <p className="rounded-md bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-800">お問い合わせを受け付けました。内容を確認のうえご連絡いたします。</p>
+            )}
+            {submissionStatus === "error" && (
+              <p className="rounded-md bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-800">送信に失敗しました。恐れ入りますが、時間を置いて再度お試しください。</p>
+            )}
           </form>
         </section>
 

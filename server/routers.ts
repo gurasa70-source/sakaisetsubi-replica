@@ -3,10 +3,11 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure, adminSessionProcedure } from "./_core/trpc";
 import { loginAdmin, logoutAdmin } from "./_core/adminAuth";
+import { notifyOwner } from "./_core/notification";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { generateSitemap } from "./sitemap";
-import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects, createBlogPost, getBlogPostById, getBlogPostBySlug, getAllBlogPosts, getPublishedBlogPosts, updateBlogPost, deleteBlogPost, getBlogPostsByCategory, incrementBlogPostViews, getPopularBlogPosts, recordAnalyticsEvent, getAnalyticsEvents } from "./db";
+import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects, createBlogPost, getBlogPostById, getBlogPostBySlug, getAllBlogPosts, getPublishedBlogPosts, updateBlogPost, deleteBlogPost, getBlogPostsByCategory, incrementBlogPostViews, getPopularBlogPosts, recordAnalyticsEvent, getAnalyticsEvents, createInquiry, getAllInquiries } from "./db";
 import { InsertWork, InsertDesignProject, InsertBlogPost } from "../drizzle/schema";
 import { z } from "zod";
 
@@ -230,6 +231,8 @@ export const appRouter = router({
         searchQuery: z.string().optional(),
         device: z.string().default("Desktop"),
         userAgent: z.string().optional(),
+        eventType: z.enum(["page_view", "page_exit", "phone_click", "contact_click", "contact_submit", "recruit_click", "service_symptom_click", "works_contact_click"]).default("page_view"),
+        eventLabel: z.string().optional(),
         durationSeconds: z.number().default(0),
         isBounce: z.number().default(1),
         userName: z.string().optional(),
@@ -241,6 +244,29 @@ export const appRouter = router({
       }),
     getAll: adminSessionProcedure.query(async () => {
       return await getAnalyticsEvents();
+    }),
+  }),
+
+  inquiries: router({
+    create: publicProcedure
+      .input(z.object({
+        name: z.string().min(1).max(128),
+        email: z.string().email().max(255),
+        phone: z.string().max(64).optional(),
+        message: z.string().min(1).max(5000),
+        sourcePath: z.string().max(512).default("/"),
+      }))
+      .mutation(async ({ input }) => {
+        const inquiry = await createInquiry(input);
+        if (!inquiry) throw new Error("お問い合わせを保存できませんでした。");
+        await notifyOwner({
+          title: "株式会社堺設備サイト：新しいお問い合わせ",
+          content: `お名前：${inquiry.name}\nメール：${inquiry.email}\n電話：${inquiry.phone || "未入力"}\n送信元：${inquiry.sourcePath}\n内容：${inquiry.message}`,
+        });
+        return { success: true, inquiryId: inquiry.id };
+      }),
+    getAll: adminSessionProcedure.query(async () => {
+      return await getAllInquiries();
     }),
   }),
 

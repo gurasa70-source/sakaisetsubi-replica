@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { ChevronRight, Mail, MapPin, Phone } from "lucide-react";
 import ServiceIcon from "@/components/ServiceIcon";
+import { useConversionTracking } from "@/components/AnalyticsTracker";
 
 export default function SewerService() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+  const trackConversion = useConversionTracking();
 
   const faqs = [
     {
@@ -69,12 +71,12 @@ export default function SewerService() {
               浄化槽から下水道への切替工事、補助金対応
             </p>
             <div className="flex gap-4">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+              <a href="tel:0543482286" onClick={() => trackConversion("phone_click", "下水道切替工事：電話で相談")} className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
                 <Phone className="inline-block mr-2 w-5 h-5" />電話する
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
+              </a>
+              <a href="/#contact" onClick={() => trackConversion("contact_click", "下水道切替工事：お問い合わせ")} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
                 <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -225,14 +227,14 @@ export default function SewerService() {
               補助金対応で、お客様の負担を軽減します。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:054-348-2286" className="inline-block">
+              <a href="tel:054-348-2286" onClick={() => trackConversion("phone_click", "下水道切替工事：CTA電話で相談")} className="inline-block">
                 <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
                   <Phone className="inline-block mr-2 w-5 h-5" />054-348-2286
                 </button>
               </a>
-              <button className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition">
+              <a href="/#contact" onClick={() => trackConversion("contact_click", "下水道切替工事：CTAお問い合わせ")} className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition">
                 <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
-              </button>
+              </a>
             </div>
           </div>
         </section>

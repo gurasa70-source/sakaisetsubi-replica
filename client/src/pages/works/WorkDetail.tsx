@@ -7,6 +7,7 @@ import FavoriteButton from '@/components/FavoriteButton';
 import { useFavorites } from '@/hooks/useFavorites';
 import { useSchemaOrg } from '@/hooks/useSchemaOrg';
 import { generateWorkSchema } from '@/lib/schema';
+import { useConversionTracking } from '@/components/AnalyticsTracker';
 
 const categoryIconMap: Record<string, string> = {
   '漏水修理': '💧',
@@ -28,6 +29,7 @@ const categoryServiceMap: Record<string, { name: string; url: string }> = {
 
 export default function WorkDetail() {
   const { toggleFavorite, isFavorite } = useFavorites();
+  const trackConversion = useConversionTracking();
   const [match, params] = useRoute('/works/:id');
 
   const workId = params?.id ? parseInt(params.id as string) : null;
@@ -310,12 +312,14 @@ export default function WorkDetail() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:054-348-2286"
+                onClick={() => trackConversion("phone_click", `施工実績詳細：${work.title}：電話で相談`)}
                 className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
               >
                 📞 電話する
               </a>
               <a
                 href="/#contact"
+                onClick={() => trackConversion("works_contact_click", `施工実績詳細：${work.title}：お問い合わせ`)}
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               >
                 📧 お問い合わせ

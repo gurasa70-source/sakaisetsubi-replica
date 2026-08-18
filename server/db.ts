@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { eq, desc } from "drizzle-orm";
-import { InsertUser, users, works, InsertWork, Work, designProjects, InsertDesignProject, DesignProject, blogPosts, InsertBlogPost, BlogPost, analyticsEvents, InsertAnalyticsEvent } from "../drizzle/schema";
+import { InsertUser, users, works, InsertWork, Work, designProjects, InsertDesignProject, DesignProject, blogPosts, InsertBlogPost, BlogPost, analyticsEvents, InsertAnalyticsEvent, inquiries, InsertInquiry, Inquiry } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -496,6 +496,33 @@ export async function getAnalyticsEvents(): Promise<any[]> {
     return result;
   } catch (error) {
     console.error("[Database] Failed to get analytics events:", error);
+    return [];
+  }
+}
+
+export async function createInquiry(inquiry: InsertInquiry): Promise<Inquiry | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  try {
+    const result = await db.insert(inquiries).values(inquiry);
+    const inquiryId = Number((result[0] as { insertId: number }).insertId);
+    const created = await db.select().from(inquiries).where(eq(inquiries.id, inquiryId)).limit(1);
+    return created[0];
+  } catch (error) {
+    console.error("[Database] Failed to create inquiry:", error);
+    throw error;
+  }
+}
+
+export async function getAllInquiries(): Promise<Inquiry[]> {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    return await db.select().from(inquiries).orderBy(desc(inquiries.createdAt));
+  } catch (error) {
+    console.error("[Database] Failed to get inquiries:", error);
     return [];
   }
 }

@@ -10,6 +10,7 @@ import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import Header from "./components/Header";
 import GlobalLoading from "./components/GlobalLoading";
 import AnalyticsTracker from "./components/AnalyticsTracker";
+import MobileConversionBar from "./components/MobileConversionBar";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import Home from "./pages/Home";
 import LeakRepair from "./pages/LeakRepair";
@@ -120,6 +121,7 @@ function App() {
               <Header />
               <AnalyticsTracker />
               <ScrollToTopButton />
+              <MobileConversionBar />
               <RouterContent />
             </TooltipProvider>
           </LoadingProvider>
