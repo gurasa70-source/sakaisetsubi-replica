@@ -86,3 +86,22 @@ export const blogPosts = mysqlTable("blogPosts", {
 
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = typeof blogPosts.$inferInsert;
+
+// アクセス解析ログテーブル
+export const analyticsEvents = mysqlTable("analyticsEvents", {
+  id: int("id").autoincrement().primaryKey(),
+  sessionId: varchar("sessionId", { length: 128 }).notNull(),
+  path: varchar("path", { length: 512 }).notNull(),
+  referrer: text("referrer"),
+  searchQuery: varchar("searchQuery", { length: 255 }),
+  device: varchar("device", { length: 64 }).notNull().default("Desktop"), // Mobile, Tablet, Desktop
+  userAgent: text("userAgent"),
+  durationSeconds: int("durationSeconds").default(0).notNull(),
+  isBounce: int("isBounce").default(1).notNull(), // 1: 直帰, 0: 非直帰
+  userName: varchar("userName", { length: 128 }),
+  userEmail: varchar("userEmail", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
+export type InsertAnalyticsEvent = typeof analyticsEvents.$inferInsert;

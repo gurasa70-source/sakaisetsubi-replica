@@ -9,6 +9,7 @@ import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import Header from "./components/Header";
 import GlobalLoading from "./components/GlobalLoading";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import Home from "./pages/Home";
 import LeakRepair from "./pages/LeakRepair";
@@ -29,6 +30,7 @@ import DesignProjectsManagement from "./pages/admin/DesignProjectsManagement";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import BlogManagement from "./pages/admin/BlogManagement";
+import AnalyticsManagement from "./pages/admin/AnalyticsManagement";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Breadcrumb from "./components/Breadcrumb";
 
@@ -89,6 +91,7 @@ function RouterContent() {
       <Route path={"/kanri-blog"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
       <Route path={"/admin/blog"} component={() => <AdminProtectedRoute><BlogManagement /></AdminProtectedRoute>} />
       <Route path={"/kanri-design"} component={() => <AdminProtectedRoute><DesignProjectsManagement /></AdminProtectedRoute>} />
+      <Route path={"/kanri-analytics"} component={() => <AdminProtectedRoute><AnalyticsManagement /></AdminProtectedRoute>} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
@@ -115,6 +118,7 @@ function App() {
               <Toaster />
               <GlobalLoading />
               <Header />
+              <AnalyticsTracker />
               <ScrollToTopButton />
               <RouterContent />
             </TooltipProvider>

@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { eq, desc } from "drizzle-orm";
-import { InsertUser, users, works, InsertWork, Work, designProjects, InsertDesignProject, DesignProject, blogPosts, InsertBlogPost, BlogPost } from "../drizzle/schema";
+import { InsertUser, users, works, InsertWork, Work, designProjects, InsertDesignProject, DesignProject, blogPosts, InsertBlogPost, BlogPost, analyticsEvents, InsertAnalyticsEvent } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -474,6 +474,28 @@ export async function getPopularBlogPosts(limit: number = 5): Promise<BlogPost[]
     return result;
   } catch (error) {
     console.error("[Database] Failed to get popular blog posts:", error);
+    return [];
+  }
+}
+
+export async function recordAnalyticsEvent(event: InsertAnalyticsEvent): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  try {
+    await db.insert(analyticsEvents).values(event);
+  } catch (error) {
+    console.error("[Database] Failed to record analytics event:", error);
+  }
+}
+
+export async function getAnalyticsEvents(): Promise<any[]> {
+  const db = await getDb();
+  if (!db) return [];
+  try {
+    const result = await db.select().from(analyticsEvents).orderBy(desc(analyticsEvents.createdAt));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get analytics events:", error);
     return [];
   }
 }

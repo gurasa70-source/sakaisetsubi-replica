@@ -6,13 +6,17 @@ export default function BlogDetail() {
   const [match, params] = useRoute("/blog/:slug");
   const slug = params?.slug || "";
   const { data: post, isLoading } = trpc.blog.getBySlug.useQuery(slug, { enabled: Boolean(match && slug) });
+  const incrementMutation = trpc.blog.incrementViews.useMutation();
 
   useEffect(() => {
-    if (post) document.title = `${post.title} | 株式会社 堺設備`;
+    if (post) {
+      document.title = `${post.title} | 株式会社 堺設備`;
+      incrementMutation.mutate(post.id);
+    }
     return () => {
       document.title = "株式会社 堺設備 | 静岡で暮らしを支える。";
     };
-  }, [post]);
+  }, [post?.id]);
 
   if (!match) return null;
   if (isLoading) return <div className="min-h-screen bg-white px-4 pb-20 pt-32 text-center text-gray-600">読み込み中...</div>;

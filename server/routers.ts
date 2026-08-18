@@ -6,7 +6,7 @@ import { loginAdmin, logoutAdmin } from "./_core/adminAuth";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { generateSitemap } from "./sitemap";
-import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects, createBlogPost, getBlogPostById, getBlogPostBySlug, getAllBlogPosts, getPublishedBlogPosts, updateBlogPost, deleteBlogPost, getBlogPostsByCategory } from "./db";
+import { createWork, getWorkById, getAllWorks, updateWork, deleteWork, getPublishedWorks, createDesignProject, getDesignProjectById, getAllDesignProjects, updateDesignProject, deleteDesignProject, getPublishedDesignProjects, createBlogPost, getBlogPostById, getBlogPostBySlug, getAllBlogPosts, getPublishedBlogPosts, updateBlogPost, deleteBlogPost, getBlogPostsByCategory, incrementBlogPostViews, getPopularBlogPosts, recordAnalyticsEvent, getAnalyticsEvents } from "./db";
 import { InsertWork, InsertDesignProject, InsertBlogPost } from "../drizzle/schema";
 import { z } from "zod";
 
@@ -210,6 +210,37 @@ export const appRouter = router({
     }),
     getByCategory: publicProcedure.input(z.string()).query(async ({ input }) => {
       return await getBlogPostsByCategory(input);
+    }),
+    incrementViews: publicProcedure.input(z.number()).mutation(async ({ input }) => {
+      await incrementBlogPostViews(input);
+      return { success: true };
+    }),
+    getPopular: publicProcedure.query(async () => {
+      return await getPopularBlogPosts(5);
+    }),
+  }),
+
+  // Analytics router
+  analytics: router({
+    record: publicProcedure
+      .input(z.object({
+        sessionId: z.string(),
+        path: z.string(),
+        referrer: z.string().optional(),
+        searchQuery: z.string().optional(),
+        device: z.string().default("Desktop"),
+        userAgent: z.string().optional(),
+        durationSeconds: z.number().default(0),
+        isBounce: z.number().default(1),
+        userName: z.string().optional(),
+        userEmail: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await recordAnalyticsEvent(input);
+        return { success: true };
+      }),
+    getAll: adminSessionProcedure.query(async () => {
+      return await getAnalyticsEvents();
     }),
   }),
 
