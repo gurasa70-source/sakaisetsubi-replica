@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
@@ -54,4 +54,3 @@ export default function Blog() {
     </div>
   );
 }
-
