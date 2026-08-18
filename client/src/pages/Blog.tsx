@@ -39,6 +39,15 @@ export default function Blog() {
                       <div className="mb-2 flex flex-wrap items-center gap-3 text-sm text-gray-500">
                         <time dateTime={post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined}>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("ja-JP") : "日付未定"}</time>
                         <span className="rounded bg-blue-50 px-2 py-1 text-blue-700">{post.category}</span>
+                        {post.publishedAt && (() => {
+                          const pubDate = new Date(post.publishedAt).getTime();
+                          const now = Date.now();
+                          const diffDays = (now - pubDate) / (1000 * 60 * 60 * 24);
+                          if (diffDays <= 14) {
+                            return <span className="rounded bg-blue-600 px-2 py-0.5 text-xs font-bold text-white tracking-wider">NEW</span>;
+                          }
+                          return null;
+                        })()}
                       </div>
                       <h2 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-blue-600">{post.title}</h2>
                       {post.excerpt && <p className="mt-2 line-clamp-2 text-gray-600">{post.excerpt}</p>}
