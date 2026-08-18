@@ -254,24 +254,25 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section className="mb-20">
+        <section id="business" className="mb-20 scroll-mt-28">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 flex items-center">
             <span className="inline-block w-1 h-10 bg-blue-600 mr-4"></span>
             主なサービス
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "漏水修理", icon: "leak" as ServiceIconName, description: "水漏れ・つまりの迅速対応" },
-              { title: "水回りリフォーム", icon: "reform" as ServiceIconName, description: "キッチン・トイレ・浴室" },
-              { title: "給排水工事", icon: "new-construction" as ServiceIconName, description: "新築・増改築対応" },
+              { title: "漏水修理", icon: "leak" as ServiceIconName, description: "水漏れ・つまりの迅速対応", href: "/service/leak-repair" },
+              { title: "水回りリフォーム", icon: "reform" as ServiceIconName, description: "キッチン・トイレ・浴室", href: "/service/remodel" },
+              { title: "給排水工事", icon: "new-construction" as ServiceIconName, description: "新築・増改築対応", href: "/service/new-construction" },
             ].map((service, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg border border-blue-100 shadow-sm hover:shadow-lg transition-shadow">
+              <a key={index} href={service.href} onClick={() => trackConversion("service_symptom_click", `事業内容：${service.title}`)} className="group bg-white p-8 rounded-lg border border-blue-100 shadow-sm hover:shadow-lg transition-shadow">
                 <div className="w-12 h-12 mb-5 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
                   <ServiceIcon name={service.icon} className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
                 <p className="text-gray-600">{service.description}</p>
-              </div>
+                <span className="mt-5 inline-flex items-center text-sm font-bold text-blue-700 transition-transform group-hover:translate-x-1">詳しく見る <ChevronRight className="ml-1 h-4 w-4" /></span>
+              </a>
             ))}
           </div>
         </section>

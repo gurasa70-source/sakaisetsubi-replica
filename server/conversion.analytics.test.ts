@@ -27,6 +27,16 @@ describe("コンバージョン計測と導線", () => {
     expect(homeSource).toContain('trackConversion("recruit_click"');
   });
 
+  it("事業内容リンクがトップページのサービスセクションへ遷移し、詳細導線を提供する", () => {
+    const homeSource = readSource("client/src/pages/Home.tsx");
+    const headerSource = readSource("client/src/components/Header.tsx");
+    expect(headerSource).toContain("href: '/#business'");
+    expect(homeSource).toContain('id="business"');
+    expect(homeSource).toContain('href: "/service/leak-repair"');
+    expect(homeSource).toContain('href: "/service/remodel"');
+    expect(homeSource).toContain('href: "/service/new-construction"');
+  });
+
   it("スマートフォン固定CTAが電話と見積もり相談を提供する", () => {
     const mobileCta = readSource("client/src/components/MobileConversionBar.tsx");
     expect(mobileCta).toContain('tel:0543482286');
