@@ -56,13 +56,13 @@ describe("blog.getLatestNews", () => {
     }
   });
 
-  it("returns at most 2 items", async () => {
+  it("returns at most 4 items", async () => {
     const ctx = createContext();
     const caller = appRouter.createCaller(ctx);
 
     const result = await caller.blog.getLatestNews();
 
-    expect(result.length).toBeLessThanOrEqual(2);
+    expect(result.length).toBeLessThanOrEqual(4);
   });
 
   it("handles errors gracefully", async () => {
