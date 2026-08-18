@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle2 } from 'lucide-react';
 
 export default function WorksManagement() {
   const [isCreating, setIsCreating] = useState(false);
@@ -153,9 +154,9 @@ export default function WorksManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-slate-50 p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">施工実績管理</h1>
+        <h1 className="text-3xl font-bold mb-8 text-slate-900">施工実績管理</h1>
 
         {!isCreating ? (
           <Button onClick={() => setIsCreating(true)} className="mb-8">
@@ -291,8 +292,8 @@ export default function WorksManagement() {
                     />
                   </div>
                   {formData.imageUrl && (
-                    <div className="mt-2 text-sm text-green-600">
-                      ✓ ファイルアップロード済み
+                    <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
+                      <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
                     </div>
                   )}
                 </div>
@@ -308,8 +309,8 @@ export default function WorksManagement() {
                     />
                   </div>
                   {formData.beforeImageUrl && (
-                    <div className="mt-2 text-sm text-green-600">
-                      ✓ ファイルアップロード済み
+                    <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
+                      <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
                     </div>
                   )}
                 </div>
@@ -325,8 +326,8 @@ export default function WorksManagement() {
                     />
                   </div>
                   {formData.afterImageUrl && (
-                    <div className="mt-2 text-sm text-green-600">
-                      ✓ ファイルアップロード済み
+                    <div className="mt-2 flex items-center gap-2 text-sm text-blue-700">
+                      <CheckCircle2 className="h-4 w-4" />ファイルアップロード済み
                     </div>
                   )}
                 </div>
@@ -391,7 +392,7 @@ export default function WorksManagement() {
                   <p><strong>カテゴリー:</strong> {work.category}</p>
                   <p><strong>工事日:</strong> {work.date}</p>
                   {work.designInvolved === 1 && (
-                    <p><strong>設計関与:</strong> <span className="text-green-600 font-semibold">設計・施工一貫対応</span></p>
+                    <p><strong>設計関与:</strong> <span className="inline-flex items-center gap-1 text-blue-700 font-semibold"><CheckCircle2 className="h-4 w-4" />設計・施工一貫対応</span></p>
                   )}
                   <p><strong>ステータス:</strong> {work.status === 'published' ? '公開' : '下書き'}</p>
                 </div>

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { ChevronRight, Mail, MapPin, Phone } from "lucide-react";
+import ServiceIcon from "@/components/ServiceIcon";
 
 export default function RemodelService() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
@@ -49,9 +51,9 @@ export default function RemodelService() {
       {/* ヘッダー */}
       <header className="relative h-96 md:h-[500px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800"
+          className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800"
           style={{
-            backgroundImage: "linear-gradient(135deg, #0052CC 0%, #5B5FDE 100%)"
+            backgroundImage: "linear-gradient(135deg, #0F172A 0%, #0052CC 100%)"
           }}
         />
         <div className="absolute inset-0 opacity-20">
@@ -68,10 +70,10 @@ export default function RemodelService() {
             </p>
             <div className="flex gap-4">
               <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
-                📞 電話する
+                <Phone className="inline-block mr-2 w-5 h-5" />電話する
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
-                📧 お問い合わせ
+                <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>
           </div>
@@ -93,28 +95,28 @@ export default function RemodelService() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  icon: "🚽",
+                  icon: "house",
                   title: "トイレリフォーム",
                   description: "最新のトイレ設備への交換、温水洗浄便座の取付など"
                 },
                 {
-                  icon: "🛁",
+                  icon: "reform",
                   title: "浴室リフォーム",
                   description: "ユニットバスの交換、タイル張替え、浴槽交換など"
                 },
                 {
-                  icon: "🚰",
+                  icon: "water-tap",
                   title: "洗面台リフォーム",
                   description: "洗面台の交換、シンク交換、水栓交換など"
                 },
                 {
-                  icon: "🍳",
+                  icon: "equipment",
                   title: "キッチンリフォーム",
                   description: "システムキッチンの交換、配管工事、シンク交換など"
                 }
               ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100 hover:shadow-lg transition">
-                  <div className="text-5xl mb-4">{item.icon}</div>
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg border border-blue-100 hover:shadow-lg transition">
+                  <div className="w-12 h-12 mb-5 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center"><ServiceIcon name={item.icon as "house" | "reform" | "water-tap" | "equipment"} className="w-7 h-7" /></div>
                   <h3 className="text-2xl font-bold mb-3 text-gray-800">{item.title}</h3>
                   <p className="text-gray-700 leading-relaxed">{item.description}</p>
                 </div>
@@ -130,13 +132,13 @@ export default function RemodelService() {
               対応エリア
             </h2>
             <p className="text-gray-600 text-center mb-16 text-lg">
-              静岡市内を中心に対応いたします
+              静岡市・焼津市の上下水道指定工事店として対応いたします
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-              {["清水区", "葵区", "駿河区", "焼津市"].map((area, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100">
-                  <div className="text-5xl font-bold mb-4" style={{ color: "#0052CC" }}>📍</div>
+              {["静岡市", "焼津市"].map((area, index) => (
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg border border-blue-100">
+                  <MapPin className="w-10 h-10 mx-auto mb-4 text-blue-700" aria-hidden="true" />
                   <h3 className="text-2xl font-bold text-gray-800">{area}</h3>
                 </div>
               ))}
@@ -144,8 +146,8 @@ export default function RemodelService() {
 
             <div className="mt-16 text-center">
               <Link href="/contact">
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
-                  📧 対象エリア内のお見積り・ご相談はこちら
+                <button className="bg-gradient-to-r from-slate-900 to-blue-800 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
+                  <Mail className="inline-block mr-2 w-5 h-5" />対象エリア内のお見積り・ご相談はこちら
                 </button>
               </Link>
             </div>
@@ -215,14 +217,14 @@ export default function RemodelService() {
 
             <div className="text-center mt-12">
               <Link href="/works" className="inline-block px-8 py-3 rounded-lg font-semibold transition" style={{ backgroundColor: "#0052CC", color: "white" }}>
-                すべての施工実績を見る →
+                すべての施工実績を見る <ChevronRight className="inline-block ml-1 w-5 h-5 align-text-bottom" />
               </Link>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <section className="py-20 bg-gradient-to-r from-slate-900 to-blue-800">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               水回りリフォームをお考えですか？
@@ -233,11 +235,11 @@ export default function RemodelService() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="tel:054-348-2286" className="inline-block">
                 <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
-                  📞 054-348-2286
+                  <Phone className="inline-block mr-2 w-5 h-5" />054-348-2286
                 </button>
               </a>
-              <button className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition">
-                📧 お問い合わせ
+              <button className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition">
+                <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>
           </div>

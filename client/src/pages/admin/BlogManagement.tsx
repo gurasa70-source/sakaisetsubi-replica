@@ -81,7 +81,7 @@ export default function BlogManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-slate-50 p-8">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex items-center justify-between gap-4">
           <div>
@@ -150,7 +150,7 @@ export default function BlogManagement() {
                     <div className="min-w-0">
                       <div className="mb-1 flex flex-wrap items-center gap-2 text-xs text-gray-500">
                         <span>{post.category}</span>
-                        <span className={post.status === "published" ? "font-semibold text-green-600" : "font-semibold text-gray-500"}>{post.status === "published" ? "公開中" : "下書き"}</span>
+                        <span className={post.status === "published" ? "font-semibold text-blue-700" : "font-semibold text-gray-500"}>{post.status === "published" ? "公開中" : "下書き"}</span>
                       </div>
                       <h2 className="truncate font-semibold text-gray-900">{post.title}</h2>
                       <p className="text-sm text-gray-500">/blog/{post.slug}</p>

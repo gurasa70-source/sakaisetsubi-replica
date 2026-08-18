@@ -16,7 +16,7 @@
  * ======
  * Available Libraries and Core Features:
  * -------------------------------
- * 📍 MARKER (from `marker` library)
+ * MARKER (from `marker` library)
  * - Attaches to map using { map, position }
  * new google.maps.marker.AdvancedMarkerElement({
  *   map,
@@ -25,7 +25,7 @@
  * });
  *
  * -------------------------------
- * 🏢 PLACES (from `places` library)
+ * PLACES (from `places` library)
  * - Does not attach directly to map; use data with your map manually.
  * const place = new google.maps.places.Place({ id: PLACE_ID });
  * await place.fetchFields({ fields: ["displayName", "location"] });
@@ -52,7 +52,7 @@
  * const dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
  *
  * -------------------------------
- * 🛣️ ROUTES (from `routes` library)
+ * ROUTES (from `routes` library)
  * - Combines DirectionsService (standalone) + DirectionsRenderer (map-attached)
  * const directionsService = new google.maps.DirectionsService();
  * const directionsRenderer = new google.maps.DirectionsRenderer({ map });
@@ -68,10 +68,10 @@
  * - new google.maps.BicyclingLayer().setMap(map);
  *
  * -------------------------------
- * ✅ SUMMARY
- * - “map-attached” → AdvancedMarkerElement, DirectionsRenderer, Layers.
- * - “standalone” → Geocoder, DirectionsService, DistanceMatrixService, ElevationService.
- * - “data-only” → Place, Geometry utilities.
+ * SUMMARY
+ * - map-attached: AdvancedMarkerElement, DirectionsRenderer, Layers.
+ * - standalone: Geocoder, DirectionsService, DistanceMatrixService, ElevationService.
+ * - data-only: Place, Geometry utilities.
  */
 
 /// <reference types="@types/google.maps" />

@@ -3,11 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Google Fonts - Noto Sans JP */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap&subset=japanese');
-
-/* Font Display Optimization */
-font-display: swap;
+/* Google Fonts are preconnected and loaded from client/index.html. */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -51,7 +47,8 @@ font-display: swap;
 :root {
   /* Sakai Setsubi Brand Colors - Homepage Version */
   --color-primary-blue: #0052CC;
-  --color-secondary-red: #FF4444;
+  --color-secondary-blue: #1D4ED8;
+  --color-navy: #0F172A;
   --color-background: #FFFFFF;
   
   --primary: #0052CC;
@@ -59,10 +56,10 @@ font-display: swap;
   --sidebar-primary: #4DB8E8;
   --sidebar-primary-foreground: #FFFFFF;
   --chart-1: #4DB8E8;
-  --chart-2: #5B5FDE;
+  --chart-2: #1D4ED8;
   --chart-3: #3A9FD4;
   --chart-4: #4DB8E8;
-  --chart-5: #5B5FDE;
+  --chart-5: #1D4ED8;
   --radius: 0.65rem;
   --background: #FFFFFF;
   --foreground: #333333;

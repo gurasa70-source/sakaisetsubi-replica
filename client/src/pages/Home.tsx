@@ -1,14 +1,16 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { ChevronLeft, ChevronRight, ClipboardList, MessageCircle } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useSchemaOrg } from "@/hooks/useSchemaOrg";
 import { generateLocalBusinessDetailSchema, generateWebsiteSchema } from "@/lib/schema";
+import ServiceIcon, { type ServiceIconName } from "@/components/ServiceIcon";
 
 /**
  * Design Philosophy: Modern Professional with Gradient & Photos
  * - Primary Color: #0052CC (deep blue)
- * - Secondary Color: #5B5FDE (purple)
- * - Accent: #FF4444 (red from logo)
+ * - Secondary Color: #1D4ED8 (supporting blue)
+ * - Accent: #0F172A (navy)
  * - Typography: Noto Sans JP for Japanese readability
  * - Layout: Diagonal cuts, gradient backgrounds, photo-rich
  * - Inspiration: Recruitment site design elements
@@ -148,23 +150,23 @@ export default function Home() {
               className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
               style={{ backgroundColor: "#0052CC" }}
             >
-              <span>📋</span> 施工実績を見る
+              <ClipboardList className="w-5 h-5" />施工実績を見る
             </a>
             <a
               href="/#contact"
               className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
-              style={{ backgroundColor: "#FF4444" }}
+              style={{ backgroundColor: "#1D4ED8" }}
             >
-              <span>💬</span> 見積もり相談
+              <MessageCircle className="w-5 h-5" />見積もり相談
             </a>
             <a
               href="https://sakaisetsubi-rct.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
-              style={{ backgroundColor: "#5B5FDE" }}
+              style={{ backgroundColor: "#0052CC" }}
             >
-              <span>👥</span> 求人応募
+              求人応募
             </a>
           </div>
           </div>
@@ -174,13 +176,13 @@ export default function Home() {
             onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
             className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 text-white p-3 rounded-full transition-all"
           >
-            ←
+            <ChevronLeft aria-label="前のスライド" className="w-6 h-6" />
           </button>
           <button
             onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 text-white p-3 rounded-full transition-all"
           >
-            →
+            <ChevronRight aria-label="次のスライド" className="w-6 h-6" />
           </button>
 
           {/* Slide Indicators */}
@@ -208,12 +210,14 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "漏水修理", icon: "💧", description: "水漏れ・つまりの迅速対応" },
-              { title: "水回りリフォーム", icon: "🔧", description: "キッチン・トイレ・浴室" },
-              { title: "給排水工事", icon: "🏗️", description: "新築・増改築対応" },
+              { title: "漏水修理", icon: "leak" as ServiceIconName, description: "水漏れ・つまりの迅速対応" },
+              { title: "水回りリフォーム", icon: "reform" as ServiceIconName, description: "キッチン・トイレ・浴室" },
+              { title: "給排水工事", icon: "new-construction" as ServiceIconName, description: "新築・増改築対応" },
             ].map((service, index) => (
-              <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">{service.icon}</div>
+              <div key={index} className="bg-white p-8 rounded-lg border border-blue-100 shadow-sm hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 mb-5 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
+                  <ServiceIcon name={service.icon} className="w-7 h-7" />
+                </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
                 <p className="text-gray-600">{service.description}</p>
               </div>
@@ -282,7 +286,7 @@ export default function Home() {
               className="inline-block px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105"
               style={{ backgroundColor: "#0052CC" }}
             >
-              すべての施工実績を見る →
+              すべての施工実績を見る <ChevronRight className="inline-block ml-1 w-4 h-4 align-text-bottom" />
             </a>
           </div>
         </section>
@@ -290,7 +294,7 @@ export default function Home() {
         {/* Latest Blog Section - Simplified with Title Only */}
         <section className="mb-20">
           <h3 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 flex items-center">
-            <span className="inline-block w-1 h-10 bg-purple-600 mr-4"></span>
+            <span className="inline-block w-1 h-10 bg-blue-600 mr-4"></span>
             お知らせ・コラム
           </h3>
           <div className="space-y-3">
@@ -304,7 +308,7 @@ export default function Home() {
                   key={index}
                   href={item.link}
                   className="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-lg transition-all group border-l-4"
-                  style={{ borderLeftColor: "#5B5FDE" }}
+                  style={{ borderLeftColor: "#0052CC" }}
                 >
                   {item.image && (
                     <div className="flex-shrink-0 w-20 h-20 rounded overflow-hidden">
@@ -320,7 +324,7 @@ export default function Home() {
                   <div className="flex-grow min-w-0">
                     <p
                       className="text-xs font-semibold mb-1"
-                      style={{ color: "#5B5FDE" }}
+                      style={{ color: "#0052CC" }}
                     >
                       {item.date}
                     </p>
@@ -329,7 +333,7 @@ export default function Home() {
                     </h4>
                   </div>
                   <div className="flex-shrink-0 text-gray-400 group-hover:text-blue-600 transition-colors">
-                    →
+                    <ChevronRight className="w-5 h-5" />
                   </div>
                 </a>
               ))
@@ -343,9 +347,9 @@ export default function Home() {
             <a
               href="/blog"
               className="inline-block px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105"
-              style={{ backgroundColor: "#5B5FDE" }}
+              style={{ backgroundColor: "#0052CC" }}
             >
-              すべてのお知らせ・コラムを見る →
+              すべてのお知らせ・コラムを見る <ChevronRight className="inline-block ml-1 w-4 h-4 align-text-bottom" />
             </a>
           </div>
         </section>
@@ -368,7 +372,7 @@ export default function Home() {
                 経験豊富な職人による丁寧な施工と、明確な見積もりで、お客様の信頼を得ています。
               </p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
+            <div className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg">
               <h3 className="text-xl font-bold mb-6 text-gray-800">会社情報</h3>
               <div className="space-y-4 text-gray-700">
                 <div>
@@ -416,7 +420,7 @@ export default function Home() {
             </div>
 
             {/* Second Generation President */}
-            <div className="bg-gradient-to-b from-purple-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-gradient-to-b from-blue-50 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden mb-6">
                 <img
                   src="/manus-storage/sakai_shigitake_president2_6b9bf572.webp"
@@ -425,7 +429,7 @@ export default function Home() {
                   loading="lazy"
                 />
               </div>
-              <p className="text-sm font-semibold mb-2" style={{ color: "#5B5FDE" }}>前社長</p>
+              <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>前社長</p>
               <h3 className="text-xl font-bold mb-3 text-gray-800">堺　滋岳</h3>
               <p className="text-gray-700 text-sm leading-relaxed">
                 創業者の長男として、その想いと技術を受け継ぎ、現場を大切にしながら地域の暮らしを支え続けてきました。丁寧な仕事をすることを何より大切にしていました。
@@ -434,7 +438,7 @@ export default function Home() {
 
             {/* Current President */}
             <div className="bg-gradient-to-b from-blue-100 to-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center mb-6">
+              <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-slate-200 rounded-lg flex items-center justify-center mb-6">
                 <span className="text-6xl font-bold" style={{ color: "#0052CC" }}>堺</span>
               </div>
               <p className="text-sm font-semibold mb-2" style={{ color: "#0052CC" }}>代表取締役</p>

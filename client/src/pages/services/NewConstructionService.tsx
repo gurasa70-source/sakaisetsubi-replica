@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { ChevronRight, Mail, MapPin, Phone } from "lucide-react";
+import ServiceIcon from "@/components/ServiceIcon";
 
 export default function NewConstructionService() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
@@ -49,9 +51,9 @@ export default function NewConstructionService() {
       {/* ヘッダー */}
       <header className="relative h-96 md:h-[500px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800"
+          className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800"
           style={{
-            backgroundImage: "linear-gradient(135deg, #0052CC 0%, #5B5FDE 100%)"
+            backgroundImage: "linear-gradient(135deg, #0F172A 0%, #0052CC 100%)"
           }}
         />
         <div className="absolute inset-0 opacity-20">
@@ -61,17 +63,17 @@ export default function NewConstructionService() {
         <div className="relative h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              新築給排水工事
+              <span className="inline-flex items-center gap-3"><ServiceIcon name="new-construction" className="w-12 h-12" />新築給排水工事</span>
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-6">
               新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応
             </p>
             <div className="flex gap-4">
               <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
-                📞 電話する
+                <Phone className="inline-block mr-2 w-5 h-5" />電話する
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
-                📧 お問い合わせ
+                <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>
           </div>
@@ -93,28 +95,28 @@ export default function NewConstructionService() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  icon: "💧",
+                  icon: "water-tap",
                   title: "給水設備",
                   description: "給水配管の設計・施工、給水器具の取付"
                 },
                 {
-                  icon: "🌊",
+                  icon: "sewer",
                   title: "排水設備",
                   description: "排水配管の設計・施工、排水器具の取付"
                 },
                 {
-                  icon: "🔧",
+                  icon: "equipment",
                   title: "屋外配管",
                   description: "屋外の給排水配管工事、引込管工事"
                 },
                 {
-                  icon: "📋",
+                  icon: "building",
                   title: "申請業務",
                   description: "各種水道局申請、竣工図作成"
                 }
               ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100 hover:shadow-lg transition">
-                  <div className="text-5xl mb-4">{item.icon}</div>
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg border border-blue-100 hover:shadow-lg transition">
+                  <div className="w-12 h-12 mb-5 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center"><ServiceIcon name={item.icon as "water-tap" | "sewer" | "equipment" | "building"} className="w-7 h-7" /></div>
                   <h3 className="text-2xl font-bold mb-3 text-gray-800">{item.title}</h3>
                   <p className="text-gray-700 leading-relaxed">{item.description}</p>
                 </div>
@@ -130,13 +132,13 @@ export default function NewConstructionService() {
               対応エリア
             </h2>
             <p className="text-gray-600 text-center mb-16 text-lg">
-              静岡市内を中心に対応いたします
+              静岡市・焼津市の上下水道指定工事店として対応いたします
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-              {["清水区", "葵区", "駿河区", "焼津市"].map((area, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100">
-                  <div className="text-5xl font-bold mb-4" style={{ color: "#0052CC" }}>📍</div>
+              {["静岡市", "焼津市"].map((area, index) => (
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg border border-blue-100">
+                  <MapPin className="w-10 h-10 mx-auto mb-4 text-blue-700" aria-hidden="true" />
                   <h3 className="text-2xl font-bold text-gray-800">{area}</h3>
                 </div>
               ))}
@@ -207,14 +209,14 @@ export default function NewConstructionService() {
 
             <div className="text-center mt-12">
               <Link href="/works" className="inline-block px-8 py-3 rounded-lg font-semibold transition" style={{ backgroundColor: "#0052CC", color: "white" }}>
-                すべての施工実績を見る →
+                すべての施工実績を見る <ChevronRight className="inline-block ml-1 w-5 h-5 align-text-bottom" />
               </Link>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <section className="py-20 bg-gradient-to-r from-slate-900 to-blue-800">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               新築給排水工事はお任せください
@@ -225,11 +227,11 @@ export default function NewConstructionService() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="tel:054-348-2286" className="inline-block">
                 <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
-                  📞 054-348-2286
+                  <Phone className="inline-block mr-2 w-5 h-5" />054-348-2286
                 </button>
               </a>
-              <button className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition">
-                📧 お問い合わせ
+              <button className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition">
+                <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>
           </div>

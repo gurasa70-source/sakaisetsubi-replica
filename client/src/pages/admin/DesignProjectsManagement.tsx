@@ -173,7 +173,7 @@ export default function DesignProjectsManagement() {
                 {/* タイトル */}
                 <div>
                   <label className="block text-sm font-semibold mb-2">
-                    タイトル <span className="text-red-500">*</span>
+                    タイトル <span className="text-blue-700">*</span>
                   </label>
                   <Input
                     value={formData.title}
@@ -187,7 +187,7 @@ export default function DesignProjectsManagement() {
                 {/* 建物 */}
                 <div>
                   <label className="block text-sm font-semibold mb-2">
-                    建物 <span className="text-red-500">*</span>
+                    建物 <span className="text-blue-700">*</span>
                   </label>
                   <Input
                     value={formData.building}
@@ -201,7 +201,7 @@ export default function DesignProjectsManagement() {
                 {/* 業務内容 */}
                 <div>
                   <label className="block text-sm font-semibold mb-2">
-                    業務内容 <span className="text-red-500">*</span>
+                    業務内容 <span className="text-blue-700">*</span>
                   </label>
                   <Textarea
                     value={formData.businessContent}
@@ -215,7 +215,7 @@ export default function DesignProjectsManagement() {
                 {/* 対応範囲 */}
                 <div>
                   <label className="block text-sm font-semibold mb-2">
-                    対応範囲 <span className="text-red-500">*</span>
+                    対応範囲 <span className="text-blue-700">*</span>
                   </label>
                   <Textarea
                     value={formData.scope}
@@ -229,7 +229,7 @@ export default function DesignProjectsManagement() {
                 {/* 説明文 */}
                 <div>
                   <label className="block text-sm font-semibold mb-2">
-                    説明文 <span className="text-red-500">*</span>
+                    説明文 <span className="text-blue-700">*</span>
                   </label>
                   <Textarea
                     value={formData.description}
@@ -272,7 +272,7 @@ export default function DesignProjectsManagement() {
                 {/* ステータス */}
                 <div>
                   <label className="block text-sm font-semibold mb-2">
-                    ステータス <span className="text-red-500">*</span>
+                    ステータス <span className="text-blue-700">*</span>
                   </label>
                   <select
                     value={formData.status}
@@ -356,7 +356,7 @@ export default function DesignProjectsManagement() {
                           <span
                             className={`px-2 py-1 text-xs font-semibold rounded-full ${
                               project.status === 'published'
-                                ? 'bg-green-100 text-green-800'
+                                ? 'bg-blue-100 text-blue-800'
                                 : 'bg-gray-100 text-gray-800'
                             }`}
                           >

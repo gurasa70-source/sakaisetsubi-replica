@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { trpc } from '@/lib/trpc';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft, MapPin } from 'lucide-react';
+import ServiceIcon, { type ServiceIconName } from '@/components/ServiceIcon';
 import ShareButtons from '@/components/ShareButtons';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useLoading } from '@/contexts/LoadingContext';
@@ -28,12 +29,12 @@ export default function Works() {
   );
 
   const categories = [
-    { id: '漏水修理', name: '漏水修理', icon: '💧' },
-    { id: '水回りリフォーム', name: '水回りリフォーム', icon: '🛁' },
-    { id: '機器交換工事', name: '機器交換工事', icon: '🔧' },
-    { id: '新築給排水工事', name: '新築給排水工事', icon: '🏗️' },
-    { id: '下水道切替工事', name: '下水道切替工事', icon: '🔄' },
-    { id: '分水工事', name: '分水工事', icon: '💧' },
+    { id: '漏水修理', name: '漏水修理', icon: 'leak' as ServiceIconName },
+    { id: '水回りリフォーム', name: '水回りリフォーム', icon: 'reform' as ServiceIconName },
+    { id: '機器交換工事', name: '機器交換工事', icon: 'equipment' as ServiceIconName },
+    { id: '新築給排水工事', name: '新築給排水工事', icon: 'new-construction' as ServiceIconName },
+    { id: '下水道切替工事', name: '下水道切替工事', icon: 'sewer' as ServiceIconName },
+    { id: '分水工事', name: '分水工事', icon: 'water-tap' as ServiceIconName },
   ];
 
   // データベースから公開済みの施工実績を取得
@@ -129,7 +130,7 @@ export default function Works() {
         {/* 背景装飾 */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "#0052CC" }}></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "#5B5FDE" }}></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "#1D4ED8" }}></div>
         </div>
 
         <div className="container max-w-6xl mx-auto px-4 relative z-10">
@@ -140,7 +141,7 @@ export default function Works() {
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             堺設備の<br />
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to right, #00A8E8, #5B5FDE)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to right, #38BDF8, #1D4ED8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               施工実績
             </span>
           </h1>
@@ -181,7 +182,7 @@ export default function Works() {
                   }`}
                   style={selectedCategory === category.id ? { backgroundColor: "#0052CC" } : {}}
                 >
-                  <span>{category.icon}</span>
+                  <ServiceIcon name={category.icon} className="w-4 h-4" />
                   {category.name}
                 </button>
               ))}
@@ -200,7 +201,7 @@ export default function Works() {
                       ? 'text-white shadow-lg scale-105'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
-                  style={selectedYear === null ? { backgroundColor: "#5B5FDE" } : {}}
+                  style={selectedYear === null ? { backgroundColor: "#1D4ED8" } : {}}
                 >
                   すべて
                 </button>
@@ -213,7 +214,7 @@ export default function Works() {
                         ? 'text-white shadow-lg scale-105'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
-                    style={selectedYear === year ? { backgroundColor: "#5B5FDE" } : {}}
+                    style={selectedYear === year ? { backgroundColor: "#1D4ED8" } : {}}
                   >
                     {year}年
                   </button>
@@ -327,7 +328,7 @@ export default function Works() {
                         )}
                       </div>
                       <p className="text-sm text-slate-500 font-semibold mb-3 flex items-center gap-2">
-                        <span>📍</span>
+                        <MapPin className="h-4 w-4 text-blue-600" aria-hidden="true" />
                         {work.location}
                       </p>
                       <h3 className="text-lg font-bold mb-3 text-slate-900 line-clamp-2 group-hover:text-blue-600 transition">

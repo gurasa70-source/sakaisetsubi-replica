@@ -41,14 +41,14 @@ export default function FavoriteButton({
         size={24}
         className={`transition-all duration-300 ${
           isFavorite
-            ? 'fill-red-500 text-red-500'
-            : 'text-slate-400 hover:text-red-500'
+            ? 'fill-blue-600 text-blue-600'
+            : 'text-slate-400 hover:text-blue-600'
         } ${isAnimating ? 'scale-125' : 'scale-100'}`}
       />
 
       {/* パルスアニメーション */}
       {isAnimating && (
-        <div className="absolute inset-0 rounded-full border-2 border-red-500 animate-pulse" />
+        <div className="absolute inset-0 rounded-full border-2 border-blue-600 animate-pulse" />
       )}
     </button>
   );

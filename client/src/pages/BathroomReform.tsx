@@ -1,3 +1,5 @@
+import { CheckCircle2, ChevronRight, Mail, Phone } from "lucide-react";
+
 export default function BathroomReform() {
   return (
     <div className="min-h-screen bg-white">
@@ -77,8 +79,8 @@ export default function BathroomReform() {
               <div>
                 <h3 className="font-semibold text-gray-800 mb-3">指定工事店対応エリア</h3>
                 <ul className="text-gray-700 space-y-2">
-                  <li>✓ 静岡市</li>
-                  <li>✓ 焼津市</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />静岡市</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />焼津市</li>
                 </ul>
               </div>
 
@@ -94,7 +96,7 @@ export default function BathroomReform() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">水回りリフォームのメリット</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 1
               </div>
               <div>
@@ -105,7 +107,7 @@ export default function BathroomReform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 2
               </div>
               <div>
@@ -116,7 +118,7 @@ export default function BathroomReform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 3
               </div>
               <div>
@@ -127,7 +129,7 @@ export default function BathroomReform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                 4
               </div>
               <div>
@@ -145,7 +147,7 @@ export default function BathroomReform() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">リフォームの流れ</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 1
               </div>
               <div>
@@ -156,7 +158,7 @@ export default function BathroomReform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 2
               </div>
               <div>
@@ -167,7 +169,7 @@ export default function BathroomReform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 3
               </div>
               <div>
@@ -178,7 +180,7 @@ export default function BathroomReform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
                 4
               </div>
               <div>
@@ -232,8 +234,8 @@ export default function BathroomReform() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 老朽化したトイレを最新の温水洗浄便座付きトイレに交換。快適性と省エネ性が大幅に向上しました。
               </p>
-              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-green-800">
-                詳細を見る →
+              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-blue-900">
+                詳細を見る <ChevronRight className="inline-block w-4 h-4 align-text-bottom" />
               </a>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
@@ -242,8 +244,8 @@ export default function BathroomReform() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 古い洗面台を新しいデザインの洗面台に交換。洗面所の雰囲気が大きく変わり、使い刓手も向上しました。
               </p>
-              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-green-800">
-                詳細を見る →
+              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-blue-900">
+                詳細を見る <ChevronRight className="inline-block w-4 h-4 align-text-bottom" />
               </a>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
@@ -252,8 +254,8 @@ export default function BathroomReform() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 古いキッチンを最新のシステムキッチンに改修。調理スペースが広がり、使い勝手が大幅に改善されました。
               </p>
-              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-green-800">
-                詳細を見る →
+              <a href="/works" className="text-blue-700 font-semibold mt-4 inline-block hover:text-blue-900">
+                詳細を見る <ChevronRight className="inline-block w-4 h-4 align-text-bottom" />
               </a>
             </div>
           </div>
@@ -266,14 +268,14 @@ export default function BathroomReform() {
             快適な生活空間を実現するなら、堺設備にお任せください
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:0220122-1817" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
-              📞 電話する
+            <a href="tel:0543482286" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+              <Phone className="inline-block mr-2 w-5 h-5" />電話する
             </a>
-            <a 
+              <a 
               href="/#contact"
-              className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition inline-block"
+              className="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition inline-block"
             >
-              📧 お問い合わせ
+              <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
             </a>
           </div>
         </section>

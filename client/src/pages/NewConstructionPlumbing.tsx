@@ -1,3 +1,5 @@
+import { CheckCircle2, Mail, Phone } from "lucide-react";
+
 export default function NewConstructionPlumbing() {
   return (
     <div className="min-h-screen bg-white">
@@ -77,8 +79,8 @@ export default function NewConstructionPlumbing() {
               <div>
                 <h3 className="font-semibold text-gray-800 mb-3">指定工事店対応エリア</h3>
                 <ul className="text-gray-700 space-y-2">
-                  <li>✓ 静岡市</li>
-                  <li>✓ 焼津市</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />静岡市</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />焼津市</li>
                 </ul>
               </div>
 
@@ -94,8 +96,8 @@ export default function NewConstructionPlumbing() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">資格・認定</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
-                ✓
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-blue-700">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">指定給水装置工事事業者</h3>
@@ -105,8 +107,8 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
-                ✓
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-blue-700">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">建設業許可</h3>
@@ -116,8 +118,8 @@ export default function NewConstructionPlumbing() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
-                ✓
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-blue-700">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">技術者資格</h3>
@@ -280,14 +282,14 @@ export default function NewConstructionPlumbing() {
             工務店様・建築会社様との信頼の実績で、確実な施工を実現します
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:0220122-1817" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
-              📞 電話する
+            <a href="tel:0543482286" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+              <Phone className="inline-block mr-2 w-5 h-5" />電話する
             </a>
             <a 
               href="/#contact"
-              className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition inline-block"
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition inline-block"
             >
-              📧 お問い合わせ
+              <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
             </a>
           </div>
         </section>

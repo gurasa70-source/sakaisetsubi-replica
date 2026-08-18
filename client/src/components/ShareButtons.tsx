@@ -41,7 +41,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       {/* LINE */}
       <button
         onClick={handleLineShare}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-110"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white hover:bg-blue-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-110"
         title="LINEでシェア"
         aria-label="LINEでシェア"
       >
@@ -82,7 +82,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
         aria-label="URLをコピー"
       >
         {copied ? (
-          <Check size={20} className="text-green-600" />
+          <Check size={20} className="text-blue-600" />
         ) : (
           <Copy size={20} />
         )}

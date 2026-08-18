@@ -167,6 +167,22 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("wouter") || id.includes("@tanstack")) {
+              return "vendor-react";
+            }
+            if (id.includes("lucide-react") || id.includes("clsx") || id.includes("tailwind")) {
+              return "vendor-ui";
+            }
+            return "vendor-misc";
+          }
+        },
+      },
+    },
   },
   server: {
     host: true,

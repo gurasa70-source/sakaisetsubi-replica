@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "wouter";
+import { ChevronRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
 export default function Blog() {
@@ -42,7 +43,7 @@ export default function Blog() {
                       <h2 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-blue-600">{post.title}</h2>
                       {post.excerpt && <p className="mt-2 line-clamp-2 text-gray-600">{post.excerpt}</p>}
                     </div>
-                    <span aria-hidden="true" className="text-2xl text-blue-600 transition-transform group-hover:translate-x-1">→</span>
+                    <ChevronRight aria-hidden="true" className="h-6 w-6 shrink-0 text-blue-600 transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
               </article>

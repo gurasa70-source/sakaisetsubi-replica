@@ -1,3 +1,5 @@
+import { CheckCircle2, ChevronRight, Mail, Phone } from "lucide-react";
+
 export default function LeakRepair() {
   return (
     <div className="min-h-screen bg-white">
@@ -27,11 +29,11 @@ export default function LeakRepair() {
           <div className="bg-blue-50 p-6 rounded-lg mt-6">
             <h3 className="text-xl font-semibold mb-4 text-gray-800">漏水の主な原因</h3>
             <ul className="space-y-3 text-gray-700">
-              <li>✓ 経年劣化による配管の破損</li>
-              <li>✓ 凍結による配管の破裂</li>
-              <li>✓ 地震による配管の損傷</li>
-              <li>✓ 施工不良による接続部の漏水</li>
-              <li>✓ 蛇口やパッキンの劣化</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />経年劣化による配管の破損</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />凍結による配管の破裂</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />地震による配管の損傷</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />施工不良による接続部の漏水</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />蛇口やパッキンの劣化</li>
             </ul>
           </div>
         </section>
@@ -84,8 +86,8 @@ export default function LeakRepair() {
               <div>
                 <h3 className="font-semibold text-gray-800 mb-3">指定工事店対応エリア</h3>
                 <ul className="text-gray-700 space-y-2">
-                  <li>✓ 静岡市</li>
-                  <li>✓ 焼津市</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />静岡市</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />焼津市</li>
                 </ul>
               </div>
 
@@ -144,7 +146,7 @@ export default function LeakRepair() {
                 キッチン下の給水管から漏水が発生。最新の調査機器で漏水箇所を特定し、配管を交換いたしました。
               </p>
               <a href="/works" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
-                詳細を見る →
+                詳細を見る <ChevronRight className="inline-block w-4 h-4 align-text-bottom" />
               </a>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
@@ -154,7 +156,7 @@ export default function LeakRepair() {
                 府の埋設管からの漏水により、水道料金が大幅に増加。掘削工事を行い、配管を交換いたしました。
               </p>
               <a href="/works" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
-                詳細を見る →
+                詳細を見る <ChevronRight className="inline-block w-4 h-4 align-text-bottom" />
               </a>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg hover:shadow-lg transition">
@@ -164,7 +166,7 @@ export default function LeakRepair() {
                 水道料金が急に上がったため、漏水調査を実施。螒口のパッキン劣化が原因で、交換いたしました。
               </p>
               <a href="/works" className="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-800">
-                詳細を見る →
+                詳細を見る <ChevronRight className="inline-block w-4 h-4 align-text-bottom" />
               </a>
             </div>
           </div>
@@ -177,14 +179,14 @@ export default function LeakRepair() {
             24時間対応で、迅速に漏水を修理いたします
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:0220122-1817" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
-              📞 電話する
+            <a href="tel:0543482286" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+              <Phone className="inline-block mr-2 w-5 h-5" />電話する
             </a>
-            <a 
+              <a 
               href="/#contact"
-              className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition inline-block"
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition inline-block"
             >
-              📧 お問い合わせ
+              <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
             </a>
           </div>
         </section>

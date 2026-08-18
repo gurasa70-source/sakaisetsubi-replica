@@ -12,7 +12,7 @@ export default function DesignProjects() {
 
   if (!mounted || isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-50 p-8">
         <div className="max-w-6xl mx-auto">
           <div className="animate-pulse">
             <div className="h-10 bg-gray-300 rounded mb-8 w-1/3"></div>
@@ -28,7 +28,7 @@ export default function DesignProjects() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-50 p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-4" style={{ color: '#0052CC' }}>
           設計・申請実績

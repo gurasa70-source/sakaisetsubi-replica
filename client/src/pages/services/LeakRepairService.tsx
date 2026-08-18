@@ -3,6 +3,8 @@ import { useSchemaOrg } from "@/hooks/useSchemaOrg";
 import { generateServiceSchema, generateFAQSchema } from "@/lib/schema";
 import { trpc } from "@/lib/trpc";
 import { useState } from "react";
+import { CheckCircle2, ChevronRight, Mail, MapPin, Phone } from "lucide-react";
+import ServiceIcon from "@/components/ServiceIcon";
 
 export default function LeakRepairService() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
@@ -31,7 +33,7 @@ export default function LeakRepairService() {
   useSchemaOrg(
     generateServiceSchema({
       name: '漏水修理',
-      description: '静岡市清水区の漏水修理。水漏れの調査、修理を一体的に対応。',
+      description: '静岡市・焼津市の漏水修理。水漏れの調査、修理を一体的に対応。',
       url: 'https://sakaireplica-m2oiogqs.manus.space/service/leak-repair',
     }),
     'service-leak-repair-schema'
@@ -47,9 +49,9 @@ export default function LeakRepairService() {
       {/* ヘッダー */}
       <header className="relative h-96 md:h-[500px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800"
+          className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800"
           style={{
-            backgroundImage: "linear-gradient(135deg, #0052CC 0%, #5B5FDE 100%)"
+            backgroundImage: "linear-gradient(135deg, #0F172A 0%, #0052CC 100%)"
           }}
         />
         <div className="absolute inset-0 opacity-20">
@@ -60,17 +62,17 @@ export default function LeakRepairService() {
         <div className="relative h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              漏水修理
+              <span className="inline-flex items-center gap-3"><ServiceIcon name="leak" className="w-12 h-12" />漏水修理</span>
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-6">
               迅速に漏水を特定・修理いたします
             </p>
             <div className="flex gap-4">
               <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
-                📞 電話する
+                <Phone className="inline-block mr-2 w-5 h-5" />電話する
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
-                📧 お問い合わせ
+                <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>
           </div>
@@ -94,21 +96,21 @@ export default function LeakRepairService() {
                 最新の機器を使用して、水漏れの原因を正確に特定します。壁の中や床下の漏水も検出可能です。
               </p>
               <ul className="space-y-2 text-gray-600">
-                <li>✓ 無料の簡易調査</li>
-                <li>✓ 最新の検査機器</li>
-                <li>✓ 正確な原因特定</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />無料の簡易調査</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />最新の検査機器</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />正確な原因特定</li>
               </ul>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-purple-500">
+            <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-blue-700">
               <h3 className="text-2xl font-bold mb-4 text-gray-800">漏水修理</h3>
               <p className="text-gray-600 mb-4">
                 調査結果に基づいて、最適な修理方法を提案・実施いたします。
               </p>
               <ul className="space-y-2 text-gray-600">
-                <li>✓ 迅速な対応</li>
-                <li>✓ 確実な修理</li>
-                <li>✓ アフターサービス完備</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />迅速な対応</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />確実な修理</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />アフターサービス完備</li>
               </ul>
             </div>
           </div>
@@ -122,13 +124,13 @@ export default function LeakRepairService() {
             対応エリア
           </h2>
           <p className="text-gray-600 text-center mb-16 text-lg">
-            静岡市内を中心に対応いたします
+            静岡市・焼津市の上下水道指定工事店として対応いたします
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            {["清水区", "葵区", "駿河区", "焼津市"].map((area, index) => (
-              <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg border border-blue-100">
-                <div className="text-5xl font-bold mb-4" style={{ color: "#0052CC" }}>📍</div>
+            {["静岡市", "焼津市"].map((area, index) => (
+              <div key={index} className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg border border-blue-100">
+                <MapPin className="w-10 h-10 mx-auto mb-4 text-blue-700" aria-hidden="true" />
                 <h3 className="text-2xl font-bold text-gray-800">{area}</h3>
               </div>
             ))}
@@ -136,8 +138,8 @@ export default function LeakRepairService() {
 
           <div className="mt-16 text-center">
             <Link href="/contact">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
-                📧 対象エリア内のお見積り・ご相談はこちら
+              <button className="bg-gradient-to-r from-slate-900 to-blue-800 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
+                <Mail className="inline-block mr-2 w-5 h-5" />対象エリア内のお見積り・ご相談はこちら
               </button>
             </Link>
           </div>
@@ -207,8 +209,8 @@ export default function LeakRepairService() {
 
           <div className="text-center mt-12">
             <Link href="/works">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
-                すべての施工実績を見る →
+              <button className="bg-gradient-to-r from-slate-900 to-blue-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition">
+                すべての施工実績を見る <ChevronRight className="inline-block ml-1 w-5 h-5 align-text-bottom" />
               </button>
             </Link>
           </div>
@@ -216,7 +218,7 @@ export default function LeakRepairService() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             漏水でお困りですか？
@@ -227,11 +229,11 @@ export default function LeakRepairService() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:054-348-2286" className="inline-block">
               <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition">
-                📞 054-348-2286
+                <Phone className="inline-block mr-2 w-5 h-5" />054-348-2286
               </button>
             </a>
-            <button className="bg-red-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-600 transition">
-              📧 お問い合わせ
+            <button className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition">
+              <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
             </button>
           </div>
         </div>

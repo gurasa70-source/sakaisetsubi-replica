@@ -21,22 +21,22 @@ export default function DesignService() {
     {
       icon: <AlertCircle className="w-6 h-6" />,
       title: '設備設計を外注できる会社を探している',
-      color: 'text-red-600',
+      color: 'text-blue-700',
     },
     {
       icon: <AlertCircle className="w-6 h-6" />,
       title: '水道申請の書類作成が負担になっている',
-      color: 'text-red-600',
+      color: 'text-blue-700',
     },
     {
       icon: <AlertCircle className="w-6 h-6" />,
       title: '設計と現場のズレで手戻りが発生している',
-      color: 'text-red-600',
+      color: 'text-blue-700',
     },
     {
       icon: <AlertCircle className="w-6 h-6" />,
       title: '一括で任せられる業者が見つからない',
-      color: 'text-red-600',
+      color: 'text-blue-700',
     },
   ];
 
@@ -68,7 +68,7 @@ export default function DesignService() {
     {
       number: '④',
       title: '地域密着で迅速対応',
-      description: '静岡市周辺を中心に、スピーディーな対応を行っています。',
+      description: '静岡市・焼津市を中心に、スピーディーな対応を行っています。',
     },
   ];
 
@@ -137,7 +137,7 @@ export default function DesignService() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {concerns.map((concern, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-600">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-700">
                 <div className={`${concern.color} mb-3`}>
                   {concern.icon}
                 </div>
@@ -212,7 +212,7 @@ export default function DesignService() {
                 <strong>対応範囲：</strong>図面作成〜申請提出
               </p>
               <p className="text-gray-700 text-sm leading-relaxed">
-                静岡市内の新築戸建住宅にて、給排水設備設計および水道申請業務を担当しました。施工部門と連携し、スムーズな現場進行を実現しています。
+                静岡市の新築戸建住宅にて、給排水設備設計および水道申請業務を担当しました。施工部門と連携し、スムーズな現場進行を実現しています。
               </p>
             </Card>
 
@@ -243,7 +243,7 @@ export default function DesignService() {
       </section>
 
       {/* 設計×施工の強み */}
-      <section className="py-16 md:py-24 px-4 bg-gradient-to-r from-purple-50 to-blue-50">
+      <section className="py-16 md:py-24 px-4 bg-gradient-to-r from-slate-50 to-blue-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900">
             設計と施工が一体の強み
