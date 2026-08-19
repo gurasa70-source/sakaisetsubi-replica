@@ -16,23 +16,25 @@ export default function Breadcrumb() {
     ];
 
     // ページ別のパンくずリスト
-    if (location === '/service/leak-repair') {
-      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+    if (location === '/business') {
+      breadcrumbs.push({ label: '事業内容', href: '/business' });
+    } else if (location === '/service/leak-repair') {
+      breadcrumbs.push({ label: 'サービス', href: '/business' });
       breadcrumbs.push({ label: '漏水修理', href: '/service/leak-repair' });
     } else if (location === '/service/remodel') {
-      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: 'サービス', href: '/business' });
       breadcrumbs.push({ label: '水回りリフォーム', href: '/service/remodel' });
     } else if (location === '/service/equipment') {
-      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: 'サービス', href: '/business' });
       breadcrumbs.push({ label: '機器交換工事', href: '/service/equipment' });
     } else if (location === '/service/new-construction') {
-      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: 'サービス', href: '/business' });
       breadcrumbs.push({ label: '新築給排水工事', href: '/service/new-construction' });
     } else if (location === '/service/sewer') {
-      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: 'サービス', href: '/business' });
       breadcrumbs.push({ label: '下水道切替工事', href: '/service/sewer' });
     } else if (location === '/service/water-tap') {
-      breadcrumbs.push({ label: 'サービス', href: '/#business' });
+      breadcrumbs.push({ label: 'サービス', href: '/business' });
       breadcrumbs.push({ label: '水栓工事', href: '/service/water-tap' });
     } else if (location === '/corporate' || location === '/design' || location === '/design-projects') {
       breadcrumbs.push({ label: '設計', href: '/corporate' });

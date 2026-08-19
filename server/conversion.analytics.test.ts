@@ -27,14 +27,20 @@ describe("コンバージョン計測と導線", () => {
     expect(homeSource).toContain('trackConversion("recruit_click"');
   });
 
-  it("事業内容リンクがトップページのサービスセクションへ遷移し、詳細導線を提供する", () => {
+  it("事業内容リンクが詳細ページへ遷移し、主要サービスへの導線を提供する", () => {
     const homeSource = readSource("client/src/pages/Home.tsx");
     const headerSource = readSource("client/src/components/Header.tsx");
-    expect(headerSource).toContain("href: '/#business'");
-    expect(homeSource).toContain('id="business"');
-    expect(homeSource).toContain('href: "/service/leak-repair"');
-    expect(homeSource).toContain('href: "/service/remodel"');
-    expect(homeSource).toContain('href: "/service/new-construction"');
+    const appSource = readSource("client/src/App.tsx");
+    const businessSource = readSource("client/src/pages/Business.tsx");
+    expect(headerSource).toContain("href: '/business'");
+    expect(homeSource).toContain('href="/business"');
+    expect(appSource).toContain('path={"/business"}');
+    expect(businessSource).toContain("水漏れ・排水トラブル対応");
+    expect(businessSource).toContain("水回りリフォーム");
+    expect(businessSource).toContain("新築・増改築の給排水設備工事");
+    expect(businessSource).toContain("設計・水道申請");
+    expect(businessSource).toContain('trackConversion("phone_click"');
+    expect(businessSource).toContain('trackConversion("contact_click"');
   });
 
   it("スマートフォン固定CTAが電話と見積もり相談を提供する", () => {

@@ -13,6 +13,7 @@ import AnalyticsTracker from "./components/AnalyticsTracker";
 import MobileConversionBar from "./components/MobileConversionBar";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import Home from "./pages/Home";
+import Business from "./pages/Business";
 import LeakRepair from "./pages/LeakRepair";
 import BathroomReform from "./pages/BathroomReform";
 import NewConstructionPlumbing from "./pages/NewConstructionPlumbing";
@@ -51,6 +52,7 @@ function RouterContent() {
       <Breadcrumb />
       <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/business"} component={Business} />
       {/* Legacy routes - redirect to new service pages */}
       <Route path={"/leak-repair"} component={() => {
         if (typeof window !== 'undefined') {

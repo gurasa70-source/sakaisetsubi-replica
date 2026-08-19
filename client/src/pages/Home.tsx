@@ -275,6 +275,9 @@ export default function Home() {
               </a>
             ))}
           </div>
+          <div className="mt-8 text-center">
+            <a href="/business" onClick={() => trackConversion("service_symptom_click", "トップ事業内容：詳細ページを見る")} className="inline-flex min-h-12 items-center justify-center rounded-md border border-blue-200 bg-white px-6 py-3 font-bold text-blue-700 transition-colors hover:bg-blue-50">事業内容を詳しく見る <ChevronRight className="ml-2 h-5 w-5" /></a>
+          </div>
         </section>
 
         {/* Latest Works Section */}

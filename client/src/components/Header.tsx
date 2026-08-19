@@ -20,7 +20,7 @@ export default function Header() {
   // ナビゲーション項目の定義
   const navItems = [
     { href: '/#about', label: '会社紹介' },
-    { href: '/#business', label: '事業内容' },
+    { href: '/business', label: '事業内容' },
     { href: '/corporate', label: '設計' },
     { href: '/works', label: '施工実績' },
     { href: '/blog', label: 'お知らせ' },
