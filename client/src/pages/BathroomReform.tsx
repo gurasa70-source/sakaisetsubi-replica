@@ -164,7 +164,7 @@ export default function BathroomReform() {
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-800">お見積り・プラン提案</h3>
                 <p className="text-gray-700">
-                  詳細なお見積りと複数のリフォームプランをご提案。ご予算に合わせた最適なプランをお選びいただけます。
+                  お見積もりをご希望の場合は、工事内容と必要費用を確認したうえで、複数のリフォームプランをご案内します。内容にご納得いただいてから施工します。
                 </p>
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function BathroomReform() {
             <div>
               <h3 className="text-lg font-semibold mb-2 text-gray-800">Q. 既存の設備の撤去費用は別途ですか？</h3>
               <p className="text-gray-700">
-                A. 撤去費用はお見積りに含まれています。追加費用が発生する場合は、事前にご説明いたします。
+                A. 撤去を含む工事内容と必要費用は、お見積もりをご希望の場合に事前にご案内します。追加対応が必要な場合も、施工前にご説明いたします。
               </p>
             </div>
           </div>

@@ -117,7 +117,7 @@ export default function DesignService() {
                   className="border-white text-white hover:bg-white hover:text-blue-600 font-bold"
                   onClick={() => window.location.href = 'mailto:sakai-sekkei@ace.ocn.ne.jp'}
                 >
-                  設計・見積依頼を送信
+                  設計相談・お見積もり希望を送信
                 </Button>
               </div>
             </div>
@@ -289,6 +289,9 @@ export default function DesignService() {
             新築・リフォームに関わる給排水設備設計・申請業務について、お気軽にご相談ください。
             設計のみのご依頼も可能です。
           </p>
+          <p className="text-sm text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+            お見積もりをご希望の場合は、設計・申請の内容と必要費用をご案内します。内容にご納得いただいてから業務を進めます。
+          </p>
 
           <div className="flex gap-4 justify-center flex-wrap mb-8">
             <Button
@@ -305,7 +308,7 @@ export default function DesignService() {
               className="border-white text-white hover:bg-white hover:text-blue-600 font-bold"
               onClick={() => window.location.href = 'mailto:sakai-sekkei@ace.ocn.ne.jp'}
             >
-              設計・見積依頁を送信
+              設計相談・お見積もり希望を送信
             </Button>
           </div>
 
@@ -320,8 +323,8 @@ export default function DesignService() {
               </div>
               <div>
                 <p className="text-sm text-gray-600 font-semibold">FAX</p>
-                <a href="tel:054-340-1401" className="text-2xl font-bold text-blue-600 hover:underline active:scale-95 transition-transform">
-                  054-340-1401
+                <a href="tel:054-348-2288" className="text-2xl font-bold text-blue-600 hover:underline active:scale-95 transition-transform">
+                  054-348-2288
                 </a>
               </div>
               <div>

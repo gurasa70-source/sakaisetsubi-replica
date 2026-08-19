@@ -183,6 +183,7 @@ export default function Corporate() {
           <h2 className="text-2xl md:text-3xl font-bold text-white">設計・申請に関するご相談・お見積り</h2>
           <p className="text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed font-light">
             一般住宅から公共工事までの給排水設備設計や、道路使用許可などの申請手続きについてお気軽にご相談ください。<br />
+            お見積もりをご希望の場合は、設計・申請の内容と必要費用をご案内します。内容にご納得いただいてから業務を進めます。<br />
             設計部直通 FAX：054-348-2288 ／ メール：sakai-sekkei@ace.ocn.ne.jp
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">

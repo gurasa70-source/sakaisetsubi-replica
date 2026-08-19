@@ -13,6 +13,7 @@ const publicUiFiles = [
   "client/src/pages/LeakRepair.tsx",
   "client/src/pages/NewConstructionPlumbing.tsx",
   "client/src/pages/Corporate.tsx",
+  "client/src/pages/Business.tsx",
   "client/src/components/Header.tsx",
   "client/src/components/ServiceIcon.tsx",
   "client/src/pages/services/LeakRepairService.tsx",
@@ -68,5 +69,14 @@ describe("public UI consistency", () => {
     const source = publicUiFiles.map(readSource).join("\n");
     expect(source).not.toMatch(/purple|green-|red-|#5B5FDE|#FF4444/u);
     expect(source).toMatch(/#0052CC|blue-|slate-/u);
+  });
+
+  it("uses a transparent estimate-request flow without free-price claims", () => {
+    const source = publicUiFiles.map(readSource).join("\n");
+    const business = readSource("client/src/pages/Business.tsx");
+
+    expect(source).not.toMatch(/無料|無償|0円|ぼったく/u);
+    expect(business).toContain("お見積もりをご希望の場合は");
+    expect(business).toContain("お見積もり内容にご納得いただいたうえで施工");
   });
 });

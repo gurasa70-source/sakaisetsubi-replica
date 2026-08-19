@@ -436,7 +436,7 @@ export default function Home() {
                 水漏れ修理、トイレ詰まり、排水詰まり、井戸ポンプ交換など、水回りのトラブルに迅速に対応します。
               </p>
               <p className="text-gray-700 leading-relaxed">
-                経験豊富な職人による丁寧な施工と、明確な見積もりで、お客様の信頼を得ています。
+                経験豊富な職人による丁寧な施工と、施工内容・必要費用を分かりやすくご説明することを大切にしています。
               </p>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-lg">

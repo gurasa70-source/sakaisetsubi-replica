@@ -57,7 +57,7 @@ export default function LeakRepair() {
             <div>
               <h3 className="text-xl font-semibold mb-4 text-blue-600">蛇口・パッキン交換</h3>
               <p className="text-gray-700 leading-relaxed">
-                蛇口やパッキンの劣化による漏水は、部品交換で解決いたします。迅速で費用効率的な修理方法です。
+                蛇口やパッキンの劣化による漏水は、部品交換で対応いたします。状況に合わせた修理方法をご案内します。
               </p>
             </div>
             <div>
@@ -117,7 +117,7 @@ export default function LeakRepair() {
             <div>
               <h3 className="text-lg font-semibold mb-2 text-gray-800">Q. 修理費用はどのくらいかかりますか？</h3>
               <p className="text-gray-700">
-                A. 漏水の原因や規模によって異なります。調査後に見積もりをお出しいたします。事前にご説明いたしますので、ご安心ください。
+                A. 漏水の原因や規模によって異なります。お見積もりをご希望の場合は、調査内容と必要費用をご説明したうえでお見積もりをご案内します。内容にご納得いただいてから施工します。
               </p>
             </div>
             <div>

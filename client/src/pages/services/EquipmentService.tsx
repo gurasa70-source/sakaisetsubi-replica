@@ -230,7 +230,7 @@ export default function EquipmentService() {
               機器交換をお考えですか？
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              無料でお見積もりさせていただきます。お気軽にお問い合わせください。
+              お見積もりをご希望の場合は、施工内容と必要費用をご案内します。内容にご納得いただいてから施工します。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="tel:054-348-2286" className="inline-block">

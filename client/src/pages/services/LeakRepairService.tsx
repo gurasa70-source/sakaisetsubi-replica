@@ -23,7 +23,7 @@ export default function LeakRepairService() {
     },
     {
       question: "修理費用の目安は？",
-      answer: "漏水箇所や修理内容によって異なります。まずは無料調査でお見積もりさせていただきます。"
+      answer: "漏水箇所や修理内容によって異なります。お見積もりをご希望の場合は、調査内容と必要費用をご案内したうえで、対応内容のお見積もりをご提示します。内容にご納得いただいてから施工します。"
     },
     {
       question: "保証はありますか？",
@@ -98,7 +98,7 @@ export default function LeakRepairService() {
                 最新の機器を使用して、水漏れの原因を正確に特定します。壁の中や床下の漏水も検出可能です。
               </p>
               <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />無料の簡易調査</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />調査内容・費用の事前案内</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />最新の検査機器</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-700" />正確な原因特定</li>
               </ul>
