@@ -11,7 +11,7 @@ export default function SewerService() {
   const faqs = [
     {
       question: "下水道切替工事にはどのくらい時間がかかりますか？",
-      answer: "工事の規模によって異なりますが、通常3～5日程度が目安です。詳しくはご相談ください。"
+      answer: "簡易な工事であれば最短1日、工事内容や現場条件によっては5日程度が目安です。詳しくはご相談ください。"
     },
     {
       question: "浄化槽の撤去も対応していますか？",
@@ -68,7 +68,7 @@ export default function SewerService() {
               <span className="inline-flex items-center gap-3"><ServiceIcon name="sewer" className="w-12 h-12" />下水道切替工事</span>
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-6">
-              浄化槽から下水道への切替工事、補助金対応
+              浄化槽から下水道への切替工事、補助金対応。簡易な工事は最短1日、条件により5日程度が目安です。
             </p>
             <div className="flex gap-4">
               <a href="tel:0543482286" onClick={() => trackConversion("phone_click", "下水道切替工事：電話で相談")} className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">

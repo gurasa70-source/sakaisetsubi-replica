@@ -93,4 +93,11 @@ describe("public UI consistency", () => {
     expect(navigationLoading).toContain("rawHref.startsWith(\"#\")");
     expect(header).not.toContain("useLoading");
   });
+
+  it("shows the practical sewer-switching duration range", () => {
+    const sewerService = readSource("client/src/pages/services/SewerService.tsx");
+
+    expect(sewerService).toContain("簡易な工事は最短1日");
+    expect(sewerService).toContain("5日程度が目安です");
+  });
 });
