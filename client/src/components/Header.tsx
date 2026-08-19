@@ -1,19 +1,14 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocation } from "wouter";
-import { useLoading } from "@/contexts/LoadingContext";
 import { useConversionTracking } from "@/components/AnalyticsTracker";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
-  const { showLoading } = useLoading();
   const trackConversion = useConversionTracking();
 
-  const handleNavigation = (href: string) => {
-    if (href.startsWith('/') && !href.startsWith('/#')) {
-      showLoading();
-    }
+  const handleNavigation = () => {
     setMobileMenuOpen(false);
   };
 
@@ -59,7 +54,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <a href="/" onClick={() => handleNavigation('/')} className="flex items-center gap-3">
+          <a href="/" onClick={handleNavigation} className="flex items-center gap-3">
             <img
               src="/manus-storage/logo_c1bdfbde.png"
               alt="株式会社 堺設備"
@@ -92,7 +87,7 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              onClick={() => handleNavigation(item.href)}
+              onClick={handleNavigation}
               className={getLinkClass(item.href)}
             >
               {item.label}
@@ -118,7 +113,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={() => handleNavigation(item.href)}
+                onClick={handleNavigation}
                 className={`${isActive(item.href) ? 'text-blue-600 font-bold' : 'text-gray-700'} font-medium transition-colors duration-200`}
               >
                 {item.label}

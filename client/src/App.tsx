@@ -2,13 +2,14 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import Header from "./components/Header";
 import GlobalLoading from "./components/GlobalLoading";
+import InternalNavigationLoading from "./components/InternalNavigationLoading";
 import AnalyticsTracker from "./components/AnalyticsTracker";
 import MobileConversionBar from "./components/MobileConversionBar";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
@@ -36,12 +37,28 @@ import AnalyticsManagement from "./pages/admin/AnalyticsManagement";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Breadcrumb from "./components/Breadcrumb";
 
+function LegacyRouteRedirect({ to }: { to: string }) {
+  const [, setLocation] = useLocation();
+  const { showLoading } = useLoading();
+
+  useEffect(() => {
+    showLoading();
+    const timer = window.setTimeout(() => setLocation(to), 120);
+    return () => window.clearTimeout(timer);
+  }, [setLocation, showLoading, to]);
+
+  return null;
+}
+
 function RouterContent() {
   const [location] = useLocation();
   const { showLoading, hideLoading } = useLoading();
+  const previousLocation = useRef(location);
 
-  // ページ遷移時にローディングを表示
+  // リンク以外のプログラムによるルート変更もローディング対象にする
   useEffect(() => {
+    if (previousLocation.current === location) return;
+    previousLocation.current = location;
     showLoading();
     const timer = setTimeout(() => hideLoading(), 300);
     return () => clearTimeout(timer);
@@ -54,24 +71,9 @@ function RouterContent() {
       <Route path={"/"} component={Home} />
       <Route path={"/business"} component={Business} />
       {/* Legacy routes - redirect to new service pages */}
-      <Route path={"/leak-repair"} component={() => {
-        if (typeof window !== 'undefined') {
-          window.location.href = '/service/leak-repair';
-        }
-        return null;
-      }} />
-      <Route path={"/bathroom-reform"} component={() => {
-        if (typeof window !== 'undefined') {
-          window.location.href = '/service/remodel';
-        }
-        return null;
-      }} />
-      <Route path={"/new-construction"} component={() => {
-        if (typeof window !== 'undefined') {
-          window.location.href = '/service/new-construction';
-        }
-        return null;
-      }} />
+      <Route path={"/leak-repair"} component={() => <LegacyRouteRedirect to="/service/leak-repair" />} />
+      <Route path={"/bathroom-reform"} component={() => <LegacyRouteRedirect to="/service/remodel" />} />
+      <Route path={"/new-construction"} component={() => <LegacyRouteRedirect to="/service/new-construction" />} />
       {/* Service pages */}
       <Route path={"/service/leak-repair"} component={LeakRepairService} />
       <Route path={"/service/remodel"} component={RemodelService} />
@@ -120,6 +122,7 @@ function App() {
             <TooltipProvider>
               <Toaster />
               <GlobalLoading />
+              <InternalNavigationLoading />
               <Header />
               <AnalyticsTracker />
               <ScrollToTopButton />

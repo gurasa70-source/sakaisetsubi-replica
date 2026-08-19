@@ -79,4 +79,18 @@ describe("public UI consistency", () => {
     expect(business).toContain("お見積もりをご希望の場合は");
     expect(business).toContain("お見積もり内容にご納得いただいたうえで施工");
   });
+
+  it("routes every internal anchor through the shared faucet loading handler", () => {
+    const app = readSource("client/src/App.tsx");
+    const header = readSource("client/src/components/Header.tsx");
+    const navigationLoading = readSource("client/src/components/InternalNavigationLoading.tsx");
+
+    expect(app).toContain("<InternalNavigationLoading />");
+    expect(navigationLoading).toContain('document.addEventListener("click", handleDocumentClick, true)');
+    expect(navigationLoading).toContain("event.preventDefault()");
+    expect(navigationLoading).toContain("showLoadingForTransition()");
+    expect(navigationLoading).toContain("destination.origin !== window.location.origin");
+    expect(navigationLoading).toContain("rawHref.startsWith(\"#\")");
+    expect(header).not.toContain("useLoading");
+  });
 });
