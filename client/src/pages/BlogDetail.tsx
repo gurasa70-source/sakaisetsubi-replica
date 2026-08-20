@@ -40,7 +40,7 @@ export default function BlogDetail() {
             {publishedDate && <time dateTime={publishedDate.toISOString()}>{publishedDate.toLocaleDateString("ja-JP")}</time>}
             <span className="rounded bg-white/15 px-3 py-1">{post.category}</span>
           </div>
-          <h1 className="text-3xl font-bold leading-tight md:text-5xl">{post.title}</h1>
+          <h1 className="text-3xl font-bold leading-[1.2] text-balance sm:text-4xl md:text-5xl">{post.title}</h1>
         </div>
       </section>
 
@@ -55,4 +55,3 @@ export default function BlogDetail() {
     </div>
   );
 }
-

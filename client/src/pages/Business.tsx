@@ -62,7 +62,7 @@ export default function Business() {
         <div className="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-cyan-300/10 blur-3xl" />
         <div className="relative mx-auto max-w-7xl">
           <p className="mb-4 text-xs font-bold tracking-[0.24em] text-blue-200">BUSINESS</p>
-          <h1 className="max-w-4xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">水回りの困りごとから<br />給排水設備・設計申請まで</h1>
+          <h1 className="max-w-4xl text-3xl font-bold leading-[1.2] text-balance sm:text-5xl md:text-6xl">水回りの困りごとから 給排水設備・設計申請まで</h1>
           <p className="mt-7 max-w-2xl text-base leading-8 text-blue-100 md:text-lg">株式会社堺設備は、日常の水漏れ・排水トラブルから、新築・リフォーム時の給排水設備工事、設計・各種申請まで、内容に合わせてご相談を承ります。</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href="/#contact" onClick={() => trackConversion("contact_click", "事業内容詳細：見積もり相談")} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-white px-6 py-3 font-bold text-blue-900 transition-colors hover:bg-blue-50"><ClipboardCheck className="h-5 w-5" />お問い合わせ・見積もり相談</a>

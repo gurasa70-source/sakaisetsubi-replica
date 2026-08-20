@@ -62,17 +62,17 @@ export default function RemodelService() {
         
         <div className="relative h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="max-w-4xl text-4xl font-bold leading-[1.2] text-balance text-white mb-4 sm:text-5xl md:text-6xl">
               水回りリフォーム
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-6">
+            <p className="max-w-3xl text-base leading-relaxed text-pretty text-blue-100 mb-6 sm:text-xl md:text-2xl">
               キッチン・浴室・トイレ・洗面台の水回り工事に対応
             </p>
-            <div className="flex gap-4">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <button className="flex min-h-12 w-full items-center justify-center bg-white px-6 py-3 rounded-lg font-semibold text-blue-600 transition hover:bg-blue-50 sm:w-auto">
                 <Phone className="inline-block mr-2 w-5 h-5" />電話する
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
+              <button className="flex min-h-12 w-full items-center justify-center border-2 border-white px-6 py-3 rounded-lg font-semibold text-white transition hover:bg-white hover:bg-opacity-10 sm:w-auto">
                 <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>

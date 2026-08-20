@@ -135,6 +135,17 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 700;
+    line-break: strict;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+  p, li {
+    line-break: strict;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+  a, button {
+    min-width: 0;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),

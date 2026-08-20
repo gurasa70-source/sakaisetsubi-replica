@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { Fragment } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { ChevronLeft, ChevronRight, ClipboardList, MessageCircle } from "lucide-react";
 import { trpc } from "@/lib/trpc";
@@ -73,19 +74,19 @@ export default function Home() {
   const heroSlides = useMemo(() => [
     {
       image: "/manus-storage/main03_fa5b307e.jpg",
-      title: "静岡市の新築・リフォーム給排水設備工事",
+      titleParts: ["静岡市の新築・", "リフォーム", "給排水設備工事"],
     },
     {
       image: "/manus-storage/sakaisetsubi_hero2_50ed2cb7.jpg",
-      title: "戸建・アパート・小規模店舗対応",
+      titleParts: ["戸建・アパート・", "小規模店舗対応"],
     },
     {
       image: "/manus-storage/company_building_real_d2e0ace2.jpg",
-      title: "設計・各種申請業務も一括対応",
+      titleParts: ["設計・各種申請業務も", "一括対応"],
     },
     {
       image: "/manus-storage/construction_example_01_edfdea19.jpg",
-      title: "応援・請負・協力業者相談可能",
+      titleParts: ["応援・請負・", "協力業者相談可能"],
     },
   ], []);
 
@@ -140,7 +141,7 @@ export default function Home() {
             >
               <img
                 src={slide.image}
-                alt={slide.title}
+                alt={slide.titleParts.join("")}
                 className="w-full h-full object-cover"
                 loading={index === currentSlide ? "eager" : "lazy"}
                 fetchPriority={index === currentSlide ? "high" : "low"}
@@ -153,23 +154,28 @@ export default function Home() {
 
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-6 leading-tight">
-            {heroSlides[currentSlide].title}
+          <h1 className="max-w-5xl text-[clamp(2rem,6vw,4.5rem)] font-bold text-balance text-center leading-[1.2] text-white mb-5 md:mb-6">
+            {heroSlides[currentSlide].titleParts.map((titlePart, index) => (
+              <Fragment key={titlePart}>
+                <span className="whitespace-nowrap">{titlePart}</span>
+                {index < heroSlides[currentSlide].titleParts.length - 1 && <wbr />}
+              </Fragment>
+            ))}
           </h1>
-          <p className="text-lg md:text-2xl text-white text-center mb-8">
+          <p className="max-w-3xl text-[clamp(1rem,3.5vw,1.5rem)] text-pretty text-center leading-relaxed text-white mb-6 md:mb-8">
             戸建・アパート・小規模店舗対応
           </p>
           <a
             href="tel:0543482286"
             onClick={() => trackConversion("phone_click", "トップヒーロー：電話で相談")}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-slate-950/35 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-slate-950/55"
+            className="mb-4 inline-flex max-w-[calc(100vw-2rem)] items-center justify-center gap-2 rounded-full border border-white/60 bg-slate-950/35 px-4 py-2 text-center text-sm font-bold leading-relaxed text-white transition-colors hover:bg-slate-950/55"
           >
             水漏れ・つまりのご相談はお電話でも承ります
           </a>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex w-full max-w-xl flex-col justify-center gap-3 sm:flex-row sm:gap-4">
             <a
               href="/works"
-              className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
+              className="flex w-full items-center justify-center gap-2 rounded px-6 py-3 text-center font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:min-w-44"
               style={{ backgroundColor: "#0052CC" }}
             >
               <ClipboardList className="w-5 h-5" />施工実績を見る
@@ -177,7 +183,7 @@ export default function Home() {
             <a
               href="/#contact"
               onClick={() => trackConversion("contact_click", "トップヒーロー：見積もり相談")}
-              className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
+              className="flex w-full items-center justify-center gap-2 rounded px-6 py-3 text-center font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:min-w-44"
               style={{ backgroundColor: "#1D4ED8" }}
             >
               <MessageCircle className="w-5 h-5" />見積もり相談
@@ -187,7 +193,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackConversion("recruit_click", "トップヒーロー：求人応募")}
-              className="px-8 py-3 rounded font-semibold text-white transition-all hover:scale-105 flex items-center justify-center gap-2"
+              className="flex w-full items-center justify-center gap-2 rounded px-6 py-3 text-center font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:min-w-36"
               style={{ backgroundColor: "#0052CC" }}
             >
               求人応募

@@ -14,8 +14,8 @@ export default function Blog() {
       <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 px-4 pb-14 pt-32 text-white">
         <div className="mx-auto max-w-6xl">
           <p className="mb-3 text-sm font-semibold tracking-[0.2em] text-blue-200">NEWS & COLUMN</p>
-          <h1 className="text-4xl font-bold md:text-5xl">お知らせ・コラム</h1>
-          <p className="mt-4 max-w-2xl text-blue-100">株式会社堺設備からのお知らせや、水道設備に関する役立つ情報を掲載しています。</p>
+          <h1 className="text-3xl font-bold leading-[1.2] text-balance sm:text-4xl md:text-5xl">お知らせ・コラム</h1>
+          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-blue-100">株式会社堺設備からのお知らせや、水道設備に関する役立つ情報を掲載しています。</p>
         </div>
       </section>
 
@@ -49,7 +49,7 @@ export default function Blog() {
                           return null;
                         })()}
                       </div>
-                      <h2 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-blue-600">{post.title}</h2>
+                      <h2 className="text-xl font-bold text-balance text-gray-900 transition-colors group-hover:text-blue-600">{post.title}</h2>
                       {post.excerpt && <p className="mt-2 line-clamp-2 text-gray-600">{post.excerpt}</p>}
                     </div>
                     <ChevronRight aria-hidden="true" className="h-6 w-6 shrink-0 text-blue-600 transition-transform group-hover:translate-x-1" />

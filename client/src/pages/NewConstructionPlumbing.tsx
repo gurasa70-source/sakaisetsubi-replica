@@ -6,10 +6,10 @@ export default function NewConstructionPlumbing() {
       {/* ヘッダー */}
       <header className="bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16">
         <div className="container max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="max-w-4xl text-3xl font-bold leading-[1.2] text-balance mb-4 sm:text-4xl md:text-5xl">
             新築給排水設備工事
           </h1>
-          <p className="text-xl text-blue-100">
+          <p className="max-w-3xl text-base leading-relaxed text-pretty text-blue-100 sm:text-xl">
             工務店様・建築会社様向け。確実で信頼できる給排水設備工事
           </p>
         </div>
@@ -281,13 +281,13 @@ export default function NewConstructionPlumbing() {
           <p className="text-xl mb-8">
             工務店様・建築会社様との信頼の実績で、確実な施工を実現します
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:0543482286" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+            <a href="tel:0543482286" className="flex min-h-12 w-full items-center justify-center bg-white px-6 py-4 rounded-lg text-center font-bold text-lg text-blue-700 transition hover:bg-gray-100 sm:w-auto">
               <Phone className="inline-block mr-2 w-5 h-5" />電話する
             </a>
             <a 
               href="/#contact"
-              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition inline-block"
+              className="flex min-h-12 w-full items-center justify-center bg-blue-700 px-6 py-4 rounded-lg text-center font-bold text-lg text-white transition hover:bg-blue-800 sm:w-auto"
             >
               <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
             </a>

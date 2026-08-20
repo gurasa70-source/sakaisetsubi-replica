@@ -62,17 +62,17 @@ export default function NewConstructionService() {
         
         <div className="relative h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              <span className="inline-flex items-center gap-3"><ServiceIcon name="new-construction" className="w-12 h-12" />新築給排水工事</span>
+            <h1 className="text-4xl font-bold leading-[1.2] text-balance text-white mb-4 sm:text-5xl md:text-6xl">
+              <span className="flex items-center gap-3"><ServiceIcon name="new-construction" className="w-10 h-10 shrink-0 sm:w-12 sm:h-12" />新築給排水工事</span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-6">
+            <p className="max-w-3xl text-base leading-relaxed text-pretty text-blue-100 mb-6 sm:text-xl md:text-2xl">
               新築住宅の給排水配管工事、大手ハウスメーカー案件にも対応
             </p>
-            <div className="flex gap-4">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <button className="flex min-h-12 w-full items-center justify-center bg-white px-6 py-3 rounded-lg font-semibold text-blue-600 transition hover:bg-blue-50 sm:w-auto">
                 <Phone className="inline-block mr-2 w-5 h-5" />電話する
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
+              <button className="flex min-h-12 w-full items-center justify-center border-2 border-white px-6 py-3 rounded-lg font-semibold text-white transition hover:bg-white hover:bg-opacity-10 sm:w-auto">
                 <Mail className="inline-block mr-2 w-5 h-5" />お問い合わせ
               </button>
             </div>

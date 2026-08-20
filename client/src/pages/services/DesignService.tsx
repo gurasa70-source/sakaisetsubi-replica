@@ -93,20 +93,20 @@ export default function DesignService() {
 
             {/* 右側：テキスト */}
             <div className="order-1 md:order-2">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="max-w-4xl text-3xl font-bold leading-[1.2] text-balance mb-6 sm:text-4xl md:text-5xl">
                 静岡市の給排水設備設計・申請業務
               </h1>
-              <p className="text-lg md:text-xl text-blue-100 mb-4">
+              <p className="max-w-3xl text-base leading-relaxed text-pretty text-blue-100 mb-4 sm:text-lg md:text-xl">
                 施工を理解した設計で、現場に強い図面を作成
               </p>
-              <p className="text-lg md:text-xl text-blue-100 mb-8">
+              <p className="max-w-3xl text-base leading-relaxed text-pretty text-blue-100 mb-8 sm:text-lg md:text-xl">
                 新築・リフォームの設計から水道申請まで一括対応
               </p>
 
-              <div className="flex gap-4 flex-wrap">
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <Button
                   size="lg"
-                  className="bg-white text-blue-600 hover:bg-blue-50 font-bold"
+                  className="w-full bg-white text-blue-600 hover:bg-blue-50 font-bold sm:w-auto"
                   onClick={() => window.location.href = 'tel:054-348-2286'}
                 >
                   電話でご相談
@@ -114,7 +114,7 @@ export default function DesignService() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-blue-600 font-bold"
+                  className="w-full border-white text-white hover:bg-white hover:text-blue-600 font-bold sm:w-auto"
                   onClick={() => window.location.href = 'mailto:sakai-sekkei@ace.ocn.ne.jp'}
                 >
                   設計相談・お見積もり希望を送信
@@ -206,11 +206,11 @@ export default function DesignService() {
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 静岡市｜新築戸建 給排水設備設計・申請
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
-                <strong>建物：</strong>新築戸建<br />
-                <strong>業務内容：</strong>給排水設備設計・水道申請<br />
-                <strong>対応範囲：</strong>図面作成〜申請提出
-              </p>
+              <div className="mb-4 space-y-1 text-sm leading-relaxed text-gray-600">
+                <p><strong>建物：</strong>新築戸建</p>
+                <p><strong>業務内容：</strong>給排水設備設計・水道申請</p>
+                <p><strong>対応範囲：</strong>図面作成〜申請提出</p>
+              </div>
               <p className="text-gray-700 text-sm leading-relaxed">
                 静岡市の新築戸建住宅にて、給排水設備設計および水道申請業務を担当しました。施工部門と連携し、スムーズな現場進行を実現しています。
               </p>
@@ -220,11 +220,11 @@ export default function DesignService() {
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 焼津市｜集合住宅 給排水計画
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
-                <strong>建物：</strong>集合住宅<br />
-                <strong>業務内容：</strong>給排水計画図作成・申請<br />
-                <strong>対応範囲：</strong>全体計画〜竣工図作成
-              </p>
+              <div className="mb-4 space-y-1 text-sm leading-relaxed text-gray-600">
+                <p><strong>建物：</strong>集合住宅</p>
+                <p><strong>業務内容：</strong>給排水計画図作成・申請</p>
+                <p><strong>対応範囲：</strong>全体計画〜竣工図作成</p>
+              </div>
               <p className="text-gray-700 text-sm leading-relaxed">
                 複数戸の集合住宅における給排水計画図作成と各種申請業務を一括対応。設計と施工の連携で、スムーズな工事進行を実現しました。
               </p>
@@ -329,7 +329,7 @@ export default function DesignService() {
               </div>
               <div>
                 <p className="text-sm text-gray-600 font-semibold">メール</p>
-                <a href="mailto:sakai-sekkei@ace.ocn.ne.jp" className="text-lg font-bold text-blue-600 break-all hover:underline active:scale-95 transition-transform">
+                <a href="mailto:sakai-sekkei@ace.ocn.ne.jp" className="inline-block max-w-full break-words text-base font-bold text-blue-600 transition-transform hover:underline active:scale-95 sm:text-lg">
                   sakai-sekkei@ace.ocn.ne.jp
                 </a>
               </div>

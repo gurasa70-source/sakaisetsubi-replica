@@ -139,9 +139,8 @@ export default function Works() {
               施工実績
             </span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            堺設備の<br />
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to right, #38BDF8, #1D4ED8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          <h1 className="max-w-3xl text-4xl font-bold leading-[1.2] text-balance text-white mb-6 sm:text-5xl md:text-6xl">
+            堺設備の <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to right, #38BDF8, #1D4ED8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               施工実績
             </span>
           </h1>

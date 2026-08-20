@@ -1,7 +1,7 @@
 import { useRoute } from 'wouter';
 import { useMemo } from 'react';
 import { trpc } from '@/lib/trpc';
-import { ChevronLeft } from 'lucide-react';
+import { ArrowRight, Bath, Building2, CalendarDays, ChevronLeft, ClipboardList, Droplets, Images, LoaderCircle, Mail, MessageSquare, Phone, RefreshCw, Search, Wrench, type LucideIcon } from 'lucide-react';
 import ShareButtons from '@/components/ShareButtons';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useFavorites } from '@/hooks/useFavorites';
@@ -9,13 +9,13 @@ import { useSchemaOrg } from '@/hooks/useSchemaOrg';
 import { generateWorkSchema } from '@/lib/schema';
 import { useConversionTracking } from '@/components/AnalyticsTracker';
 
-const categoryIconMap: Record<string, string> = {
-  '漏水修理': '💧',
-  '水回りリフォーム': '🛁',
-  '機器交換工事': '🔧',
-  '新築給排水工事': '🏗️',
-  '下水道切替工事': '🔄',
-  '分水工事': '💧',
+const categoryIconMap: Record<string, LucideIcon> = {
+  '漏水修理': Droplets,
+  '水回りリフォーム': Bath,
+  '機器交換工事': Wrench,
+  '新築給排水工事': Building2,
+  '下水道切替工事': RefreshCw,
+  '分水工事': Droplets,
 };
 
 const categoryServiceMap: Record<string, { name: string; url: string }> = {
@@ -58,7 +58,7 @@ export default function WorkDetail() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="text-6xl mb-4">⏳</div>
+          <LoaderCircle className="mx-auto mb-4 h-12 w-12 animate-spin text-blue-600" aria-hidden="true" />
           <p className="text-slate-600 text-lg">読み込み中...</p>
         </div>
       </div>
@@ -69,8 +69,8 @@ export default function WorkDetail() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="text-6xl mb-4">🔍</div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">施工実績が見つかりません</h1>
+          <Search className="mx-auto mb-4 h-12 w-12 text-blue-600" aria-hidden="true" />
+          <h1 className="text-3xl font-bold text-balance text-slate-900 mb-4">施工実績が見つかりません</h1>
           <a href="/works" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold">
             <ChevronLeft size={20} />
             施工実績一覧に戻る
@@ -81,7 +81,7 @@ export default function WorkDetail() {
   }
 
   const serviceInfo = categoryServiceMap[work.category];
-  const categoryIcon = categoryIconMap[work.category] || '📋';
+  const CategoryIcon = categoryIconMap[work.category] || ClipboardList;
 
   return (
     <div className="min-h-screen bg-white">
@@ -90,7 +90,7 @@ export default function WorkDetail() {
         {/* 背景装飾 */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container max-w-4xl mx-auto px-4 relative z-10">
@@ -103,23 +103,23 @@ export default function WorkDetail() {
           </a>
           
           <div className="flex items-start gap-4 mb-6">
-            <span className="text-5xl">{categoryIcon}</span>
+            <CategoryIcon className="h-11 w-11 shrink-0 text-blue-300 sm:h-12 sm:w-12" aria-hidden="true" />
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-4 flex-wrap">
                 <span className="inline-block px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold">
                   {work.category}
                 </span>
                 {work.designInvolved === 1 && (
-                  <span className="inline-block px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm font-semibold">
+                  <span className="inline-block rounded-full bg-blue-500/20 px-4 py-2 text-sm font-semibold text-blue-200">
                     設計・施工一貫対応
                   </span>
                 )}
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+              <h1 className="max-w-4xl text-4xl font-bold leading-[1.2] break-keep text-balance text-white sm:text-5xl md:text-6xl">
                 {work.title}
               </h1>
               <p className="text-slate-300 mt-4 flex items-center gap-2">
-                <span>📅</span>
+                <CalendarDays className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {work.date}
               </p>
             </div>
@@ -149,8 +149,8 @@ export default function WorkDetail() {
           <div className="md:col-span-2 space-y-12">
             {/* 工事内容 */}
             <section>
-              <h2 className="text-3xl font-bold mb-6 text-slate-900 flex items-center gap-3">
-                <span className="text-4xl">📋</span>
+              <h2 className="text-3xl font-bold text-balance mb-6 text-slate-900 flex items-center gap-3">
+                <ClipboardList className="h-8 w-8 shrink-0 text-blue-700" aria-hidden="true" />
                 工事内容
               </h2>
               <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
@@ -177,8 +177,8 @@ export default function WorkDetail() {
 
             {/* ご依頼内容 */}
             <section>
-              <h2 className="text-3xl font-bold mb-6 text-slate-900 flex items-center gap-3">
-                <span className="text-4xl">📞</span>
+              <h2 className="text-3xl font-bold text-balance mb-6 text-slate-900 flex items-center gap-3">
+                <Phone className="h-8 w-8 shrink-0 text-blue-700" aria-hidden="true" />
                 ご依頼内容
               </h2>
               <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
@@ -188,8 +188,8 @@ export default function WorkDetail() {
 
             {/* 施工背景・施工理由 */}
             <section>
-              <h2 className="text-3xl font-bold mb-6 text-slate-900 flex items-center gap-3">
-                <span className="text-4xl">🔍</span>
+              <h2 className="text-3xl font-bold text-balance mb-6 text-slate-900 flex items-center gap-3">
+                <Search className="h-8 w-8 shrink-0 text-blue-700" aria-hidden="true" />
                 施工背景・施工理由
               </h2>
               <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
@@ -199,8 +199,8 @@ export default function WorkDetail() {
 
             {/* 施工方法 */}
             <section>
-              <h2 className="text-3xl font-bold mb-6 text-slate-900 flex items-center gap-3">
-                <span className="text-4xl">🔧</span>
+              <h2 className="text-3xl font-bold text-balance mb-6 text-slate-900 flex items-center gap-3">
+                <Wrench className="h-8 w-8 shrink-0 text-blue-700" aria-hidden="true" />
                 施工方法
               </h2>
               <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
@@ -211,8 +211,8 @@ export default function WorkDetail() {
             {/* ビフォー・アフター */}
             {(work.beforeImageUrl || work.afterImageUrl) && (
               <section>
-                <h2 className="text-3xl font-bold mb-8 text-slate-900 flex items-center gap-3">
-                  <span className="text-4xl">📸</span>
+                <h2 className="text-3xl font-bold text-balance mb-8 text-slate-900 flex items-center gap-3">
+                  <Images className="h-8 w-8 shrink-0 text-blue-700" aria-hidden="true" />
                   施工写真
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8">
@@ -254,9 +254,9 @@ export default function WorkDetail() {
           {/* サイドバー */}
           <aside className="md:col-span-1 space-y-6">
             {/* 担当者コメント */}
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-l-4 border-blue-500">
+            <div className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-2xl border-l-4 border-blue-500">
               <h3 className="text-xl font-bold mb-4 text-slate-900 flex items-center gap-2">
-                <span className="text-2xl">💬</span>
+                <MessageSquare className="h-6 w-6 shrink-0 text-blue-700" aria-hidden="true" />
                 担当者コメント
               </h3>
               <p className="text-slate-700 leading-relaxed italic">
@@ -272,10 +272,10 @@ export default function WorkDetail() {
                 </h3>
                 <a
                   href={serviceInfo.url}
-                  className="inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                 >
                   {serviceInfo.name}
-                  <span>→</span>
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </a>
               </div>
             )}
@@ -288,7 +288,7 @@ export default function WorkDetail() {
                 className="inline-flex items-center justify-center gap-2 w-full bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-slate-100 transition"
               >
                 一覧を見る
-                <span>→</span>
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
           </aside>
@@ -302,27 +302,27 @@ export default function WorkDetail() {
           </div>
 
           <div className="relative z-10 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl font-bold leading-[1.2] text-balance text-white mb-6 sm:text-4xl md:text-5xl">
               同様のお悩みはございませんか？
             </h2>
-            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-base leading-relaxed text-pretty text-slate-300 mb-10 sm:text-xl">
               堺設備の専門スタッフがお客様のご要望にお応えします。
               まずはお気軽にご相談ください。
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
               <a
                 href="tel:054-348-2286"
                 onClick={() => trackConversion("phone_click", `施工実績詳細：${work.title}：電話で相談`)}
-                className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
-              >
-                📞 電話する
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-white px-6 py-4 rounded-xl text-center font-bold text-lg text-slate-900 transition-all duration-300 hover:bg-blue-50 sm:w-auto"
+            >
+              <Phone className="h-5 w-5" aria-hidden="true" />電話する
               </a>
               <a
                 href="/#contact"
                 onClick={() => trackConversion("works_contact_click", `施工実績詳細：${work.title}：お問い合わせ`)}
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-              >
-                📧 お問い合わせ
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 rounded-xl text-center font-bold text-lg text-white transition-all duration-300 hover:shadow-lg sm:w-auto"
+            >
+              <Mail className="h-5 w-5" aria-hidden="true" />お問い合わせ
               </a>
             </div>
           </div>

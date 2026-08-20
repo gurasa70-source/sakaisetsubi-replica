@@ -27,11 +27,10 @@ export default function NotFound() {
             Page Not Found
           </h2>
 
-          <p className="text-slate-600 mb-8 leading-relaxed">
-            Sorry, the page you are looking for doesn't exist.
-            <br />
-            It may have been moved or deleted.
-          </p>
+          <div className="mb-8 space-y-1 text-slate-600 leading-relaxed">
+            <p>Sorry, the page you are looking for doesn't exist.</p>
+            <p>It may have been moved or deleted.</p>
+          </div>
 
           <div
             id="not-found-button-group"

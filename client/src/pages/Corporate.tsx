@@ -12,9 +12,8 @@ export default function Corporate() {
             <Landmark size={14} />
             設計・申請専門サービス
           </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight text-white">
-            一般住宅から公共工事まで<br className="hidden md:inline" />
-            給排水設備の設計図書作成および各種申請業務
+          <h1 className="max-w-4xl text-3xl font-extrabold tracking-tight mb-6 leading-[1.2] text-balance md:text-5xl text-white">
+            一般住宅から公共工事まで 給排水設備の設計図書作成および各種申請業務
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed font-light">
             株式会社堺設備は、静岡市・焼津市の上下水道指定工事店として、一般住宅の新築・リフォームから学校等の大規模公共工事まで、給排水設備の設計図書作成および水道申請業務を専門的に手掛けております。道路使用許可や占用許可などの行政手続きも含め、確かな技術でトータルにサポートいたします。
@@ -181,11 +180,11 @@ export default function Corporate() {
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-blue-950 via-slate-900 to-slate-950 border border-blue-900/50 p-10 md:p-14 rounded-2xl text-center space-y-6">
           <h2 className="text-2xl md:text-3xl font-bold text-white">設計・申請に関するご相談・お見積り</h2>
-          <p className="text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed font-light">
-            一般住宅から公共工事までの給排水設備設計や、道路使用許可などの申請手続きについてお気軽にご相談ください。<br />
-            お見積もりをご希望の場合は、設計・申請の内容と必要費用をご案内します。内容にご納得いただいてから業務を進めます。<br />
-            設計部直通 FAX：054-348-2288 ／ メール：sakai-sekkei@ace.ocn.ne.jp
-          </p>
+          <div className="max-w-2xl mx-auto space-y-2 text-sm leading-relaxed font-light text-slate-300">
+            <p>一般住宅から公共工事までの給排水設備設計や、道路使用許可などの申請手続きについてお気軽にご相談ください。</p>
+            <p>お見積もりをご希望の場合は、設計・申請の内容と必要費用をご案内します。内容にご納得いただいてから業務を進めます。</p>
+            <p>設計部直通 FAX：054-348-2288 ／ メール：sakai-sekkei@ace.ocn.ne.jp</p>
+          </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
             <a
               href="tel:0543482286"
